@@ -57,6 +57,7 @@ class ControladorUsuarios:
                                                 "sigla estado": aluno.sigla_estado,
                                                 "rua": aluno.rua,
                                                 "numero": aluno.numero})
+                #mostrar 'endereco' ou cada um?
     def excluir_aluno(self):
         self.listar_alunos()
         cpf_aluno = self.__tela_aluno.seleciona_aluno()
@@ -68,15 +69,15 @@ class ControladorUsuarios:
         else:
             self.__tela_aluno.mostra_mensagem("ATENCAO: aluno não existente")
                 
-    def inserir_professor(self, nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero):
-        novo_professor = Professor(nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero)
-        if isinstance(novo_professor, Professor):
-            for professor in self.__professores:
-                if professor.cpf == cpf:
-                    return None
-            if novo_professor not in self.__professores:
-                self.__professors.append(novo_professor)
-                return novo_professor
+    # def inserir_professor(self, nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero):
+    #     novo_professor = Professor(nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero)
+    #     if isinstance(novo_professor, Professor):
+    #         for professor in self.__professores:
+    #             if professor.cpf == cpf:
+    #                 return None
+    #         if novo_professor not in self.__professores:
+    #             self.__professors.append(novo_professor)
+    #             return novo_professor
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
