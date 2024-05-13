@@ -1,6 +1,6 @@
-from ..model.aluno import Aluno
-from ..model.professor import Professor
-from ..view.telaAluno import TelaAluno
+from model.aluno import Aluno
+from model.professor import Professor
+from view.telaAluno import TelaAluno
 
 class ControladorUsuarios:
     def __init__(self, controlador_sistema):
@@ -80,9 +80,9 @@ class ControladorUsuarios:
     #             return novo_professor
 
     def retornar(self):
-        self.__controlador_sistema.abre_tela()
+        self.__controlador_sistema.abrir_tela()
 
-    def abre_tela(self):
+    def abrir_tela(self):
         lista_opcoes = {1: self.inserir_aluno, 2: self.alterar_aluno, 3: self.listar_alunos, 4: self.excluir_aluno, 0: self.retornar}
         continua = True
         while continua:

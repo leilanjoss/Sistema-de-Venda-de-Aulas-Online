@@ -1,28 +1,39 @@
 from controller.controladorUsuario import ControladorUsuarios
 from view.telaSistema import TelaSistema
+from controller.controladorCurso import ControladorCurso
 
 class ControladorSistema:
 
     def __init__(self):
         self.__controlador_usuarios = ControladorUsuarios
         self.__tela_sistema = TelaSistema
+        self.__controlador_cursos = ControladorCurso
 
     @property
     def controlador_usuarios(self):
         return self.__controlador_usuarios
     
-    def inicializa_sistema(self):
-        self.abre_tela()
+    @property
+    def controlador_cursos(self):
+        return self.__controlador_cursos
     
-    def cadastra_alunos(self):
-        self.__controlador_usuarios.abre_tela()
+    def inicializar_sistema(self):
+        self.abrir_tela()
     
-    def encerra_sistema(self):
+    #AVALIAR LÓGICA LOGIN E CADASTRO
+    def fazer_login(self):
+        self.__controlador_usuarios.abrir_tela()
+    
+    def fazer_cadastro(self):
+        self.__controlador_usuarios.abrir_tela()
+    
+    def encerrar_sistema(self):
         exit(0)
     
-    def abre_tela(self):
-        lista_opcoes = {1: self.cadastra_alunos,
-                        0: self.encerra_sistema}
+    def abrir_tela(self):
+        lista_opcoes = {1: self.fazer_login,
+                        2: self.fazer_cadastro(),
+                        0: self.encerrar_sistema}
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes()

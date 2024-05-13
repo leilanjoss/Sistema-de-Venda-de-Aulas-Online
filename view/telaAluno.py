@@ -8,10 +8,10 @@ class TelaAluno():
         print("4 - Excluir Aluno")
         print("0 - Retornar")
 
-        opcao = int(input("Escolha a opcao: "))
+        opcao = int(input("Escolha a opção: "))
         return opcao
 
-    def pega_dados_aluno(self):
+    def pegar_dados_aluno(self):
         print("-------- DADOS ALUNO ----------")
         nome = input("Nome: ")
         email = input("E-mail: ")
@@ -24,7 +24,7 @@ class TelaAluno():
         #senha
         return {"nome": nome, "email": email, "telefone": telefone, "cpf": cpf, "cidade": cidade, "sigla_estado": sigla_estado, "rua": rua, "numero": numero}
 
-    def mostra_aluno(self, dados_aluno):
+    def mostrar_aluno(self, dados_aluno):
         print("NOME DO ALUNO: ", dados_aluno["nome"])
         print("E-MAIL DO ALUNO: ", dados_aluno["email"])
         print("FONE DO ALUNO: ", dados_aluno["telefone"])
@@ -36,9 +36,9 @@ class TelaAluno():
         print("\n")
         #senha
 
-    def seleciona_aluno(self):
+    def selecionar_aluno(self):
         cpf = input("CPF do aluno que deseja selecionar: ")
         return cpf
 
-    def mostra_mensagem(self, msg):
+    def mostrar_mensagem(self, msg):
         print(msg)
