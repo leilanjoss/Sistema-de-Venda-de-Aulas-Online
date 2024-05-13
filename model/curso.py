@@ -9,12 +9,13 @@ class Curso:
                  tempo: int,
                  codigo_curso: int,
                  professor: Professor,
-                 titulo: str,
-                 link: str,
-                 descricao_aula: str,
-                 ordem: int,
-                 descricao_material,
-                 anexo):
+                #  titulo: str,
+                #  link: str,
+                #  descricao_aula: str,
+                #  ordem: int,
+                #  descricao_material: str,
+                #  anexo: str):
+                   ):
         self.__nome = nome
         self.__preco_atual = preco_atual
         self.__descricao = descricao
@@ -22,7 +23,12 @@ class Curso:
         self.__codigo_curso = codigo_curso
         if isinstance(professor, Professor):
             self.__professor = professor
-        self.__aulas = Aula(titulo, link, descricao_aula, ordem, descricao_material, anexo)
+        # self.__aulas = Aula(titulo, link, descricao_aula, ordem, descricao_material, anexo)
+        self.__aulas = []
+
+    def adicionar_aula(self, aula: Aula):
+        if isinstance(aula, Aula):
+            self.__aulas.append(aula)
 
     @property
     def nome(self):
