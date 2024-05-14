@@ -64,3 +64,4 @@ class AbstractUsuario(ABC):
     def endereco(self, endereco):
         if isinstance(endereco, Endereco):
             self.__endereco = endereco
+

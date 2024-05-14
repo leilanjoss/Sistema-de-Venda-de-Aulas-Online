@@ -1,5 +1,5 @@
-from modelo.curso import Curso
-from modelo.professor import Professor
+from model.curso import Curso
+from model.professor import Professor
 
 
 class ControladorCurso:
