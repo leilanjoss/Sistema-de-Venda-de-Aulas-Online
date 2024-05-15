@@ -1,5 +1,6 @@
-from aula import Aula
-from professor import Professor
+from model.aula import Aula
+from model.professor import Professor
+
 
 class Curso:
     def __init__(self,

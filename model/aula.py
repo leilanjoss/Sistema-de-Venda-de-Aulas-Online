@@ -1,4 +1,4 @@
-from material import Material
+from model.material import Material
 
 
 class Aula:
