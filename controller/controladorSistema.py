@@ -1,13 +1,13 @@
-from controller.controladorUsuario import ControladorUsuarios
+from controladorUsuario import ControladorUsuarios
 from view.telaSistema import TelaSistema
-from controller.controladorCurso import ControladorCurso
+from controladorCurso import ControladorCurso
 
 class ControladorSistema:
 
     def __init__(self):
-        self.__controlador_usuarios = ControladorUsuarios
-        self.__tela_sistema = TelaSistema
-        self.__controlador_cursos = ControladorCurso
+        self.__controlador_usuarios = ControladorUsuarios(self)
+        self.__tela_sistema = TelaSistema()
+        self.__controlador_cursos = ControladorCurso(self)
 
     @property
     def controlador_usuarios(self):
