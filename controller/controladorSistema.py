@@ -1,6 +1,6 @@
-from controladorUsuario import ControladorUsuarios
+from controller.controladorUsuario import ControladorUsuarios
 from view.telaSistema import TelaSistema
-from controladorCurso import ControladorCurso
+from controller.controladorCurso import ControladorCurso
 
 class ControladorSistema:
 
