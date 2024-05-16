@@ -1,4 +1,4 @@
-from model.abstractUsuario import AbstractUsuario
+from abstractUsuario import AbstractUsuario
 
 
 class Professor(AbstractUsuario):

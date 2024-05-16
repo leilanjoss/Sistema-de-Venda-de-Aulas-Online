@@ -1,6 +1,6 @@
 class TelaSistema:
     def tela_opcoes(self):
-        print("-------- Sistema de Venda de Aulas Online ---------")
+        print("-------- Sistema de Vendas de Aulas Online ---------")
         print("Escolha sua opcao")
         print("1 - Menu Professor")
         print("2 - Menu Aluno")
