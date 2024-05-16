@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> c05dfeb9f054186b9e7ca67199f6f66a752fa565
 from model.curso import Curso
 from model.professor import Professor
 
