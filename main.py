@@ -2,5 +2,6 @@ from controller.controladorSistema import ControladorSistema
 
 
 if __name__ == "__main__":
-  ControladorSistema().inicializar_sistema()
+  controlador_sistema = ControladorSistema()
+  controlador_sistema.inicializar_sistema()
   
