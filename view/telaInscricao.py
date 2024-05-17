@@ -1,5 +1,3 @@
-from controller.controladorInscricao import ControladorInscricao
-
 class TelaInscricao():
     def tela_opcoes():
         print("--------TELA DE INSCRIÇÃO--------")
