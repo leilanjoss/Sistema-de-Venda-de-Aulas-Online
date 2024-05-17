@@ -18,7 +18,7 @@ class ControladorSistema:
         return self.__controlador_cursos
     
     def inicializar_sistema(self):
-        self.abrir_tela()
+        self.__tela_sistema.tela_opcoes()
     
     #AVALIAR LÓGICA LOGIN E CADASTRO
     def fazer_login(self):
