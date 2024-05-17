@@ -10,7 +10,7 @@ class Inscricao():
         self.__aluno = aluno
         self.__preco_pago =  preco_pago
         self.__data_hora = data_hora
- 
+
     @property
     def curso (self):
         return self.__curso

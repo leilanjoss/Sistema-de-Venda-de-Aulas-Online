@@ -1,5 +1,4 @@
 from controladorUsuario import ControladorUsuarios
-# Colocar tela aluno
 from model.aluno import Aluno
 from view.telaAluno import TelaAluno
 
