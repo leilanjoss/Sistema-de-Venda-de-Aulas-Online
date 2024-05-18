@@ -2,6 +2,8 @@ from view.telaSistema import TelaSistema
 # from controller.controladorUsuario import ControladorUsuarios
 from controller.controladorCurso import ControladorCurso
 from controller.controladorProfessor import ControladorProfessor
+from controller.controladorAluno import ControladorAluno
+
 
 class ControladorSistema:
 
@@ -10,6 +12,7 @@ class ControladorSistema:
         self.__tela_sistema = TelaSistema()
         self.__controlador_cursos = ControladorCurso(self)
         self.__controlador_professores = ControladorProfessor(self)
+        self.__controlador_alunos = ControladorAluno(self)
 
     # @property
     # def controlador_usuarios(self):
@@ -23,11 +26,18 @@ class ControladorSistema:
     def controlador_professores(self):
         return self.__controlador_professores
     
+    @property
+    def controlador_alunos(self):
+        return self.__controlador_alunos
+    
     def cadastrar_professores(self):
         self.__controlador_professores.abrir_tela()
+
+    def cadastrar_alunos(self):
+        self.__controlador_alunos.abrir_tela()
     
     def inicializar_sistema(self):
-        self.__tela_sistema.tela_opcoes()
+        self.abrir_tela()
     
     def encerrar_sistema(self):
         exit(0)
@@ -35,7 +45,7 @@ class ControladorSistema:
     def abrir_tela(self):
         lista_opcoes = {
             1: self.cadastrar_professores,
-            # 2: self.__controlador_alunos.abrir_tela,  # Adicione isso quando o controlador de alunos estiver pronto
+            2: self.cadastrar_alunos,
             0: self.encerrar_sistema
         }
 

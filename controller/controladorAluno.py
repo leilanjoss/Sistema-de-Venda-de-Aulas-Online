@@ -1,12 +1,11 @@
-from controladorUsuario import ControladorUsuarios
+# from controladorUsuario import ControladorUsuarios
 from model.aluno import Aluno
 from view.telaAluno import TelaAluno
 
-class ControladorAluno(ControladorUsuarios):
-    def __init__(self, controlador_sistema, alunos):
-        super().__init__(controlador_sistema)
-        self.__alunos = alunos
-        self.__tela_professor = TelaAluno()
+class ControladorAluno:
+    def __init__(self, controlador_sistema):
+        self.__alunos = []
+        self.__tela_aluno = TelaAluno()
             
     def inserir_aluno(self, nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero):
         novo_aluno = Aluno(nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero)
@@ -24,14 +23,29 @@ class ControladorAluno(ControladorUsuarios):
             return aluno
 
     def alterar_aluno(self):
-        super().alterar_aluno()
+        pass
         
     def listar_alunos(self):
-        return super().listar_alunos()
+       pass
 
     def retornar(self):
         self.__controlador_sistema.abrir
         
     def abrir_tela(self):
-        return super().abrir_tela()
+        lista_opcoes = {
+            1: self.inserir_aluno,
+            2: self.alterar_aluno,
+            3: self.__alunos,
+            4: self.excluir_aluno,
+            0: self.retornar
+        }
+        continua = True
+        while continua:
+            # opcao = self.__tela_aluno.tela_opcoes()
+            # funcao_escolhida = lista_opcoes.get(opcao)
+            # if funcao_escolhida:
+            #     funcao_escolhida()
+            # else:
+            #     self.__tela_aluno.mostrar_mensagem("Opção inválida. Escolha novamente.")
+            lista_opcoes[self.__tela_aluno.tela_opcoes()]()
     
