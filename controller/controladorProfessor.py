@@ -10,6 +10,10 @@ class ControladorProfessor:
     @property
     def professores(self):
         return self.__professores
+    
+    @property
+    def tela_professor(self):
+        return self.__tela_professor
 
     def inserir_professor(self, nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero):
         novo_professor = Professor(nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero)
@@ -28,35 +32,35 @@ class ControladorProfessor:
         return None
     
     def excluir_professor(self):
-        self.listar_professores()
+        self.__professores()
         cpf_professor = self.__tela_professor.seleciona_professor()
         professor = self.pega_professor_por_cpf(cpf_professor)
 
         if professor is not None:
             self.__professores.remove(professor)
-            self.listar_professores()
+            self.__professores()
         else:
             self.__tela_professor.mostra_mensagem("ATENCAO: professor não existente")
 
-    def listar_professores(self):
-        if not self.__professores:
-            self.__tela_professor.mostra_mensagem("Nenhum professor cadastrado.")
-        else:
-            for professor in self.__professores:
-                self.__tela_professor.mostra_professor({
-                    "nome": professor.nome,
-                    "email": professor.email,
-                    "telefone": professor.telefone,
-                    "cpf": professor.cpf,
-                    "cidade": professor.cidade,
-                    "sigla estado": professor.sigla_estado,
-                    "rua": professor.rua,
-                    "numero": professor.numero
-                })
+    # def listar_professores(self):
+    #     if not self.__professores:
+    #         self.__tela_professor.mostra_mensagem("Nenhum professor cadastrado.")
+    #     else:
+    #         for professor in self.__professores:
+    #             self.__tela_professor.mostra_professor({
+    #                 "nome": professor.nome,
+    #                 "email": professor.email,
+    #                 "telefone": professor.telefone,
+    #                 "cpf": professor.cpf,
+    #                 "cidade": professor.cidade,
+    #                 "sigla estado": professor.sigla_estado,
+    #                 "rua": professor.rua,
+    #                 "numero": professor.numero
+    #             })
 
 
     def alterar_professor(self):
-        self.listar_professores()
+        self.__professores()
         cpf_professor = self.__tela_professor.seleciona_professor()
         professor = self.pega_professor_por_cpf(cpf_professor)
 
@@ -75,7 +79,7 @@ class ControladorProfessor:
         lista_opcoes = {
             1: self.inserir_professor,
             2: self.alterar_professor,
-            3: self.listar_professores,
+            3: self.__professores,
             4: self.excluir_professor,
             0: self.retornar
         }

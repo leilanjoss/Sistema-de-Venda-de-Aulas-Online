@@ -34,7 +34,7 @@ class ControladorSistema:
     
     def abrir_tela(self):
         lista_opcoes = {
-            1: self.__controlador_professores.abrir_tela(),
+            1: self.cadastrar_professores,
             # 2: self.__controlador_alunos.abrir_tela,  # Adicione isso quando o controlador de alunos estiver pronto
             0: self.encerrar_sistema
         }
