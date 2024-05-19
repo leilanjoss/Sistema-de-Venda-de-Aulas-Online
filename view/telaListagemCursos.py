@@ -1,6 +1,3 @@
-from telaAluno import TelaAluno
-from controller.controladorInscricao import ControladorInscricao
-
 class TelaListagemCursos():
     def listar_cursos(self, cursos):
         for curso in cursos:
