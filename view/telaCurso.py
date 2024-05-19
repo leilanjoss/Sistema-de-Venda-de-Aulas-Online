@@ -1,11 +1,16 @@
+from model.aula import Aula
+from model.material import Material
+from model.professor import Professor
+
+
 class TelaCurso:
     def tela_opcoes(self):
         print("-------- CURSO ----------")
         print("Escolha a opção")
         print("1 - Inserir Curso")
-        print("2 - Excluir Curso")
-        print("3 - Alterar Curso")
-        print("4 - Listar Cursos")
+        print("2 - Alterar Curso")
+        print("3 - Listar Cursos")
+        print("3 - Excluir Curso")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opcao: "))
@@ -16,18 +21,23 @@ class TelaCurso:
         nome = input("Nome do curso: ")
         preco_atual = float(input("Preço atual do curso: "))
         descricao = input("Descrição do curso: ")
-        tempo = int(input("Tempo do curso em semanas: "))
-        codigo_curso = int(input("Código do curso: "))
-        professor = input("Professor do curso: ")
-        aulas = input("Aulas do curso: ")
+        tempo = (input("Tempo do curso em semanas: "))
+        codigo_curso = (input("Código do curso: "))
+        # professor = input("Professor do curso: ")
+        # aulas = input("Aulas do curso: ")
+        self.listar_professores()
+        cpf_professor = self.__tela_professor.selecionar_professor()
+        professor = self.pegar_professor_por_cpf(cpf_professor)
+        # professor = str(professor)
+       
         return {
             "nome": nome,
             "preco_atual": preco_atual,
             "descricao": descricao,
             "tempo": tempo,
             "codigo_curso": codigo_curso,
-            "professor": professor,
-            "aulas": aulas
+            "professor": str(professor),
+            # "aulas": aulas
         }
 
     def mostrar_curso(self, dados_curso):

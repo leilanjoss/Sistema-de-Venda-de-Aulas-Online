@@ -2,8 +2,11 @@ from model.professor import Professor
 from view.telaProfessor import TelaProfessor
 from model.endereco import Endereco
 
+
 class ControladorProfessor:
-    def __init__(self, controlador_sistema):
+    def __init__(self, 
+                 controlador_sistema
+                 ):
         self.__professores = []
         self.__professores.append(Professor("teste","email", "99", "1", "cidade", "SE", "rua", "99"))
         self.__tela_professor = TelaProfessor()
@@ -102,10 +105,4 @@ class ControladorProfessor:
         }
         continua = True
         while continua:
-            # opcao = self.__tela_professor.tela_opcoes()
-            # if opcao in lista_opcoes:
-            #     dados_professor = self.__tela_professor.pegar_dados_professor() if opcao == 1 else {}
-            #     lista_opcoes[opcao](dados_professor)
-            # else:
-            #     self.__tela_professor.mostrar_mensagem("--Opção inválida. Escolha novamente.")
             lista_opcoes[self.__tela_professor.tela_opcoes()]()

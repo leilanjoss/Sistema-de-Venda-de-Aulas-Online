@@ -1,5 +1,8 @@
 class Material:
-    def __init__(self, descricao_material: str, anexo:str):
+    def __init__(self, 
+                 descricao_material: str,
+                 anexo: str
+                 ):
         self.__descricao_material = descricao_material
         self.__anexo = anexo
 
