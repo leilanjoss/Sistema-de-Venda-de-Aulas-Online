@@ -37,7 +37,7 @@ class TelaAluno():
         print("dados aluno", dados_aluno)
         print("NOME DO ALUNO: ", dados_aluno["nome"])
         print("E-MAIL DO ALUNO: ", dados_aluno["email"])
-        print("FONE DO ALUNO: ", dados_aluno["telefone"])
+        print("TELE.FONE DO ALUNO: ", dados_aluno["telefone"])
         print("CPF DO ALUNO: ", dados_aluno["cpf"])
         print("ENDEREÇO DO ALUNO: ", dados_aluno["endereco"])
         print("CARTAO DO ALUNO: ", dados_aluno["cartao"])
@@ -47,5 +47,5 @@ class TelaAluno():
         cpf = input("CPF do aluno que deseja selecionar: ")
         return cpf
 
-    def mostrar_mensagem(self, msg):
+    def mostrar_mensagem(self, msg: str):
         print(msg)

@@ -8,5 +8,3 @@ class TelaRelatorio():
         
         opcao = int(input("Escolha uma opção: "))
         return opcao
-
-        
