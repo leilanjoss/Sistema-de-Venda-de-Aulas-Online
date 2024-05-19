@@ -10,6 +10,7 @@ class TelaCurso:
 
         opcao = int(input("Escolha a opcao: "))
         return opcao
+
     def pegar_dados_curso(self):
         print("-------- DADOS DO CURSO ----------")
         nome = input("Nome do curso: ")
@@ -42,6 +43,6 @@ class TelaCurso:
     def selecionar_curso(self):
         codigo_curso = input('Código do curso que você deseja selecionar: ')
         return codigo_curso
-    
+
     def mostrar_mensagem(self, msg):
         print(msg)

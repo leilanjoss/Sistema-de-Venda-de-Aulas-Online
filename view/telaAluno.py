@@ -27,7 +27,7 @@ class TelaAluno():
     def mostrar_aluno(self, dados_aluno):
         print("NOME DO ALUNO: ", dados_aluno["nome"])
         print("E-MAIL DO ALUNO: ", dados_aluno["email"])
-        print("FONE DO ALUNO: ", dados_aluno["telefone"])
+        print("TELE.FONE DO ALUNO: ", dados_aluno["telefone"])
         print("CPF DO ALUNO: ", dados_aluno["cpf"])
         print("CIDADE DO ALUNO: ", dados_aluno["cidade"])
         print("SIGLA DO ESTADO DO ALUNO: ", dados_aluno["sigla_estado"])
