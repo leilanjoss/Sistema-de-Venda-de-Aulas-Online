@@ -11,7 +11,7 @@ class Aluno(AbstractUsuario):
                  cidade: str, 
                  sigla_estado: str, 
                  rua: str, 
-                 numero: int, 
+                 numero: str, 
                  cartao: str): #str ou int
         super().__init__(nome, email, telefone, cpf, cidade, sigla_estado, rua, numero)
         self.__cartao = cartao

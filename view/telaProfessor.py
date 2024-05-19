@@ -22,7 +22,14 @@ class TelaProfessor():
         rua = input("Rua: ")
         numero = input("Número: ")
         #senha
-        return {"nome": nome, "email": email, "telefone": telefone, "cpf": cpf, "cidade": cidade, "sigla_estado": sigla_estado, "rua": rua, "numero": numero}
+        return {"nome": nome, 
+                "email": email, 
+                "telefone": telefone, 
+                "cpf": cpf, 
+                "cidade": cidade, 
+                "sigla_estado": sigla_estado, 
+                "rua": rua, 
+                "numero": numero}
 
     def mostrar_professor(self, dados_professor):
         print("NOME DO PROFESSOR: ", dados_professor["nome"])

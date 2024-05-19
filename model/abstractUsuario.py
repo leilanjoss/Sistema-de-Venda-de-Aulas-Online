@@ -12,7 +12,7 @@ class AbstractUsuario(ABC):
                  cidade: str, 
                  sigla_estado: str, 
                  rua: str, 
-                 numero: int):
+                 numero: str):
         self.__nome = nome
         self.__email = email
         # self.__senha = senha

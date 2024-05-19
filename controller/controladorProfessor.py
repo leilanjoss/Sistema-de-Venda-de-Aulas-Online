@@ -1,5 +1,6 @@
 from model.professor import Professor
 from view.telaProfessor import TelaProfessor
+from model.endereco import Endereco
 
 class ControladorProfessor:
     def __init__(self, controlador_sistema):
@@ -34,9 +35,9 @@ class ControladorProfessor:
                                   dados_professor["numero"],
                                   )
             self.__professores.append(professor)
-            self.__tela_professor.mostrar_mensagem("Professor inserido.")
+            self.__tela_professor.mostrar_mensagem("--Professor inserido.")
         else:
-            self.__tela_professor.mostrar_mensagem("Professor já existente.")
+            self.__tela_professor.mostrar_mensagem("--Professor já existente.")
 
     def pegar_professor_por_cpf(self, cpf: int):
         for professor in self.__professores:
@@ -45,17 +46,17 @@ class ControladorProfessor:
         return None
     
     def excluir_professor(self):
-        self.listar_professores()
+        # self.listar_professores()
         cpf = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf)
         if professor is not None:
             self.__professores.remove(professor)
-            self.__tela_professor.mostrar_mensagem("Professor excluído.")
+            self.__tela_professor.mostrar_mensagem("--Professor excluído.")
         else:
-            self.__tela_professor.mostrar_mensagem("Professor não existente.")
+            self.__tela_professor.mostrar_mensagem("--Professor não existente.")
 
     def alterar_professor(self):
-        self.listar_professores()
+        # self.listar_professores()
         cpf_professor = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf_professor)
         if professor is not None:
@@ -64,19 +65,20 @@ class ControladorProfessor:
             professor.email = novos_dados_professor["email"]
             professor.telefone = novos_dados_professor["telefone"]
             professor.cpf = novos_dados_professor["cpf"]
-            professor.cidade = novos_dados_professor["cidade"]
-            professor.sigla_estado = novos_dados_professor["sigla_estado"]
-            professor.rua = novos_dados_professor["rua"]
-            professor.numero = novos_dados_professor["numero"]
+            # professor.cidade = novos_dados_professor["cidade"]
+            # professor.sigla_estado = novos_dados_professor["sigla_estado"]
+            # professor.rua = novos_dados_professor["rua"]
+            # professor.numero = novos_dados_professor["numero"]
+            professor.endereco = novos_dados_professor["Endereco(cidade='{self.cidade}', sigla_estado='{self.sigla_estado}', rua='{self.rua}', numero='{self.numero}'"]
 
-            self.__tela_professor.mostrar_mensagem('Professor alterado:')
+            self.__tela_professor.mostrar_mensagem('--Professor alterado:')
             self.__tela_professor.mostrar_professor(novos_dados_professor)
         else:
-            self.__tela_professor.mostrar_mensagem('Não foi possível alterar o professor.')
+            self.__tela_professor.mostrar_mensagem('--Não foi possível alterar o professor.')
 
     def listar_professores(self):
         if not self.__professores:
-            self.__tela_professor.mostrar_mensagem("Nenhum professor cadastrado.")
+            self.__tela_professor.mostrar_mensagem("--Nenhum professor cadastrado.")
         else:
             for professor in self.__professores:
                 self.__tela_professor.mostrar_professor({
@@ -88,8 +90,9 @@ class ControladorProfessor:
                     # "sigla estado": professor.sigla_estado,
                     # "rua": professor.rua,
                     # "numero": professor.numero
-                    "endereco": professor.__endereco(),
+                    "endereco": str(professor.endereco)
                 })
+                print("******")
 
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
@@ -109,5 +112,5 @@ class ControladorProfessor:
             #     dados_professor = self.__tela_professor.pegar_dados_professor() if opcao == 1 else {}
             #     lista_opcoes[opcao](dados_professor)
             # else:
-            #     self.__tela_professor.mostrar_mensagem("Opção inválida. Escolha novamente.")
+            #     self.__tela_professor.mostrar_mensagem("--Opção inválida. Escolha novamente.")
             lista_opcoes[self.__tela_professor.tela_opcoes()]()

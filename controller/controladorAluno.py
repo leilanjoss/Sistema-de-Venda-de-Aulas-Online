@@ -7,20 +7,35 @@ class ControladorAluno:
         self.__alunos = []
         self.__tela_aluno = TelaAluno()
             
-    def inserir_aluno(self, nome, email,telefone, cpf, cidade, sigla_estado, rua, numero):
-        novo_aluno = Aluno(nome, email, telefone, cpf, cidade, sigla_estado, rua, numero)
-        if isinstance(novo_aluno, Aluno):
-            for aluno in self.__alunos:
-                if aluno.cpf == cpf:
-                    return None
-            if novo_aluno not in self.__alunos:
-                self.__alunos.append(novo_aluno)
-                return novo_aluno
+    def adicionar_aluno(self):
+        dados_aluno = self.__tela_aluno.pegar_dados_aluno()
+        aluno = self.pegar_aluno_por_cpf(dados_aluno["cpf"])
+        if aluno is None:
+            novo_aluno = Aluno(dados_aluno["nome"], 
+                            dados_aluno["email"], 
+                            dados_aluno["telefone"], 
+                            dados_aluno["cpf"], 
+                            dados_aluno["cidade"],
+                            dados_aluno["sigla_estado"],
+                            dados_aluno["rua"],
+                            dados_aluno["numero"],
+                            dados_aluno["cartao"]
+                            )
+            self.__alunos.append(novo_aluno)
+            self.__tela_aluno.mostrar_mensagem("--Aluno inserido.")
+        else:
+            self.__tela_aluno.mostrar_mensagem("--Aluno já existente.")
+
             
     def excluir_aluno(self, aluno):
-        if isinstance(aluno, Aluno) and aluno is not None and aluno in self.__alunos:
-            self.__alunos.remove(aluno)
-            return aluno
+        #self.listar_alunos()
+        cpf = self.__tela_aluno.selecionar_aluno ()
+        aluno = self.pegar_aluno_por_cpf(cpf)
+        if aluno is not None:
+            self.__aluno.remove(aluno)
+            self.__tela_aluno.mostrar_mensagem("--Aluno excluído.")
+        else:
+            self.__tela_aluno.mostrar_mensagem("--Aluno não existente.")
 
     def alterar_aluno(self):
         pass

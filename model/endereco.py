@@ -6,7 +6,7 @@ class Endereco:
             self.__sigla_estado = sigla_estado
         if isinstance(rua, str):
             self.__rua = rua
-        if isinstance(numero, int):
+        if isinstance(numero, str):
             self.__numero = numero
     @property
     def cidade(self):
@@ -41,11 +41,12 @@ class Endereco:
 
     @numero.setter
     def numero(self, numero):
-        if isinstance(numero, int):
+        if isinstance(numero, str):
             self.__numero = numero
     
     def __repr__(self):
-        return f"Endereco(cidade='{self.__cidade}', sigla_estado='{self.__sigla_estado}', rua='{self.__rua}', numero={self.__numero})"
+        return f"Endereco(cidade='{self.cidade}', sigla_estado='{self.sigla_estado}', rua='{self.rua}', numero='{self.numero}')"
 
-    def __str__(self):
-        return f"Cidade: {self.__cidade}, Estado: {self.__sigla_estado}, Rua: {self.__rua}, Número: {self.__numero}"
+    # def __str__(self):
+    #     return f"Cidade: {self.__cidade}, Estado: {self.__sigla_estado}, Rua: {self.__rua}, Número: {self.__numero}"1
+    
