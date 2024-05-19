@@ -41,8 +41,18 @@ class ControladorAluno:
         pass
         
     def listar_alunos(self):
-       pass
-
+        if not self.__alunos:
+            self.__tela_aluno.mostrar_mensagem("--Nenhum aluno cadastrado.")
+        else:
+            for aluno in self.__alunoes:
+                self.__tela_aluno.mostrar_aluno({
+                    "nome": aluno.nome,
+                    "email": aluno.email,
+                    "telefone": aluno.telefone,
+                    "cpf": aluno.cpf,
+                    "endereco": str(aluno.endereco)
+                })
+                print("******")
     def retornar(self):
         self.__controlador_sistema.abrir
         

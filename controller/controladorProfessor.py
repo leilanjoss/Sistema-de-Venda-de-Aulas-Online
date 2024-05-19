@@ -17,11 +17,6 @@ class ControladorProfessor:
         return self.__tela_professor
 
     def inserir_professor(self):
-        # novo_professor = Professor(**dados_professor)
-        # if isinstance(novo_professor, Professor) and novo_professor not in self.__professores:
-        #     self.__professores.append(novo_professor)
-        #     return novo_professor
-        # return None
         dados_professor = self.__tela_professor.pegar_dados_professor()
         prof = self.pegar_professor_por_cpf(dados_professor["cpf"])
         if prof is None:
@@ -46,7 +41,7 @@ class ControladorProfessor:
         return None
     
     def excluir_professor(self):
-        # self.listar_professores()
+        self.listar_professores()
         cpf = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf)
         if professor is not None:
@@ -56,7 +51,7 @@ class ControladorProfessor:
             self.__tela_professor.mostrar_mensagem("--Professor não existente.")
 
     def alterar_professor(self):
-        # self.listar_professores()
+        self.listar_professores()
         cpf_professor = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf_professor)
         if professor is not None:
@@ -65,14 +60,12 @@ class ControladorProfessor:
             professor.email = novos_dados_professor["email"]
             professor.telefone = novos_dados_professor["telefone"]
             professor.cpf = novos_dados_professor["cpf"]
-            # professor.cidade = novos_dados_professor["cidade"]
-            # professor.sigla_estado = novos_dados_professor["sigla_estado"]
-            # professor.rua = novos_dados_professor["rua"]
-            # professor.numero = novos_dados_professor["numero"]
-            professor.endereco = novos_dados_professor["Endereco(cidade='{self.cidade}', sigla_estado='{self.sigla_estado}', rua='{self.rua}', numero='{self.numero}'"]
+            professor.endereco = Endereco(novos_dados_professor["cidade"],
+                                          novos_dados_professor["sigla_estado"],
+                                          novos_dados_professor["rua"],
+                                          novos_dados_professor["numero"]),
 
             self.__tela_professor.mostrar_mensagem('--Professor alterado:')
-            self.__tela_professor.mostrar_professor(novos_dados_professor)
         else:
             self.__tela_professor.mostrar_mensagem('--Não foi possível alterar o professor.')
 
