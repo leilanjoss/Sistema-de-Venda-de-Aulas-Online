@@ -1,5 +1,5 @@
 class Endereco:
-    def __init__(self, cidade: str, sigla_estado: str, rua: str, numero: int):
+    def __init__(self, cidade: str, sigla_estado: str, rua: str, numero: str):
         if isinstance(cidade, str):
             self.__cidade = cidade
         if isinstance(sigla_estado, str):

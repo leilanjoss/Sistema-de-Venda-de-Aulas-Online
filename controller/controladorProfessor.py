@@ -5,6 +5,7 @@ from model.endereco import Endereco
 class ControladorProfessor:
     def __init__(self, controlador_sistema):
         self.__professores = []
+        self.__professores.append(Professor("teste","email", "99", "1", "cidade", "SE", "rua", "99"))
         self.__tela_professor = TelaProfessor()
         self.__controlador_sistema = controlador_sistema
 
@@ -18,9 +19,9 @@ class ControladorProfessor:
 
     def inserir_professor(self):
         dados_professor = self.__tela_professor.pegar_dados_professor()
-        prof = self.pegar_professor_por_cpf(dados_professor["cpf"])
-        if prof is None:
-            professor = Professor(dados_professor["nome"], 
+        professor = self.pegar_professor_por_cpf(dados_professor["cpf"])
+        if professor is None:
+            novo_professor = Professor(dados_professor["nome"], 
                                   dados_professor["email"], 
                                   dados_professor["telefone"], 
                                   dados_professor["cpf"], 
@@ -29,7 +30,7 @@ class ControladorProfessor:
                                   dados_professor["rua"],
                                   dados_professor["numero"],
                                   )
-            self.__professores.append(professor)
+            self.__professores.append(novo_professor)
             self.__tela_professor.mostrar_mensagem("--Professor inserido.")
         else:
             self.__tela_professor.mostrar_mensagem("--Professor já existente.")
@@ -65,7 +66,7 @@ class ControladorProfessor:
                                           novos_dados_professor["rua"],
                                           novos_dados_professor["numero"]),
 
-            self.__tela_professor.mostrar_mensagem('--Professor alterado:')
+            self.__tela_professor.mostrar_mensagem('--Professor alterado.')
         else:
             self.__tela_professor.mostrar_mensagem('--Não foi possível alterar o professor.')
 
@@ -74,6 +75,7 @@ class ControladorProfessor:
             self.__tela_professor.mostrar_mensagem("--Nenhum professor cadastrado.")
         else:
             for professor in self.__professores:
+                print("******")
                 self.__tela_professor.mostrar_professor({
                     "nome": professor.nome,
                     "email": professor.email,

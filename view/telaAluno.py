@@ -21,19 +21,26 @@ class TelaAluno():
         sigla_estado = input("Sigla do Estado: ")
         rua = input("Rua: ")
         numero = input("Número: ")
+        cartao = input('Cartão: ')
         #senha
-        return {"nome": nome, "email": email, "telefone": telefone, "cpf": cpf, "cidade": cidade, "sigla_estado": sigla_estado, "rua": rua, "numero": numero}
+        return {"nome": nome, 
+                "email": email, 
+                "telefone": telefone, 
+                "cpf": cpf, 
+                "cidade": cidade, 
+                "sigla_estado": sigla_estado, 
+                "rua": rua, 
+                "numero": numero,
+                "cartao": cartao}
 
     def mostrar_aluno(self, dados_aluno):
+        print("dados aluno", dados_aluno)
         print("NOME DO ALUNO: ", dados_aluno["nome"])
         print("E-MAIL DO ALUNO: ", dados_aluno["email"])
         print("FONE DO ALUNO: ", dados_aluno["telefone"])
         print("CPF DO ALUNO: ", dados_aluno["cpf"])
-        print("CIDADE DO ALUNO: ", dados_aluno["cidade"])
-        print("SIGLA DO ESTADO DO ALUNO: ", dados_aluno["sigla_estado"])
-        print("RUA DO ALUNO: ", dados_aluno["rua"])
-        print("NÚMERO DO ALUNO: ", dados_aluno["numero"])
-        print("\n")
+        print("ENDEREÇO DO ALUNO: ", dados_aluno["endereco"])
+        print("CARTAO DO ALUNO: ", dados_aluno["cartao"])
         #senha
 
     def selecionar_aluno(self):

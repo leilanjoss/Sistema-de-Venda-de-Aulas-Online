@@ -71,8 +71,5 @@ class AbstractUsuario(ABC):
 
     @endereco.setter
     def endereco(self, endereco):
-        if isinstance(endereco, Endereco):
-            self.__endereco = endereco
-
-    # def __repr__(self):
-    #     return f"Endereco(cidade='{self.__cidade}', sigla_estado='{self.__sigla_estado}', rua='{self.__rua}', numero={self.__numero})"
+        # if isinstance(endereco, Endereco):
+        self.__endereco = endereco
