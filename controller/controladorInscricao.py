@@ -13,8 +13,8 @@ class ControladorInscricao:
         self.__inscricoes = []
         self.__tela_listagem_cursos = TelaListagemCursos()
         self.__controlador_sistema = controlador_sistema
-        
-    
+
+
     def inserir_inscricao(self, inscricao: Inscricao):
         if (isinstance(inscricao, Inscricao) and inscricao is not None and inscricao is not self.__inscricoes):
             self.__inscricoes.append(inscricao)
@@ -36,10 +36,10 @@ class ControladorInscricao:
             if curso_busca == curso:
                 num_inscricoes += 1
         return num_inscricoes
-    
+
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
-        
+
     def abrir_tela(self):
         lista_opcoes = {1: self.inserir_inscricao,
                         2: self.excluir_inscricao,
@@ -49,5 +49,3 @@ class ControladorInscricao:
         continua = True
         while continua:
             lista_opcoes[self.__tela]
-    
-    
