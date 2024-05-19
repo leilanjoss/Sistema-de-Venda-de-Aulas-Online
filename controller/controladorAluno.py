@@ -7,8 +7,8 @@ class ControladorAluno:
         self.__alunos = []
         self.__tela_aluno = TelaAluno()
             
-    def inserir_aluno(self, nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero):
-        novo_aluno = Aluno(nome, email, senha, telefone, cpf, cidade, sigla_estado, rua, numero)
+    def inserir_aluno(self, nome, email,telefone, cpf, cidade, sigla_estado, rua, numero):
+        novo_aluno = Aluno(nome, email, telefone, cpf, cidade, sigla_estado, rua, numero)
         if isinstance(novo_aluno, Aluno):
             for aluno in self.__alunos:
                 if aluno.cpf == cpf:

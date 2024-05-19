@@ -3,10 +3,19 @@ from abc import ABC, abstractmethod
 
 class AbstractUsuario(ABC):
     @abstractmethod
-    def __init__(self, nome: str, email: str, senha: str, telefone: int, cpf: int, cidade: str, sigla_estado: str, rua: str, numero: int):
+    def __init__(self, 
+                 nome: str, 
+                 email: str,
+                #  senha: str,
+                 telefone: int,
+                 cpf: int, 
+                 cidade: str, 
+                 sigla_estado: str, 
+                 rua: str, 
+                 numero: int):
         self.__nome = nome
         self.__email = email
-        self.__senha = senha
+        # self.__senha = senha
         self.__telefone = telefone
         self.__cpf = cpf
         self.__endereco = Endereco(cidade, sigla_estado, rua, numero)
@@ -19,9 +28,9 @@ class AbstractUsuario(ABC):
     def email(self) -> str:
         return self.__email
 
-    @property
-    def senha(self) -> str:
-        return self.__senha
+    # @property
+    # def senha(self) -> str:
+    #     return self.__senha
 
     @property
     def telefone(self) -> int:
@@ -45,10 +54,10 @@ class AbstractUsuario(ABC):
         if isinstance(email, str):
             self.__email = email
 
-    @senha.setter
-    def senha(self, senha):
-        if isinstance(senha, str):
-            self.__senha = senha
+    # @senha.setter
+    # def senha(self, senha):
+    #     if isinstance(senha, str):
+    #         self.__senha = senha
     
     @telefone.setter
     def telefone(self, telefone):
@@ -65,3 +74,5 @@ class AbstractUsuario(ABC):
         if isinstance(endereco, Endereco):
             self.__endereco = endereco
 
+    # def __repr__(self):
+    #     return f"Endereco(cidade='{self.__cidade}', sigla_estado='{self.__sigla_estado}', rua='{self.__rua}', numero={self.__numero})"

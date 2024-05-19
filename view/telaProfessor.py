@@ -29,11 +29,12 @@ class TelaProfessor():
         print("E-MAIL DO PROFESSOR: ", dados_professor["email"])
         print("FONE DO PROFESSOR: ", dados_professor["telefone"])
         print("CPF DO PROFESSOR: ", dados_professor["cpf"])
-        print("CIDADE DO PROFESSOR: ", dados_professor["cidade"])
-        print("SIGLA DO ESTADO DO PROFESSOR: ", dados_professor["sigla_estado"])
-        print("RUA DO PROFESSOR: ", dados_professor["rua"])
-        print("NÚMERO DO PROFESSOR: ", dados_professor["numero"])
-        print("\n")
+        # print("CIDADE DO PROFESSOR: ", dados_professor["cidade"])
+        # print("SIGLA DO ESTADO DO PROFESSOR: ", dados_professor["sigla_estado"])
+        # print("RUA DO PROFESSOR: ", dados_professor["rua"])
+        # print("NÚMERO DO PROFESSOR: ", dados_professor["numero"])
+        # print("\n")
+        print("ENDEREÇO DO PROFESSOR: ", dados_professor["endereco"])
         #senha
 
     def selecionar_professor(self):
