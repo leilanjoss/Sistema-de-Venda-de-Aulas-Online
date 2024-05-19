@@ -19,7 +19,7 @@ class Aluno(AbstractUsuario):
     @property
     def cartao(self):
         return self.__cartao
-    
+
     @cartao.setter
     def cartao(self, cartao):
         if isinstance(cartao, str):

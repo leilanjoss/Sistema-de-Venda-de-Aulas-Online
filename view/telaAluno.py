@@ -40,5 +40,5 @@ class TelaAluno():
         cpf = input("CPF do aluno que deseja selecionar: ")
         return cpf
 
-    def mostrar_mensagem(self, msg):
+    def mostrar_mensagem(self, msg: str):
         print(msg)
