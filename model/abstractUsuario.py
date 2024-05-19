@@ -7,8 +7,8 @@ class AbstractUsuario(ABC):
                  nome: str, 
                  email: str,
                 #  senha: str,
-                 telefone: int,
-                 cpf: int, 
+                 telefone: str,
+                 cpf: str, 
                  cidade: str, 
                  sigla_estado: str, 
                  rua: str, 
@@ -33,11 +33,11 @@ class AbstractUsuario(ABC):
     #     return self.__senha
 
     @property
-    def telefone(self) -> int:
+    def telefone(self) -> str:
         return self.__telefone
 
     @property
-    def cpf(self) -> int:
+    def cpf(self) -> str:
         return self.__cpf
 
     @property
@@ -61,12 +61,12 @@ class AbstractUsuario(ABC):
     
     @telefone.setter
     def telefone(self, telefone):
-        if isinstance(telefone, int):
+        if isinstance(telefone, str):
             self.__telefone = telefone
 
     @cpf.setter
     def cpf(self, cpf):
-        if isinstance(cpf, int):
+        if isinstance(cpf, str):
             self.__cpf = cpf
 
     @endereco.setter
