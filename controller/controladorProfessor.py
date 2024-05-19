@@ -34,7 +34,7 @@ class ControladorProfessor:
         else:
             self.__tela_professor.mostrar_mensagem("--Professor já existente.")
 
-    def pegar_professor_por_cpf(self, cpf: int):
+    def pegar_professor_por_cpf(self, cpf: str):
         for professor in self.__professores:
             if professor.cpf == cpf:
                 return professor
