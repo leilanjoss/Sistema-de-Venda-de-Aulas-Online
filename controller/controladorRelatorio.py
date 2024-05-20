@@ -2,9 +2,9 @@ from controladorInscricao import ControladorInscricao
 from controladorCurso import ControladorCurso
 
 class ControladorRelatorio:
-    def __init__(self, controlador_inscricao, controlador_curso):
-        self.__controlador_inscricao = controlador_inscricao
-        self.__controlador_curso = controlador_curso
+    def __init__(self):
+        self.__controlador_inscricao = ControladorInscricao
+        self.__controlador_curso = ControladorCurso
     
     def gerar_relatorio_total_receitas(self, professor):
         receita = 0
