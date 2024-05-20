@@ -1,4 +1,4 @@
-class TelaAluno():
+class TelaAluno:
     def tela_opcoes(self):
         print("-------- ALUNOS ----------")
         print("Escolha a opcao")
@@ -22,7 +22,7 @@ class TelaAluno():
         rua = input("Rua: ")
         numero = input("Número: ")
         cartao = input('Cartão: ')
-        #senha
+
         return {"nome": nome, 
                 "email": email, 
                 "telefone": telefone, 
@@ -34,14 +34,13 @@ class TelaAluno():
                 "cartao": cartao}
 
     def mostrar_aluno(self, dados_aluno):
-        print("dados aluno", dados_aluno)
-        print("NOME DO ALUNO: ", dados_aluno["nome"])
-        print("E-MAIL DO ALUNO: ", dados_aluno["email"])
-        print("TELE.FONE DO ALUNO: ", dados_aluno["telefone"])
-        print("CPF DO ALUNO: ", dados_aluno["cpf"])
-        print("ENDEREÇO DO ALUNO: ", dados_aluno["endereco"])
-        print("CARTAO DO ALUNO: ", dados_aluno["cartao"])
-        #senha
+        print(">Nome do Aluno: ", dados_aluno["nome"])
+        print(">E-mail do Aluno: ", dados_aluno["email"])
+        print(">Telefone do Aluno: ", dados_aluno["telefone"])
+        print(">CPF do Aluno: ", dados_aluno["cpf"])
+        print(">Endereço do Aluno: ", dados_aluno["endereco"])
+        print(">Cartão do Aluno: ", dados_aluno["cartao"])
+
 
     def selecionar_aluno(self):
         cpf = input("CPF do aluno que deseja selecionar: ")

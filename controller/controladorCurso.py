@@ -30,7 +30,6 @@ class ControladorCurso:
             self.__tela_curso.mostrar_mensagem("--Curso já existente.")
 
     def excluir_curso(self):
-        #self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
         if curso is not None:

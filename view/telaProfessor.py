@@ -21,7 +21,7 @@ class TelaProfessor():
         sigla_estado = input("Sigla do Estado: ")
         rua = input("Rua: ")
         numero = input("Número: ")
-        #senha
+
         return {"nome": nome, 
                 "email": email, 
                 "telefone": telefone, 
@@ -32,17 +32,11 @@ class TelaProfessor():
                 "numero": numero}
 
     def mostrar_professor(self, dados_professor):
-        print("NOME DO PROFESSOR: ", dados_professor["nome"])
-        print("E-MAIL DO PROFESSOR: ", dados_professor["email"])
-        print("FONE DO PROFESSOR: ", dados_professor["telefone"])
-        print("CPF DO PROFESSOR: ", dados_professor["cpf"])
-        # print("CIDADE DO PROFESSOR: ", dados_professor["cidade"])
-        # print("SIGLA DO ESTADO DO PROFESSOR: ", dados_professor["sigla_estado"])
-        # print("RUA DO PROFESSOR: ", dados_professor["rua"])
-        # print("NÚMERO DO PROFESSOR: ", dados_professor["numero"])
-        # print("\n")
-        print("ENDEREÇO DO PROFESSOR: ", dados_professor["endereco"])
-        #senha
+        print(">Nome do Professor: ", dados_professor["nome"])
+        print(">E-mail do Professor: ", dados_professor["email"])
+        print(">Telefone do Professor: ", dados_professor["telefone"])
+        print(">CPF do Professor: ", dados_professor["cpf"])
+        print(">Endereço do Professor: ", dados_professor["endereco"])
 
     def selecionar_professor(self):
         cpf = input("CPF do professor que deseja selecionar: ")
