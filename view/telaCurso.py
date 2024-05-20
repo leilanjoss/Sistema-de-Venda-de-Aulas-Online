@@ -14,7 +14,7 @@ class TelaCurso:
         print("1 - Inserir Curso")
         print("2 - Alterar Curso")
         print("3 - Listar Cursos")
-        print("3 - Excluir Curso")
+        print("4 - Excluir Curso")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opção: "))
@@ -41,6 +41,7 @@ class TelaCurso:
             material.anexo = input("Link do anexo: ")
             material.descricao_material = input("Descrição: ")
             aula.adicionar_material(material)
+            curso.adicionar_aula(aula)
             
         return curso
 
