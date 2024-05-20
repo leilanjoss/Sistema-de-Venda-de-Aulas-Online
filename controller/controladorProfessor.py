@@ -3,14 +3,12 @@ from view.telaProfessor import TelaProfessor
 from model.endereco import Endereco
 
 
-
 class ControladorProfessor:
     def __init__(self):
         self.__professores = []
-        self.__professores.append(Professor("teste","email", "99", "1", "cidade", "SE", "rua", "99"))
+        self.__professores.append(Professor("João Silva","joaosilva@gmail.com", "111111", "1", "Florianopolis", "SC", "Rua das Laranjeiras", "10"))
         self.__tela_professor = TelaProfessor()
        
-
     @property
     def professores(self):
         return self.__professores

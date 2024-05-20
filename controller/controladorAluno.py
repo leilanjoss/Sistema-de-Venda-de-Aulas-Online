@@ -7,7 +7,6 @@ class ControladorAluno:
     def __init__(self, controlador_sistema):
         self.__alunos = []
         self.__tela_aluno = TelaAluno()
-        self.__alunos.append(Aluno("testeALuno","emailALunos", "99", "1", "cidade", "SE", "rua", "99","22"))
         self.__controlador_sistema = controlador_sistema
             
     def inserir_aluno(self):

@@ -1,6 +1,3 @@
-from model.curso import Curso
-from model.professor import Professor
-from view.telaProfessor import TelaProfessor
 from view.telaCurso import TelaCurso
 
 
