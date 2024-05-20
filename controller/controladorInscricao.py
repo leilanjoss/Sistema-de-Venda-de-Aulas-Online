@@ -1,11 +1,13 @@
 from view.telaListagemCursos import TelaListagemCursos # Verificar se o caminho está correto
 from model.inscricao import Inscricao
+from controller.controladorCurso import ControladorCurso
 
 class ControladorInscricao():
     def __init__(self, controlador_sistema):
         self.__inscricoes = []
         self.__tela_listagem_cursos = TelaListagemCursos()
         self.__controlador_sistema = controlador_sistema
+        self.__controlador_curso = ControladorCurso
 
     @property
     def inscricoes(self):
@@ -36,6 +38,9 @@ class ControladorInscricao():
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
 
+    def controlador_curso(self):
+        return self.controlador_curso.listar_cursos()
+
     def abrir_tela(self):
         lista_opcoes = {
             1: self.inserir_inscricao,
@@ -46,7 +51,7 @@ class ControladorInscricao():
         }
         continua = True
         while continua:
-            opcao = self.__tela_listagem_cursos.mostrar_opcoes()
+            opcao = self.__controlador_curso.listar_cursos
             funcao_escolhida = lista_opcoes.get(opcao)
             if funcao_escolhida:
                 funcao_escolhida()

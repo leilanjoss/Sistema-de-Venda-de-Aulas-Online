@@ -30,7 +30,7 @@ class ControladorSistema:
     @property
     def controlador_relatorios(self):
         return self.__controlador_relatorios
-    
+
     @property
     def controlador_inscricao(self):
         return self.__controlador_inscricao
@@ -46,22 +46,23 @@ class ControladorSistema:
 
     def relatorios(self):
         self.__controlador_relatorios.abrir_tela()
-        
+
     def cadastrar_inscricoes(self):
         self.__controlador_inscricao.abrir_tela()
 
     def inicializar_sistema(self):
         self.abrir_tela()
-    
+
     def encerrar_sistema(self):
         exit(0)
-    
+
     def abrir_tela(self):
         lista_opcoes = {
             1: self.cadastrar_professores,
             2: self.cadastrar_alunos,
             3: self.cadastrar_cursos,
             4: self.relatorios,
+            5: self.cadastrar_inscricoes,
             0: self.encerrar_sistema
         }
 

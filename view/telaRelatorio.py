@@ -4,7 +4,7 @@ class TelaRelatorio():
         print("Escolha sua opção")
         print("1 - Mostrar relatório total de receitas")
         print("2 - Mostrar relatório inscricoes por curso")
-        print("0 - Finalizar sistema")
+        print("0 - Retornar")
         
         opcao = int(input("Escolha uma opção: "))
         return opcao
