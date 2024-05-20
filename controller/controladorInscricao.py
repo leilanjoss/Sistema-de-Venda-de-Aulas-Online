@@ -1,59 +1,99 @@
-from view.telaListagemCursos import TelaListagemCursos # Verificar se o caminho está correto
+from view.telaListagemCursos import TelaListagemCursos
 from model.inscricao import Inscricao
 from controller.controladorCurso import ControladorCurso
+from view.telaInscricao import TelaInscricao
 
-class ControladorInscricao():
+class ControladorInscricao:
     def __init__(self, controlador_sistema):
         self.__inscricoes = []
         self.__tela_listagem_cursos = TelaListagemCursos()
         self.__controlador_sistema = controlador_sistema
-        self.__controlador_curso = ControladorCurso
+        self.__controlador_curso = ControladorCurso(self)
+        self.__tela_inscricao = TelaInscricao()
 
     @property
     def inscricoes(self):
         return self.__inscricoes
 
-    def inserir_inscricao(self, inscricao: Inscricao):
-        if isinstance(inscricao, Inscricao) and inscricao not in self.__inscricoes:
+    def inserir_inscricao(self):
+        cpf_aluno = input("Digite o CPF do aluno: ")
+        codigo_curso = input("Digite o código do curso: ")
+        
+        curso = self.__controlador_curso.pegar_curso_por_codigo(codigo_curso)
+        if curso:
+            preco_pago = float(input("Digite o preço pago: "))
+            data_hora = input("Digite a data e hora: ")
+            inscricao = Inscricao(curso, cpf_aluno, preco_pago, data_hora)
             self.__inscricoes.append(inscricao)
+            self.__tela_inscricao.mostra_mensagem("Inscrição realizada com sucesso!")
+        else:
+            self.__tela_inscricao.mostra_mensagem("Curso não encontrado!")
 
-    def excluir_inscricao(self, inscricao: Inscricao):
-        if isinstance(inscricao, Inscricao) and inscricao in self.__inscricoes:
-            self.__inscricoes.remove(inscricao)
-
-    def atualizar_inscricao(self, codigo_curso, aluno, preco_pago, data_hora):
+    def excluir_inscricao(self):
+        codigo_curso = input("Digite o código do curso: ")
+        inscricao_a_excluir = None
         for inscricao in self.__inscricoes:
-            if inscricao.curso.codigo == codigo_curso:
-                inscricao.aluno = aluno
+            if inscricao.curso.codigo_curso == codigo_curso:
+                inscricao_a_excluir = inscricao
+                break
+        if inscricao_a_excluir:
+            self.__inscricoes.remove(inscricao_a_excluir)
+            self.__tela_inscricao.mostra_mensagem("Inscrição excluída com sucesso!")
+        else:
+            self.__tela_inscricao.mostra_mensagem("Inscrição não encontrada!")
+
+    def atualizar_inscricao(self):
+        codigo_curso = input("Digite o código do curso: ")
+        for inscricao in self.__inscricoes:
+            if inscricao.curso.codigo_curso == codigo_curso:
+                cpf_aluno = input("Digite o novo CPF do aluno: ")
+                preco_pago = float(input("Digite o novo preço pago: "))
+                data_hora = input("Digite a nova data e hora: ")
+                inscricao.aluno = cpf_aluno
                 inscricao.preco_pago = preco_pago
                 inscricao.data_hora = data_hora
+                self.__tela_inscricao.mostra_mensagem("Inscrição atualizada com sucesso!")
+                return
+        self.__tela_inscricao.mostra_mensagem("Inscrição não encontrada!")
 
-    def listar_inscricoes_por_curso(self, curso):
-        num_inscricoes = 0
-        for inscricao in self.__inscricoes:
-            if inscricao.curso == curso:
-                num_inscricoes += 1
-        return num_inscricoes
+    def listar_inscricoes_por_curso(self):
+        codigo_curso = input("Digite o código do curso: ")
+        curso = self.__controlador_curso.pegar_curso_por_codigo(codigo_curso)
+        if curso:
+            inscricoes_por_curso = [inscricao for inscricao in self.__inscricoes if inscricao.curso == curso]
+            for inscricao in inscricoes_por_curso:
+                self.__tela_inscricao.mostrar_inscricao({
+                    "curso": inscricao.curso.nome,
+                    "aluno": inscricao.aluno,
+                    "preco_pago": inscricao.preco_pago,
+                    "data_hora": inscricao.data_hora
+                })
+            if not inscricoes_por_curso:
+                self.__tela_inscricao.mostra_mensagem("Nenhuma inscrição encontrada para este curso.")
+        else:
+            self.__tela_inscricao.mostra_mensagem("Curso não encontrado!")
 
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
 
-    def controlador_curso(self):
-        return self.controlador_curso.listar_cursos()
+    def finalizar_sistema(self):
+        exit()
 
     def abrir_tela(self):
         lista_opcoes = {
             1: self.inserir_inscricao,
             2: self.excluir_inscricao,
             3: self.atualizar_inscricao,
-            4: self.__tela_listagem_cursos.listar_cursos,
-            0: self.retornar
+            4: self.listar_inscricoes_por_curso,
+            5: self.retornar,
+            0: self.finalizar_sistema
         }
         continua = True
         while continua:
-            opcao = self.__controlador_curso.listar_cursos
-            funcao_escolhida = lista_opcoes.get(opcao)
+            opcao_escolhida = self.__tela_inscricao.tela_opcoes()
+            funcao_escolhida = lista_opcoes[opcao_escolhida]
             if funcao_escolhida:
                 funcao_escolhida()
-            if opcao == 0:
-                continua = False
+            else:
+                print("Opção inválida. Escolha novamente.")
+
