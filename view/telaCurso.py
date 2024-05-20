@@ -33,7 +33,7 @@ class TelaCurso:
         numero_de_aulas = int(input("Digite o número de aulas: "))
         for i in range(numero_de_aulas):
             print("Aula " + str((i+1)))
-            aula = Aula();
+            aula = Aula()
             aula.titulo = input("Tĩtulo: ")
             aula.descricao_aula = input("Descrição: " )
             aula.link = input("Link: ")
@@ -44,15 +44,15 @@ class TelaCurso:
             
         return curso
 
-    def mostrar_curso(self, dados_curso):
-    #     print("NOME DO CURSO: ", dados_curso["nome"])
-    #     print("PREÇO ATUAL DO CURSO: ", dados_curso["preco_atual"])
-    #     print("DESCRIÇÃO DO CURSO: ", dados_curso["descricao"])
-    #     print("TEMPO DO CURSO: ", dados_curso["tempo"])
-    #     print("CÓDIGO DO CURSO: ", dados_curso["codigo_curso"])
-    #     print("PROFESSOR DO CURSO: ", dados_curso["professor"])
-    #     print("AULAS CURSO: ", dados_curso["aulas"])
-    #     print("\n")
+    #def mostrar_curso(self, dados_curso):
+        #     print("NOME DO CURSO: ", dados_curso["nome"])
+        #     print("PREÇO ATUAL DO CURSO: ", dados_curso["preco_atual"])
+        #     print("DESCRIÇÃO DO CURSO: ", dados_curso["descricao"])
+        #     print("TEMPO DO CURSO: ", dados_curso["tempo"])
+        #     print("CÓDIGO DO CURSO: ", dados_curso["codigo_curso"])
+        #     print("PROFESSOR DO CURSO: ", dados_curso["professor"])
+        #     print("AULAS CURSO: ", dados_curso["aulas"])
+        #     print("\n")
 
 
     def selecionar_curso(self):

@@ -74,7 +74,7 @@ class ControladorAluno:
                 print("******")
                 self.__tela_aluno.mostrar_aluno({
                     "nome": aluno.nome,
-                    "email": aluno.email,
+                    "email":    aluno.email,
                     "telefone": aluno.telefone,
                     "cpf": aluno.cpf,
                     "cartao": aluno.cartao,
