@@ -6,7 +6,6 @@ class AbstractUsuario(ABC):
     def __init__(self, 
                  nome: str, 
                  email: str,
-                #  senha: str,
                  telefone: str,
                  cpf: str, 
                  cidade: str, 
@@ -15,7 +14,6 @@ class AbstractUsuario(ABC):
                  numero: str):
         self.__nome = nome
         self.__email = email
-        # self.__senha = senha
         self.__telefone = telefone
         self.__cpf = cpf
         self.__endereco = Endereco(cidade, sigla_estado, rua, numero)
@@ -27,10 +25,6 @@ class AbstractUsuario(ABC):
     @property
     def email(self) -> str:
         return self.__email
-
-    # @property
-    # def senha(self) -> str:
-    #     return self.__senha
 
     @property
     def telefone(self) -> str:
@@ -53,11 +47,6 @@ class AbstractUsuario(ABC):
     def email(self, email):
         if isinstance(email, str):
             self.__email = email
-
-    # @senha.setter
-    # def senha(self, senha):
-    #     if isinstance(senha, str):
-    #         self.__senha = senha
     
     @telefone.setter
     def telefone(self, telefone):
@@ -71,5 +60,4 @@ class AbstractUsuario(ABC):
 
     @endereco.setter
     def endereco(self, endereco):
-        # if isinstance(endereco, Endereco):
         self.__endereco = endereco

@@ -21,5 +21,4 @@ class Aluno(AbstractUsuario):
 
     @cartao.setter
     def cartao(self, cartao):
-        # if isinstance(cartao, str):
         self.__cartao = cartao
