@@ -23,10 +23,10 @@ class Curso:
     #     self.__tempo = tempo
     #     self.__codigo_curso = codigo_curso
     #     # self.__aulas = Aula(titulo, link, descricao_aula, ordem, descricao_material, anexo)
-    #     self.__aulas = []
+         self.__aulas = []
     #     if isinstance(professor, Professor):
     #         self.__professor = professor
-        pass
+    
 
     def adicionar_aula(self, aula: Aula):
         if isinstance(aula, Aula):
@@ -89,5 +89,18 @@ class Curso:
         self.__aulas = aulas
 
     def __repr__(self):
-        return (f"Curso(nome='{self.nome}', preco_atual={self.preco_atual}, descricao='{self.descricao}', "
-                f"tempo='{self.tempo}', codigo_curso='{self.codigo_curso}', professor={self.professor}, aulas={self.aulas})")
+        tostring =  f"""Código: {self.__codigo_curso} 
+        Nome: {self.__nome}  
+        Professor: { self.__professor.nome} 
+        Preço: {self.__preco_atual}
+        Descrição: {self.__descricao}
+        Tempo: {self.__tempo}
+        Aulas:"""        
+        for aula in self.__aulas:
+            tostring += f"""{aula.titulo} 
+            Descrição: {aula.descricao_aula}
+            Link: {aula.link}
+            Material: {aula.materiais[0].anexo} - {aula.materiais[0].descricao_material}"""
+        return tostring
+
+        

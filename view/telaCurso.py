@@ -14,7 +14,7 @@ class TelaCurso:
         print("1 - Inserir Curso")
         print("2 - Alterar Curso")
         print("3 - Listar Cursos")
-        print("3 - Excluir Curso")
+        print("4 - Excluir Curso")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opção: "))
@@ -41,18 +41,14 @@ class TelaCurso:
             material.anexo = input("Link do anexo: ")
             material.descricao_material = input("Descrição: ")
             aula.adicionar_material(material)
+            curso.adicionar_aula(aula)
             
         return curso
 
-    def mostrar_curso(self, dados_curso):
-    #     print("NOME DO CURSO: ", dados_curso["nome"])
-    #     print("PREÇO ATUAL DO CURSO: ", dados_curso["preco_atual"])
-    #     print("DESCRIÇÃO DO CURSO: ", dados_curso["descricao"])
-    #     print("TEMPO DO CURSO: ", dados_curso["tempo"])
-    #     print("CÓDIGO DO CURSO: ", dados_curso["codigo_curso"])
-    #     print("PROFESSOR DO CURSO: ", dados_curso["professor"])
-    #     print("AULAS CURSO: ", dados_curso["aulas"])
-    #     print("\n")
+    def mostrar_cursos(self, cursos):
+        for curso in cursos:
+            print(curso);
+            print("---------------------------------------------------")
 
 
     def selecionar_curso(self):

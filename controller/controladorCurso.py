@@ -43,26 +43,28 @@ class ControladorCurso:
         if not self.__cursos:
             self.__tela_curso.mostrar_mensagem("--Nenhum curso cadastrado.")
         else:
-            return self.__cursos
+            return self.__tela_curso.mostrar_cursos(self.__cursos)
     
 
-    # def alterar_curso(self, codigo_curso: int, novo_nome: str, novo_preco: int, nova_descricao: str, novo_tempo: int, novo_professor: Professor):
-    #     # for curso in self.__cursos:
-    #     #     if curso.codigo_curso == codigo_curso:
-    #     #         curso.nome = novo_nome
-    #     #         curso.preco_atual = novo_preco
-    #     #         curso.descricao = nova_descricao
-    #     #         curso.tempo = novo_tempo
-    #     #         if isinstance(novo_professor, Professor):
-    #     #             curso.professor = novo_professor
-    #     #         # return 'Curso alterado com sucesso'
+    def alterar_curso(self):
+       codigo = self.__tela_curso.selecionar_curso()              
+       curso_alterado = self.__tela_curso.pegar_dados_curso();
+       self.atualizar_curso(codigo, curso_alterado)
+
+    def atualizar_curso(self, codigo_curso, curso):
+        i = 0
+        for c in self.__cursos:
+            if c.codigo_curso == codigo_curso:                
+                self.__cursos[i] = curso                
+                return
+            i += 1    
     
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
 
     def abrir_tela(self):
         lista_opcoes = {1: self.inserir_curso, 
-                        #2: self.alterar_curso, 
+                        2: self.alterar_curso, 
                         3: self.listar_cursos, 
                         4: self.excluir_curso, 
                         0: self.retornar}
