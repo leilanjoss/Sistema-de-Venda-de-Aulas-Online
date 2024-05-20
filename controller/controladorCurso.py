@@ -43,12 +43,12 @@ class ControladorCurso:
         if not self.__cursos:
             self.__tela_curso.mostrar_mensagem("--Nenhum curso cadastrado.")
         else:
-            return self.__tela_curso.mostrar_cursos(self.__cursos)
+            return self.__tela_curso.mostrar_curso(self.__cursos)
     
 
     def alterar_curso(self):
        codigo = self.__tela_curso.selecionar_curso()              
-       curso_alterado = self.__tela_curso.pegar_dados_curso();
+       curso_alterado = self.__tela_curso.pegar_dados_curso()
        self.atualizar_curso(codigo, curso_alterado)
 
     def atualizar_curso(self, codigo_curso, curso):

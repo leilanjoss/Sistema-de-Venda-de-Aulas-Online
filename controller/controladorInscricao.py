@@ -41,7 +41,7 @@ class ControladorInscricao():
             1: self.inserir_inscricao,
             2: self.excluir_inscricao,
             3: self.atualizar_inscricao,
-            4: self.__tela_listagem_cursos.mostrar,
+            4: self.__tela_listagem_cursos.listar_cursos,
             0: self.retornar
         }
         continua = True

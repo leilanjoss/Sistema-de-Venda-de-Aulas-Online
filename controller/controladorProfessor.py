@@ -5,9 +5,7 @@ from model.endereco import Endereco
 
 
 class ControladorProfessor:
-    def __init__(self
-                 ):
-        
+    def __init__(self):
         self.__professores = []
         self.__professores.append(Professor("teste","email", "99", "1", "cidade", "SE", "rua", "99"))
         self.__tela_professor = TelaProfessor()

@@ -3,7 +3,7 @@ from controller.controladorCurso import ControladorCurso
 from controller.controladorProfessor import ControladorProfessor
 from controller.controladorAluno import ControladorAluno
 from controller.controladorRelatorio import ControladorRelatorio
-
+from controller.controladorInscricao import ControladorInscricao
 
 class ControladorSistema:
 
@@ -13,7 +13,8 @@ class ControladorSistema:
         self.__controlador_professores = ControladorProfessor()
         self.__controlador_alunos = ControladorAluno(self)
         self.__controlador_relatorios = ControladorRelatorio()
-    
+        self.__controlador_inscricao = ControladorInscricao(self)
+
     @property
     def controlador_cursos(self):
         return self.__controlador_cursos
@@ -21,26 +22,33 @@ class ControladorSistema:
     @property
     def controlador_professores(self):
         return self.__controlador_professores
-    
+
     @property
     def controlador_alunos(self):
         return self.__controlador_alunos
-    
+
     @property
     def controlador_relatorios(self):
         return self.__controlador_relatorios
- 
+    
+    @property
+    def controlador_inscricao(self):
+        return self.__controlador_inscricao
+
     def cadastrar_professores(self):
         self.__controlador_professores.abrir_tela()
 
     def cadastrar_alunos(self):
         self.__controlador_alunos.abrir_tela()
-    
+
     def cadastrar_cursos(self):
         self.__controlador_cursos.abrir_tela()
 
     def relatorios(self):
-        self.__controlador_relatorios.abrir_tela
+        self.__controlador_relatorios.abrir_tela()
+        
+    def cadastrar_inscricoes(self):
+        self.__controlador_inscricao.abrir_tela()
 
     def inicializar_sistema(self):
         self.abrir_tela()

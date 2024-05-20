@@ -45,15 +45,16 @@ class TelaCurso:
             
         return curso
 
-    #def mostrar_curso(self, dados_curso):
-        #     print("NOME DO CURSO: ", dados_curso["nome"])
-        #     print("PREÇO ATUAL DO CURSO: ", dados_curso["preco_atual"])
-        #     print("DESCRIÇÃO DO CURSO: ", dados_curso["descricao"])
-        #     print("TEMPO DO CURSO: ", dados_curso["tempo"])
-        #     print("CÓDIGO DO CURSO: ", dados_curso["codigo_curso"])
-        #     print("PROFESSOR DO CURSO: ", dados_curso["professor"])
-        #     print("AULAS CURSO: ", dados_curso["aulas"])
-        #     print("\n")
+    def mostrar_curso(self, cursos):
+        for curso in cursos:
+            print("NOME DO CURSO: ", curso["nome"])
+            print("PREÇO ATUAL DO CURSO: ", curso["preco_atual"])
+            print("DESCRIÇÃO DO CURSO: ", curso["descricao"])
+            print("TEMPO DO CURSO: ", curso["tempo"])
+            print("CÓDIGO DO CURSO: ", curso["codigo_curso"])
+            print("PROFESSOR DO CURSO: ", curso["professor"])
+            print("AULAS CURSO: ", curso["aulas"])
+            print("\n")
 
 
     def selecionar_curso(self):
