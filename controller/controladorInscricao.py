@@ -1,12 +1,7 @@
 from view.telaListagemCursos import TelaListagemCursos # Verificar se o caminho está correto
-from view.telaInscricao import TelaInscricao # Verificar se o caminho está correto
-from controladorSistema import ControladorSistema
-from controladorRelatorio import ControladorRelatorio #Verificar
 from model.inscricao import Inscricao
-from model.aluno import Aluno
-from model.curso import Curso
-13
-class ControladorInscricao:
+
+class ControladorInscricao():
     def __init__(self, controlador_sistema):
         self.__inscricoes = []
         self.__tela_listagem_cursos = TelaListagemCursos()

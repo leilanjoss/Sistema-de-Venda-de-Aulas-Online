@@ -2,6 +2,7 @@ from view.telaSistema import TelaSistema
 from controller.controladorCurso import ControladorCurso
 from controller.controladorProfessor import ControladorProfessor
 from controller.controladorAluno import ControladorAluno
+from controller.controladorRelatorio import ControladorRelatorio
 
 
 class ControladorSistema:
@@ -11,6 +12,7 @@ class ControladorSistema:
         self.__controlador_cursos = ControladorCurso(self)
         self.__controlador_professores = ControladorProfessor()
         self.__controlador_alunos = ControladorAluno(self)
+        self.__controlador_relatorios = ControladorRelatorio()
     
     @property
     def controlador_cursos(self):
@@ -24,6 +26,10 @@ class ControladorSistema:
     def controlador_alunos(self):
         return self.__controlador_alunos
     
+    @property
+    def controlador_relatorios(self):
+        return self.__controlador_relatorios
+ 
     def cadastrar_professores(self):
         self.__controlador_professores.abrir_tela()
 
@@ -32,7 +38,10 @@ class ControladorSistema:
     
     def cadastrar_cursos(self):
         self.__controlador_cursos.abrir_tela()
-    
+
+    def relatorios(self):
+        self.__controlador_relatorios.abrir_tela
+
     def inicializar_sistema(self):
         self.abrir_tela()
     
@@ -44,6 +53,7 @@ class ControladorSistema:
             1: self.cadastrar_professores,
             2: self.cadastrar_alunos,
             3: self.cadastrar_cursos,
+            4: self.relatorios,
             0: self.encerrar_sistema
         }
 
