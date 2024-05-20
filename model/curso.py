@@ -3,30 +3,8 @@ from model.professor import Professor
 
 
 class Curso:
-    def __init__(self,
-                 #nome: str,
-                 #preco_atual: float,
-                 #descricao: str,
-                 #tempo: str,
-                 #codigo_curso: str,
-                 #professor: Professor,
-                #  titulo: str,
-                #  link: str,
-                #  descricao_aula: str,
-                #  ordem: int,
-                #  descricao_material: str,
-                #  anexo: str):
-                   ):
-    #     self.__nome = nome
-    #     self.__preco_atual = preco_atual
-    #     self.__descricao = descricao
-    #     self.__tempo = tempo
-    #     self.__codigo_curso = codigo_curso
-    #     # self.__aulas = Aula(titulo, link, descricao_aula, ordem, descricao_material, anexo)
+    def __init__(self):
          self.__aulas = []
-    #     if isinstance(professor, Professor):
-    #         self.__professor = professor
-    
 
     def adicionar_aula(self, aula: Aula):
         if isinstance(aula, Aula):
@@ -89,17 +67,21 @@ class Curso:
         self.__aulas = aulas
 
     def __repr__(self):
-        tostring =  f"""Código: {self.__codigo_curso} 
+        tostring =  f"""
+        Código do Curso: {self.__codigo_curso} 
         Nome: {self.__nome}  
-        Professor: { self.__professor.nome} 
+        Nome do Professor: { self.__professor.nome}
+        CPF do Professor: { self.__professor.cpf}
         Preço: {self.__preco_atual}
-        Descrição: {self.__descricao}
+        Descrição do Curso: {self.__descricao}
         Tempo: {self.__tempo}
-        Aulas:"""        
+
+        Aulas: """        
         for aula in self.__aulas:
-            tostring += f"""{aula.titulo} 
-            Descrição: {aula.descricao_aula}
-            Link: {aula.link}
+            tostring += f"""
+            Título: {aula.titulo} 
+            Descrição da Aula: {aula.descricao_aula}
+            Link da Aula: {aula.link}
             Material: {aula.materiais[0].anexo} - {aula.materiais[0].descricao_material}"""
         return tostring
 

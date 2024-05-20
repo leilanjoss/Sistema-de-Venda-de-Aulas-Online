@@ -77,19 +77,14 @@ class ControladorProfessor:
             self.__tela_professor.mostrar_mensagem("--Nenhum professor cadastrado.")
         else:
             for professor in self.__professores:
-                print("******")
                 self.__tela_professor.mostrar_professor({
                     "nome": professor.nome,
                     "email": professor.email,
                     "telefone": professor.telefone,
                     "cpf": professor.cpf,
-                    # "cidade": professor.cidade or "Cidade desconhecida",
-                    # "sigla estado": professor.sigla_estado,
-                    # "rua": professor.rua,
-                    # "numero": professor.numero
                     "endereco": str(professor.endereco)
                 })
-                print("******")
+                print("------------------------------")
 
     def retornar(self):
         from controller.controladorSistema import ControladorSistema

@@ -23,39 +23,32 @@ class TelaCurso:
     def pegar_dados_curso(self):
         print("-------- DADOS DO CURSO ----------")
         curso = Curso()
-        curso.nome = input("Nome do curso: ")
-        curso.preco_atual = float(input("Preço atual do curso: "))
-        curso.descricao = input("Descrição do curso: ")
-        curso.tempo = (input("Tempo do curso em semanas: "))
-        curso.codigo_curso = (input("Código do curso: "))
-        self.__controlador_professor.listar_professores();
-        curso.professor = self.__controlador_professor.pegar_professor_por_cpf(input("Digite o cpf do professor: "))
+        curso.nome = input("Nome do Curso: ")
+        curso.preco_atual = float(input("Preço atual do Curso: "))
+        curso.descricao = input("Descrição do Curso: ")
+        curso.tempo = (input("Tempo do Curso em semanas: "))
+        curso.codigo_curso = (input("Código do Curso: "))
+        self.__controlador_professor.listar_professores()
+        curso.professor = self.__controlador_professor.pegar_professor_por_cpf(input("Digite o cpf do Professor desejado: "))
         numero_de_aulas = int(input("Digite o número de aulas: "))
         for i in range(numero_de_aulas):
             print("Aula " + str((i+1)))
             aula = Aula()
-            aula.titulo = input("Tĩtulo: ")
-            aula.descricao_aula = input("Descrição: " )
-            aula.link = input("Link: ")
+            aula.titulo = input("Título da Aula: ")
+            aula.descricao_aula = input("Descrição da Aula: " )
+            aula.link = input("Link da Aula: ")
             material = Material()
-            material.anexo = input("Link do anexo: ")
-            material.descricao_material = input("Descrição: ")
+            material.anexo = input("Link do Anexo do Material: ")
+            material.descricao_material = input("Descrição do Material: ")
             aula.adicionar_material(material)
             curso.adicionar_aula(aula)
             
         return curso
 
-    def mostrar_curso(self, cursos):
+    def mostrar_cursos(self, cursos):
         for curso in cursos:
-            print("NOME DO CURSO: ", curso["nome"])
-            print("PREÇO ATUAL DO CURSO: ", curso["preco_atual"])
-            print("DESCRIÇÃO DO CURSO: ", curso["descricao"])
-            print("TEMPO DO CURSO: ", curso["tempo"])
-            print("CÓDIGO DO CURSO: ", curso["codigo_curso"])
-            print("PROFESSOR DO CURSO: ", curso["professor"])
-            print("AULAS CURSO: ", curso["aulas"])
-            print("\n")
-
+            print(curso)
+            print("------------------------------")
 
     def selecionar_curso(self):
         codigo_curso = input('Código do curso que você deseja selecionar: ')

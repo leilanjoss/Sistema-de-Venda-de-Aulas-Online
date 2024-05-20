@@ -1,13 +1,13 @@
-# from controladorUsuario import ControladorUsuarios
 from model.aluno import Aluno
 from view.telaAluno import TelaAluno
 from model.endereco import Endereco
+
 
 class ControladorAluno:
     def __init__(self, controlador_sistema):
         self.__alunos = []
         self.__tela_aluno = TelaAluno()
-        self.__alunos.append(Aluno("testeALuno","emailALunos", "99", "1", "cidade", "SE", "rua", "99","22", "333"))
+        self.__alunos.append(Aluno("testeALuno","emailALunos", "99", "1", "cidade", "SE", "rua", "99","22"))
         self.__controlador_sistema = controlador_sistema
             
     def inserir_aluno(self):
@@ -35,12 +35,12 @@ class ControladorAluno:
                 return aluno
         return None
       
-    def excluir_aluno(self, aluno):
+    def excluir_aluno(self):
         self.listar_alunos()
         cpf = self.__tela_aluno.selecionar_aluno()
         aluno = self.pegar_aluno_por_cpf(cpf)
         if aluno is not None:
-            self.__aluno.remove(aluno)
+            self.__alunos.remove(aluno)
             self.__tela_aluno.mostrar_mensagem("--Aluno excluído.")
         else:
             self.__tela_aluno.mostrar_mensagem("--Aluno não existente.")
@@ -71,7 +71,6 @@ class ControladorAluno:
             self.__tela_aluno.mostrar_mensagem("--Nenhum aluno cadastrado.")
         else:
             for aluno in self.__alunos:
-                print("******")
                 self.__tela_aluno.mostrar_aluno({
                     "nome": aluno.nome,
                     "email":    aluno.email,
@@ -80,7 +79,7 @@ class ControladorAluno:
                     "cartao": aluno.cartao,
                     "endereco": str(aluno.endereco)
                 })
-                print("******")
+                print("------------------------------")
     
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
@@ -95,11 +94,5 @@ class ControladorAluno:
         }
         continua = True
         while continua:
-            # opcao = self.__tela_aluno.tela_opcoes()
-            # funcao_escolhida = lista_opcoes.get(opcao)
-            # if funcao_escolhida:
-            #     funcao_escolhida()
-            # else:
-            #     self.__tela_aluno.mostrar_mensagem("Opção inválida. Escolha novamente.")
             lista_opcoes[self.__tela_aluno.tela_opcoes()]()
     
