@@ -9,7 +9,7 @@ class ControladorSistema:
     def __init__(self):
         self.__tela_sistema = TelaSistema()
         self.__controlador_cursos = ControladorCurso(self)
-        self.__controlador_professores = ControladorProfessor(self)
+        self.__controlador_professores = ControladorProfessor()
         self.__controlador_alunos = ControladorAluno(self)
     
     @property

@@ -46,7 +46,3 @@ class Endereco:
     
     def __repr__(self):
         return f"Endereco(cidade='{self.cidade}', sigla_estado='{self.sigla_estado}', rua='{self.rua}', numero='{self.numero}')"
-
-    # def __str__(self):
-    #     return f"Cidade: {self.__cidade}, Estado: {self.__sigla_estado}, Rua: {self.__rua}, Número: {self.__numero}"1
-    

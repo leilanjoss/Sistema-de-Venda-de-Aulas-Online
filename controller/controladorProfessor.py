@@ -3,14 +3,15 @@ from view.telaProfessor import TelaProfessor
 from model.endereco import Endereco
 
 
+
 class ControladorProfessor:
-    def __init__(self, 
-                 controlador_sistema
+    def __init__(self
                  ):
+        
         self.__professores = []
         self.__professores.append(Professor("teste","email", "99", "1", "cidade", "SE", "rua", "99"))
         self.__tela_professor = TelaProfessor()
-        self.__controlador_sistema = controlador_sistema
+       
 
     @property
     def professores(self):
@@ -93,7 +94,8 @@ class ControladorProfessor:
                 print("******")
 
     def retornar(self):
-        self.__controlador_sistema.abrir_tela()
+        from controller.controladorSistema import ControladorSistema
+        ControladorSistema().abrir_tela()
 
     def abrir_tela(self):
         lista_opcoes = {

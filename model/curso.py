@@ -4,12 +4,12 @@ from model.professor import Professor
 
 class Curso:
     def __init__(self,
-                 nome: str,
-                 preco_atual: float,
-                 descricao: str,
-                 tempo: str,
-                 codigo_curso: str,
-                 professor: Professor,
+                 #nome: str,
+                 #preco_atual: float,
+                 #descricao: str,
+                 #tempo: str,
+                 #codigo_curso: str,
+                 #professor: Professor,
                 #  titulo: str,
                 #  link: str,
                 #  descricao_aula: str,
@@ -17,15 +17,16 @@ class Curso:
                 #  descricao_material: str,
                 #  anexo: str):
                    ):
-        self.__nome = nome
-        self.__preco_atual = preco_atual
-        self.__descricao = descricao
-        self.__tempo = tempo
-        self.__codigo_curso = codigo_curso
-        # self.__aulas = Aula(titulo, link, descricao_aula, ordem, descricao_material, anexo)
-        self.__aulas = []
-        if isinstance(professor, Professor):
-            self.__professor = professor
+    #     self.__nome = nome
+    #     self.__preco_atual = preco_atual
+    #     self.__descricao = descricao
+    #     self.__tempo = tempo
+    #     self.__codigo_curso = codigo_curso
+    #     # self.__aulas = Aula(titulo, link, descricao_aula, ordem, descricao_material, anexo)
+    #     self.__aulas = []
+    #     if isinstance(professor, Professor):
+    #         self.__professor = professor
+        pass
 
     def adicionar_aula(self, aula: Aula):
         if isinstance(aula, Aula):
@@ -86,3 +87,7 @@ class Curso:
     @aulas.setter
     def aulas(self, aulas):
         self.__aulas = aulas
+
+    def __repr__(self):
+        return (f"Curso(nome='{self.nome}', preco_atual={self.preco_atual}, descricao='{self.descricao}', "
+                f"tempo='{self.tempo}', codigo_curso='{self.codigo_curso}', professor={self.professor}, aulas={self.aulas})")

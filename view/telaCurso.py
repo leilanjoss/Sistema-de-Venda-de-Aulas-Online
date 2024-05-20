@@ -1,9 +1,13 @@
 from model.aula import Aula
 from model.material import Material
 from model.professor import Professor
-
+from model.curso import Curso
+from controller.controladorProfessor import ControladorProfessor
 
 class TelaCurso:
+    def __init__(self):
+        self.__controlador_professor = ControladorProfessor()
+
     def tela_opcoes(self):
         print("-------- CURSO ----------")
         print("Escolha a opção")
@@ -13,42 +17,43 @@ class TelaCurso:
         print("3 - Excluir Curso")
         print("0 - Retornar")
 
-        opcao = int(input("Escolha a opcao: "))
+        opcao = int(input("Escolha a opção: "))
         return opcao
 
     def pegar_dados_curso(self):
         print("-------- DADOS DO CURSO ----------")
-        nome = input("Nome do curso: ")
-        preco_atual = float(input("Preço atual do curso: "))
-        descricao = input("Descrição do curso: ")
-        tempo = (input("Tempo do curso em semanas: "))
-        codigo_curso = (input("Código do curso: "))
-        # professor = input("Professor do curso: ")
-        # aulas = input("Aulas do curso: ")
-        self.listar_professores()
-        cpf_professor = self.__tela_professor.selecionar_professor()
-        professor = self.pegar_professor_por_cpf(cpf_professor)
-        # professor = str(professor)
-       
-        return {
-            "nome": nome,
-            "preco_atual": preco_atual,
-            "descricao": descricao,
-            "tempo": tempo,
-            "codigo_curso": codigo_curso,
-            "professor": str(professor),
-            # "aulas": aulas
-        }
+        curso = Curso()
+        curso.nome = input("Nome do curso: ")
+        curso.preco_atual = float(input("Preço atual do curso: "))
+        curso.descricao = input("Descrição do curso: ")
+        curso.tempo = (input("Tempo do curso em semanas: "))
+        curso.codigo_curso = (input("Código do curso: "))
+        self.__controlador_professor.listar_professores();
+        curso.professor = self.__controlador_professor.pegar_professor_por_cpf(input("Digite o cpf do professor: "))
+        numero_de_aulas = int(input("Digite o número de aulas: "))
+        for i in range(numero_de_aulas):
+            print("Aula " + str((i+1)))
+            aula = Aula();
+            aula.titulo = input("Tĩtulo: ")
+            aula.descricao_aula = input("Descrição: " )
+            aula.link = input("Link: ")
+            material = Material()
+            material.anexo = input("Link do anexo: ")
+            material.descricao_material = input("Descrição: ")
+            aula.adicionar_material(material)
+            
+        return curso
 
     def mostrar_curso(self, dados_curso):
-        print("NOME DO CURSO: ", dados_curso["nome"])
-        print("PREÇO ATUAL DO CURSO: ", dados_curso["preco_atual"])
-        print("DESCRIÇÃO DO CURSO: ", dados_curso["descricao"])
-        print("TEMPO DO CURSO: ", dados_curso["tempo"])
-        print("CÓDIGO DO CURSO: ", dados_curso["codigo_curso"])
-        print("PROFESSOR DO CURSO: ", dados_curso["professor"])
-        print("AULAS CURSO: ", dados_curso["aulas"])
-        print("\n")
+    #     print("NOME DO CURSO: ", dados_curso["nome"])
+    #     print("PREÇO ATUAL DO CURSO: ", dados_curso["preco_atual"])
+    #     print("DESCRIÇÃO DO CURSO: ", dados_curso["descricao"])
+    #     print("TEMPO DO CURSO: ", dados_curso["tempo"])
+    #     print("CÓDIGO DO CURSO: ", dados_curso["codigo_curso"])
+    #     print("PROFESSOR DO CURSO: ", dados_curso["professor"])
+    #     print("AULAS CURSO: ", dados_curso["aulas"])
+    #     print("\n")
+
 
     def selecionar_curso(self):
         codigo_curso = input('Código do curso que você deseja selecionar: ')
