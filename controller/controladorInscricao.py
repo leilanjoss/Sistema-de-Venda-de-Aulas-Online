@@ -56,23 +56,6 @@ class ControladorInscricao:
                 return
         self.__tela_inscricao.mostra_mensagem("Inscrição não encontrada!")
 
-    def listar_inscricoes_por_curso(self):
-        codigo_curso = input("Digite o código do curso: ")
-        curso = self.__controlador_curso.pegar_curso_por_codigo(codigo_curso)
-        if curso:
-            inscricoes_por_curso = [inscricao for inscricao in self.__inscricoes if inscricao.curso == curso]
-            for inscricao in inscricoes_por_curso:
-                self.__tela_inscricao.mostrar_inscricao({
-                    "curso": inscricao.curso.nome,
-                    "aluno": inscricao.aluno,
-                    "preco_pago": inscricao.preco_pago,
-                    "data_hora": inscricao.data_hora
-                })
-            if not inscricoes_por_curso:
-                self.__tela_inscricao.mostra_mensagem("Nenhuma inscrição encontrada para este curso.")
-        else:
-            self.__tela_inscricao.mostra_mensagem("Curso não encontrado!")
-
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
 
@@ -84,8 +67,7 @@ class ControladorInscricao:
             1: self.inserir_inscricao,
             2: self.excluir_inscricao,
             3: self.atualizar_inscricao,
-            4: self.listar_inscricoes_por_curso,
-            5: self.retornar,
+            4: self.retornar,
             0: self.finalizar_sistema
         }
         continua = True

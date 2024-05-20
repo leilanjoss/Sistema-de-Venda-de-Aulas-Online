@@ -5,8 +5,7 @@ class TelaInscricao():
         print("1 - Inserir inscrição")
         print("2 - Excluir inscrição")
         print("3 - Atualizar inscrição")
-        print("4 - Listar inscrições por curso")
-        print("5 - Retornar")
+        print("4 - Retornar")
         print("0 - Finalizar sistema")
 
         opcao = int(input("Escolha uma opção: "))
