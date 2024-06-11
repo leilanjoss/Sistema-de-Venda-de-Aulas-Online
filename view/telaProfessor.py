@@ -44,8 +44,8 @@
 
     # def mostrar_mensagem(self, msg):
     #     print(msg)
-
 import PySimpleGUI as sg
+
 
 class TelaProfessor:
     def __init__(self):
