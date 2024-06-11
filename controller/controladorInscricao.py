@@ -1,4 +1,3 @@
-from view.telaListagemCursos import TelaListagemCursos
 from model.inscricao import Inscricao
 from controller.controladorCurso import ControladorCurso
 from view.telaInscricao import TelaInscricao
@@ -6,7 +5,6 @@ from view.telaInscricao import TelaInscricao
 class ControladorInscricao:
     def __init__(self, controlador_sistema):
         self.__inscricoes = []
-        self.__tela_listagem_cursos = TelaListagemCursos()
         self.__controlador_sistema = controlador_sistema
         self.__controlador_curso = ControladorCurso(self)
         self.__tela_inscricao = TelaInscricao()
@@ -70,6 +68,7 @@ class ControladorInscricao:
             4: self.retornar,
             0: self.finalizar_sistema
         }
+        
         continua = True
         while continua:
             opcao_escolhida = self.__tela_inscricao.tela_opcoes()
@@ -78,4 +77,6 @@ class ControladorInscricao:
                 funcao_escolhida()
             else:
                 print("Opção inválida. Escolha novamente.")
+
+
 

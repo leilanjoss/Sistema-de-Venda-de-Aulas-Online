@@ -1,22 +1,63 @@
+# class TelaInscricao():
+#     def tela_opcoes(self):
+#         print("--------TELA DE INSCRIÇÃO--------")
+#         print("Escolha sua opção")
+#         print("1 - Inserir inscrição")
+#         print("2 - Excluir inscrição")
+#         print("3 - Atualizar inscrição")
+#         print("4 - Retornar")
+#         print("0 - Finalizar sistema")
+
+#         opcao = int(input("Escolha uma opção: "))
+#         return opcao
+
+#     def mostrar_inscricao(self, dados_inscricao):
+#         print("CURSO: ", dados_inscricao["curso"])
+#         print("ALUNO: ", dados_inscricao["aluno"])
+#         print("PREÇO PAGO: ", dados_inscricao["preco_pago"])
+#         print("DATA E HORA: ", dados_inscricao["data_hora"])
+#         print("\n")
+
+#     def mostra_mensagem(self, msg: str):
+#         print(msg)
+import PySimpleGUI as sg
+
+
 class TelaInscricao():
+    def __init__(self):
+        self.__window = None
+        self.init_opcoes()
+
     def tela_opcoes(self):
-        print("--------TELA DE INSCRIÇÃO--------")
-        print("Escolha sua opção")
-        print("1 - Inserir inscrição")
-        print("2 - Excluir inscrição")
-        print("3 - Atualizar inscrição")
-        print("4 - Retornar")
-        print("0 - Finalizar sistema")
-
-        opcao = int(input("Escolha uma opção: "))
+        self.init_opcoes()
+        button, values = self.open()
+        if values['1']:
+            opcao = 1
+        if values['2']:
+            opcao = 2
+        if values['3']:
+            opcao = 3
+        if values['4']:
+            opcao = 4
+        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
+        #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
+        if values['0'] or button in (None, 'Cancelar'):
+            opcao = 0
+        self.close()
         return opcao
+    
+    def init_opcoes(self):
+        #sg.theme_previewer()
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+        [sg.Text('--------TELA DE INSCRIÇÃO--------', font=("Helvica", 25))],
+        [sg.Text('Escolha sua opção', font=("Helvica", 15))],
+        [sg.Radio('1 - Inserir inscrição', "RD1", key='1')],
+        [sg.Radio('2 - Excluir inscrição', "RD1", key='2')],
+        [sg.Radio('3 - Atualizar inscrição', "RD1", key='3')],
+        [sg.Radio('4 - Retornar', "RD1", key='4')],
+        [sg.Radio('0 - Finalizar sistema', "RD1", key='0')],
+        [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
 
-    def mostrar_inscricao(self, dados_inscricao):
-        print("CURSO: ", dados_inscricao["curso"])
-        print("ALUNO: ", dados_inscricao["aluno"])
-        print("PREÇO PAGO: ", dados_inscricao["preco_pago"])
-        print("DATA E HORA: ", dados_inscricao["data_hora"])
-        print("\n")
-
-    def mostra_mensagem(self, msg: str):
-        print(msg)
+        self.__window
