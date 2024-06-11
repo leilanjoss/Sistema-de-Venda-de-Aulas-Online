@@ -60,4 +60,18 @@ class TelaInscricao():
         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
 
-        self.__window
+        self.__window = sg.Window('Sistema de aulas').Layout(layout)
+
+    def mostra_mensagem(self, msg):
+        sg.popup("", msg)
+
+    def close(self):
+        self.__window.Close()
+
+    def mostrar_inscricao(self, dados_inscricao):
+        string_inscricoes = ""
+        string_inscricoes += "NOME DO CURSO" + dados_inscricao['nome_curso'] + '\n'
+        string_inscricoes += "NOME DO ALUNO" + dados_inscricao['nome_aluno'] + '\n'
+        string_inscricoes += "PREÇO PAGO" + dados_inscricao['preco_pago'] + '\n'
+
+        sg.Popup('------LISTA DE INSCRIÇÕES------', )
