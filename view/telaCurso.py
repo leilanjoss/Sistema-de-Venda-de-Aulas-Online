@@ -7,7 +7,7 @@ from controller.controladorProfessor import ControladorProfessor
 class TelaCurso:
     def __init__(self):
         self.__controlador_professor = ControladorProfessor()
-
+        
     def tela_opcoes(self):
         print("-------- CURSO ----------")
         print("Escolha a opção")

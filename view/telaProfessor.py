@@ -70,7 +70,7 @@ class TelaProfessor:
         return opcao
 
     def init_opcoes(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('LightGreen2')
         layout = [
             [sg.Text('-------- PROFESSORES ----------', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -84,7 +84,7 @@ class TelaProfessor:
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
     
     def pegar_dados_professor(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('LightGreen2')
         layout = [
             [sg.Text('-------- DADOS PROFESSOR ----------', font=("Helvica", 25))],
             [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
@@ -135,7 +135,7 @@ class TelaProfessor:
         sg.popup(string_todos_professores)
 
     def selecionar_professor(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('LightGreen2')
         layout = [
             [sg.Text('-------- SELECIONAR PROFESSOR ----------', font=("Helvica", 25))],
             [sg.Text('Digite o CPF do professor que deseja selecionar:', font=("Helvica", 15))],
