@@ -25,7 +25,7 @@ class TelaRelatorio():
             opcao = 2
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-        self.close()
+        self.__window.close()
         return opcao
 
     def init_opcoes(self):

@@ -99,3 +99,5 @@ class ControladorProfessor:
         continua = True
         while continua:
             lista_opcoes[self.__tela_professor.tela_opcoes()]()
+
+    

@@ -30,10 +30,12 @@ class TelaSistema:
             opcao = 3
         if values['4']:
             opcao = 4
+        if values['5']:
+            opcao = 5
         
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-        self.close()
+        self.__window.close()
         return opcao
     
     def init_opcoes(self):

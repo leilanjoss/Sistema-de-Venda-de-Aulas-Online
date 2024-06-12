@@ -31,7 +31,7 @@ class TelaAluno:
         
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-        self.close()
+        self.__window.close()
         return opcao
 
     def init_opcoes(self):
@@ -69,7 +69,7 @@ class TelaAluno:
         #         "rua": rua, 
         #         "numero": numero,
         #         "cartao": cartao}
-            sg.ChangeLookAndFeel('DarkTeal4')
+            sg.ChangeLookAndFeel('LightGreen2')
             layout = [
                 [sg.Text('-------- DADOS ALUNO ----------', font=("Helvica", 25))],
                 [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
@@ -96,7 +96,7 @@ class TelaAluno:
             numero = values['numero']
             cartao = values['cartao']
 
-            self.close()
+            self.__window.close()
             return {
                 "nome": nome, 
                 "email": email, 
@@ -130,7 +130,7 @@ class TelaAluno:
 
 
     def selecionar_aluno(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('LightGreen2')
         layout = [
             [sg.Text('-------- SELECIONAR ALUNO ----------', font=("Helvica", 25))],
             [sg.Text('Digite o CPF do aluno que deseja selecionar:', font=("Helvica", 15))],
@@ -141,7 +141,7 @@ class TelaAluno:
 
         button, values = self.open()
         cpf = values['cpf']
-        self.close()
+        self.__window.close()
         return cpf
 
 

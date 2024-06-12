@@ -43,12 +43,12 @@ class TelaInscricao():
         #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-        self.close()
+        self.__window.close()
         return opcao
     
     def init_opcoes(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('LightGreen2')
         layout = [
         [sg.Text('--------TELA DE INSCRIÇÃO--------', font=("Helvica", 25))],
         [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -66,7 +66,7 @@ class TelaInscricao():
         sg.popup("", msg)
 
     def close(self):
-        self.__window.Close()
+        self.__window.close()
 
     def mostrar_inscricao(self, dados_inscricao):
         string_inscricoes = ""
