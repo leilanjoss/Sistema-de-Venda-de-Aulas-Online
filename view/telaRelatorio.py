@@ -13,9 +13,8 @@ class TelaRelatorio():
 
 
     def __init__(self):
-        def __init__(self):
-            self.__window = None
-            self.init_opcoes()
+        self.__window = None
+        self.init_opcoes()
 
     def tela_opcoes(self):
         button, values = self.open()
@@ -40,5 +39,9 @@ class TelaRelatorio():
         ]
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
 
+    def mostrar_mensagem(self, msg: str):
+        sg.popup("", msg)
 
-
+    def open(self):
+        button, values = self.__window.Read()
+        return button, values

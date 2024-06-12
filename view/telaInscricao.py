@@ -75,3 +75,7 @@ class TelaInscricao():
         string_inscricoes += "PREÇO PAGO" + dados_inscricao['preco_pago'] + '\n'
 
         sg.Popup('------LISTA DE INSCRIÇÕES------', )
+        
+    def open(self):
+        button, values = self.__window.Read()
+        return button, values
