@@ -72,13 +72,13 @@ class ControladorAluno:
             for aluno in self.__alunos:
                 self.__tela_aluno.mostrar_aluno({
                     "nome": aluno.nome,
-                    "email":    aluno.email,
-                    "telefone": aluno.telefone,
-                    "cpf": aluno.cpf,
-                    "cartao": aluno.cartao,
-                    "endereco": str(aluno.endereco)
+                    # "email":    aluno.email,
+                    # "telefone": aluno.telefone,
+                    # "cpf": aluno.cpf,
+                    # "cartao": aluno.cartao,
+                    # "endereco": str(aluno.endereco)
                 })
-                print("------------------------------")
+                # print("------------------------------")
     
     def retornar(self):
         self.__controlador_sistema.abrir_tela()

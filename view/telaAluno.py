@@ -116,17 +116,17 @@ class TelaAluno:
         # print(">CPF do Aluno: ", dados_aluno["cpf"])
         # print(">Endereço do Aluno: ", dados_aluno["endereco"])
         # print(">Cartão do Aluno: ", dados_aluno["cartao"])
-        string_todos_alunos = ""
-        for dado in dados_aluno:
-            string_todos_alunos += "NOME DO ALUNO: " + dado["nome"] + '\n'
-            string_todos_alunos += "EMAIL DO ALUNO: " + dado["email"] + '\n'
-            string_todos_alunos += "TELEFONE DO ALUNO: " + str(dado["telefone"]) + '\n'
-            string_todos_alunos += "CPF DO ALUNO: " + str(dado["cpf"]) + '\n'
-            string_todos_alunos += "CIDADE DO ALUNO: " + dado["cidade"] + '\n'
-            string_todos_alunos += "SIGLA DO ESTADO DO ALUNO: " + dado["sigla_estado"] + '\n'
-            string_todos_alunos += "RUA DO ALUNO: " + dado["rua"] + '\n'
-            string_todos_alunos += "NÚMERO DA RUAN DO ALUNO: " + str(dado["numero"]) + '\n'
-            string_todos_alunos += "DETALHES DO CARTÃO DO ALUNO: " + dado["cartao"] + '\n\n'
+        dado_apresentacao = dados_aluno["nome"] + '(' + dados_aluno['cpf'] + ')'
+        layout = [
+            [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
+        ]
+        
+        # Usando sg.popup_scrolled para exibir os detalhes
+        window = sg.Window('Detalhes do Aluno', layout)
+        event, values = window.read()
+        self.__window.close()
+
+        # Fechando a janela
 
 
     def selecionar_aluno(self):

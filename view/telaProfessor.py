@@ -122,18 +122,17 @@ class TelaProfessor:
         }
 
     def mostrar_professor(self, dados_professor):
+        dado_apresentacao = dados_professor["nome"] + '(' + dados_professor['cpf'] + ')'
+
         # Criando a layout para o popup
         layout = [
-            [sg.Text('Detalhes do Professor')],
-            [sg.Text('Nome:'), sg.Text(str(dados_professor["nome"]), size=(40, 1))]
+            [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
         ]
 
         # Usando sg.popup_scrolled para exibir os detalhes
         window = sg.Window('Detalhes do Professor', layout)
         event, values = window.read()
         window.close()
-
-    
 
         # Fechando a janela
         self.__window.close()

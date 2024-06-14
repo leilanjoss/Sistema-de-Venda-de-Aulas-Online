@@ -76,7 +76,7 @@ class ControladorProfessor:
         else:
             for professor in self.__professores:
                 self.__tela_professor.mostrar_professor({
-                    "nome": professor.nome,
+                    "nome": professor.nome
                     # "email": professor.email,
                     # "telefone": professor.telefone,
                     # "cpf": professor.cpf,
