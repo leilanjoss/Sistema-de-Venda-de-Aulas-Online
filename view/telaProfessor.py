@@ -122,17 +122,22 @@ class TelaProfessor:
         }
 
     def mostrar_professor(self, dados_professor):
-        string_todos_professores = ""
-        for dado in dados_professor:
-            string_todos_professores += "NOME DO PROFESSOR: " + dado["nome"] + '\n'
-            string_todos_professores += "EMAIL DO PROFESSOR: " + dado["email"] + '\n'
-            string_todos_professores += "TELEFONE DO PROFESSOR: " + str(dado["telefone"]) + '\n'
-            string_todos_professores += "CPF DO PROFESSOR: " + str(dado["cpf"]) + '\n'
-            string_todos_professores += "CIDADE DO PROFESSOR: " + dado["cidade"] + '\n'
-            string_todos_professores += "SIGLA DO ESTADO DO PROFESSOR: " + dado["sigla_estado"] + '\n'
-            string_todos_professores += "RUA DO PROFESSOR: " + dado["rua"] + '\n'
-            string_todos_professores += "NÚMERO DA RUA DO PROFESSOR: " + str(dado["numero"]) + '\n\n'
-        sg.popup(string_todos_professores)
+        # Criando a layout para o popup
+        layout = [
+            [sg.Text('Detalhes do Professor')],
+            [sg.Text('Nome:'), sg.Text(str(dados_professor["nome"]), size=(40, 1))]
+        ]
+
+        # Usando sg.popup_scrolled para exibir os detalhes
+        window = sg.Window('Detalhes do Professor', layout)
+        event, values = window.read()
+        window.close()
+
+    
+
+        # Fechando a janela
+        self.__window.close()
+
 
     def selecionar_professor(self):
         sg.ChangeLookAndFeel('LightGreen2')

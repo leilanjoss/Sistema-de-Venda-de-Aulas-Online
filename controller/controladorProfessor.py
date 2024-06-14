@@ -77,12 +77,11 @@ class ControladorProfessor:
             for professor in self.__professores:
                 self.__tela_professor.mostrar_professor({
                     "nome": professor.nome,
-                    "email": professor.email,
-                    "telefone": professor.telefone,
-                    "cpf": professor.cpf,
-                    "endereco": str(professor.endereco)
+                    # "email": professor.email,
+                    # "telefone": professor.telefone,
+                    # "cpf": professor.cpf,
+                    # "endereco": str(professor.endereco)
                 })
-                print("------------------------------")
 
     def retornar(self):
         from controller.controladorSistema import ControladorSistema
