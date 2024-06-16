@@ -1,13 +1,20 @@
-from model.material import Material
+# from model.material import Material
 
 
 class Aula:
-    def __init__(self):
-        self.__materiais = []
+    def __init__(self,
+        # self.__materiais = []
+        titulo: str,
+        link: str,
+        descricao_aula: str,
+        ):
+        self.__titulo = titulo
+        self.__link = link
+        self.__descricao_aula = descricao_aula
 
-    def adicionar_material(self, material: Material):
-        if isinstance(material, Material):
-            self.__materiais.append(material)
+    # def adicionar_material(self, material: Material):
+    #     if isinstance(material, Material):
+    #         self.__materiais.append(material)
 
     @property
     def titulo(self):
@@ -20,11 +27,10 @@ class Aula:
     @property
     def descricao_aula(self):
         return self.__descricao_aula
-
     
-    @property
-    def materiais(self):
-        return self.__materiais
+    # @property
+    # def materiais(self):
+    #     return self.__materiais
     
     @titulo.setter
     def titulo(self, titulo):
@@ -38,6 +44,6 @@ class Aula:
     def descricao_aula(self, descricao_aula):
         self.__descricao_aula = descricao_aula
     
-    @materiais.setter
-    def materiais(self, materiais):
-        self.__materiais = materiais
+    # @materiais.setter
+    # def materiais(self, materiais):
+    #     self.__materiais = materiais

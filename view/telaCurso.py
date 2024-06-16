@@ -1,5 +1,5 @@
 from model.aula import Aula
-from model.material import Material
+# from model.material import Material
 from model.professor import Professor
 from model.curso import Curso
 from controller.controladorProfessor import ControladorProfessor
@@ -94,14 +94,76 @@ class TelaCurso:
         ]
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
 
-    def pegar_dados_aluno(self):
-        ...    #Implementar e corrigir
-        
-    def mostrar_aluno(self, dados_aluno):
-        ...    #Implementar e corrigir
+    def pegar_dados_curso(self):
+        sg.ChangeLookAndFeel('LightGreen2')
+        layout = [
+            [sg.Text('-------- DADOS CURSO ----------', font=("Helvica", 25))],
+            [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
+            [sg.Text('Preço atual:', size=(15, 1)), sg.InputText('', key='preco_atual')],
+            [sg.Text('Descrição do curso:', size=(15, 1)), sg.InputText('', key='descricao')],
+            [sg.Text('Tempo:', size=(15, 1)), sg.InputText('', key='tempo')],
+            [sg.Text('Código:', size=(15, 1)), sg.InputText('', key='codigo_curso')],
+            [sg.Text('Professor:', size=(15, 1)), sg.InputText('', key='professor')],
+            [sg.Text('Título:', size=(15, 1)), sg.InputText('', key='titulo')],
+            [sg.Text('Link:', size=(15, 1)), sg.InputText('', key='link')],
+            [sg.Text('Descrição da Aula:', size=(15, 1)), sg.InputText('', key='descricao_aula')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            ]
+        self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
 
-    def selecionar_aluno(self):
-        ...    #Implementar e corrigir     
+        button, values = self.open()
+        nome = values['nome']
+        preco_atual = values['preco_atual'] 
+        tempo = values['tempo'] 
+        descricao = values['descricao']
+        codigo_curso = values['codigo_curso']
+        professor = values['professor']
+        titulo = values['titulo']
+        link = values['link']
+        descricao_aula = values['descricao_aula']
+
+        self.__window.close()
+        return {
+            "nome": nome, 
+            "preco_atual": preco_atual, 
+            "tempo": tempo, 
+            "codigo_curso": codigo_curso, 
+            "descricao": descricao, 
+            "professor": professor, 
+            "titulo": titulo, 
+            "link": link,
+            "descricao_aula": descricao_aula
+        }
+    def mostrar_curso(self, dados_curso):
+        dado_apresentacao = dados_curso["nome"] + '(' + dados_curso["codigo_curso"] + ')'
+
+        # Criando a layout para o popup
+        layout = [
+            [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
+        ]
+
+        # Usando sg.popup_scrolled para exibir os detalhes
+        window = sg.Window('Detalhes do Curso', layout)
+        event, values = window.read()
+        window.close()
+
+        # Fechando a janela
+        self.__window.close()
+
+    def selecionar_curso(self):
+        sg.ChangeLookAndFeel('LightGreen2')
+        layout = [
+            [sg.Text('-------- SELECIONAR CURSO ----------', font=("Helvica", 25))],
+            [sg.Text('Digite o código do curso que deseja selecionar:', font=("Helvica", 15))],
+            [sg.Text('CÓDIGO:', size=(15, 1)), sg.InputText('', key='codigo_curso')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Seleciona curso').Layout(layout)
+
+        button, values = self.open()
+        codigo_curso = values['codigo_curso']
+        self.__window.close()
+        return codigo_curso   
 
     def mostrar_mensagem(self, msg: str):
         sg.popup("", msg)
