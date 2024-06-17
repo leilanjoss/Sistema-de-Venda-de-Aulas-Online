@@ -85,6 +85,7 @@ class ControladorAluno:
                 # })
             self.__tela_aluno.mostrar_aluno(dados_alunos)
 
+
                 # print("------------------------------")
     
     def retornar(self):
