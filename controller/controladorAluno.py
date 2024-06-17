@@ -74,7 +74,7 @@ class ControladorAluno:
                     "nome": aluno.nome,
                     # "email":    aluno.email,
                     # "telefone": aluno.telefone,
-                    # "cpf": aluno.cpf,
+                    "cpf": aluno.cpf,
                     # "cartao": aluno.cartao,
                     # "endereco": str(aluno.endereco)
                 })
