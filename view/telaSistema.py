@@ -18,7 +18,7 @@ class TelaSistema:
     def __init__(self):
         self.__window = None
         self.init_opcoes()
-        
+         
     def tela_opcoes(self):
         self.init_opcoes()
         button, values = self.open()
