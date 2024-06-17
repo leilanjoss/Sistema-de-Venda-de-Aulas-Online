@@ -103,7 +103,7 @@ class TelaCurso:
             [sg.Text('Descrição do curso:', size=(15, 1)), sg.InputText('', key='descricao')],
             [sg.Text('Tempo:', size=(15, 1)), sg.InputText('', key='tempo')],
             [sg.Text('Código:', size=(15, 1)), sg.InputText('', key='codigo_curso')],
-            [sg.Text('Professor:', size=(15, 1)), sg.InputText('', key='professor')],
+            [sg.Text('Professor:', size=(15, 1)), sg.InputText('', key='professor.cpf')],
             [sg.Text('Título:', size=(15, 1)), sg.InputText('', key='titulo')],
             [sg.Text('Link:', size=(15, 1)), sg.InputText('', key='link')],
             [sg.Text('Descrição da Aula:', size=(15, 1)), sg.InputText('', key='descricao_aula')],
@@ -129,7 +129,7 @@ class TelaCurso:
             "tempo": tempo, 
             "codigo_curso": codigo_curso, 
             "descricao": descricao, 
-            "professor": professor, 
+            "professor": professor.cpf, 
             "titulo": titulo, 
             "link": link,
             "descricao_aula": descricao_aula

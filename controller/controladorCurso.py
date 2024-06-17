@@ -74,7 +74,7 @@ class ControladorCurso:
                     "tempo": curso.tempo, 
                     "codigo_curso": curso.codigo_curso, 
                     "descricao": curso.descricao, 
-                    "professor": curso.professor, 
+                    "professor": curso.professor.cpf, 
                     "titulo": curso.titulo, 
                     "link": curso.link,
                     "descricao_aula": curso.descricao_aula,
@@ -93,7 +93,7 @@ class ControladorCurso:
             curso.nome = novos_dados_curso["nome"]
             curso.tempo = novos_dados_curso["tempo"]
             curso.descricao = novos_dados_curso["descricao"]
-            # curso.professor = novos_dados_curso["professor"]
+            curso.professor = novos_dados_curso["professor.cpf"]
             curso.preco_atual = novos_dados_curso["preco_atual"]
             curso.codigo_curso = novos_dados_curso["codigo_curso"]
             curso.aula = Aula(novos_dados_curso["titulo"],

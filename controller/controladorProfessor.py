@@ -1,17 +1,19 @@
 from model.professor import Professor
 from view.telaProfessor import TelaProfessor
 from model.endereco import Endereco
+from DAOs.professor_dao import ProfessorDAO
 
 
 class ControladorProfessor:
     def __init__(self):
-        self.__professores = []
-        self.__professores.append(Professor("João Silva","joaosilva@gmail.com", "111111", "1", "Florianopolis", "SC", "Rua das Laranjeiras", "10"))
+        # self.__professores = []
+        self.__professor_DAO = ProfessorDAO()
+        self.__professor_DAO.add(Professor("João Silva","joaosilva@gmail.com", "111111", "1", "Florianopolis", "SC", "Rua das Laranjeiras", "10"))
         self.__tela_professor = TelaProfessor()
        
-    @property
-    def professores(self):
-        return self.__professores
+    # @property
+    # def professores(self):
+    #     return self.__professores
     
     @property
     def tela_professor(self):
@@ -30,29 +32,30 @@ class ControladorProfessor:
                                   dados_professor["rua"],
                                   dados_professor["numero"],
                                   )
-            self.__professores.append(novo_professor)
+            # self.__professores.append(novo_professor)
+            self.__professor_DAO.add(novo_professor)
             self.__tela_professor.mostrar_mensagem("--Professor inserido.")
         else:
             self.__tela_professor.mostrar_mensagem("--Professor já existente.")
 
     def pegar_professor_por_cpf(self, cpf: str):
-        for professor in self.__professores:
+        for professor in self.__professor_DAO.get_all():
             if professor.cpf == cpf:
                 return professor
         return None
     
     def excluir_professor(self):
-        self.listar_professores()
+        # self.listar_professores()
         cpf = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf)
         if professor is not None:
-            self.__professores.remove(professor)
+            self.__professor_DAO.remove(professor) #ou professor.cpf
             self.__tela_professor.mostrar_mensagem("--Professor excluído.")
         else:
             self.__tela_professor.mostrar_mensagem("--Professor não existente.")
 
     def alterar_professor(self):
-        self.listar_professores()
+        # self.listar_professores()
         cpf_professor = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf_professor)
         if professor is not None:
@@ -65,23 +68,26 @@ class ControladorProfessor:
                                           novos_dados_professor["sigla_estado"],
                                           novos_dados_professor["rua"],
                                           novos_dados_professor["numero"]),
+            self.__professor_DAO.update(professor)
 
             self.__tela_professor.mostrar_mensagem('--Professor alterado.')
         else:
             self.__tela_professor.mostrar_mensagem('--Não foi possível alterar o professor.')
 
     def listar_professores(self):
-        if not self.__professores:
+        if not self.__professor_DAO:
             self.__tela_professor.mostrar_mensagem("--Nenhum professor cadastrado.")
         else:
-            for professor in self.__professores:
-                self.__tela_professor.mostrar_professor({
+            dados_professores = []
+            for professor in self.__professor_DAO.get_all():
+                dados_professores.append({
                     "nome": professor.nome,
                     # "email": professor.email,
                     # "telefone": professor.telefone,
                     "cpf": professor.cpf,
                     # "endereco": str(professor.endereco)
                 })
+            self.__tela_professor.mostrar_professor(dados_professores)
 
     def retornar(self):
         from controller.controladorSistema import ControladorSistema
