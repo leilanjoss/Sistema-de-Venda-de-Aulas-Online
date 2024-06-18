@@ -67,25 +67,22 @@ class ControladorAluno:
         else:
             self.__tela_aluno.mostrar_mensagem('--Não foi possível alterar o aluno.')
 
-
+        
     def listar_alunos(self):
         if not self.__aluno_DAO:
             self.__tela_aluno.mostrar_mensagem("--Nenhum aluno cadastrado.")
         else:
-            dados_alunos = []
             for aluno in self.__aluno_DAO.get_all():
-                dados_alunos.append({"nome": aluno.nome, "cpf": aluno.cpf})
-                # self.__tela_aluno.mostrar_aluno({
-                #     "nome": aluno.nome,
-                #     # "email":    aluno.email,
-                #     # "telefone": aluno.telefone,
-                #     "cpf": aluno.cpf,
-                #     # "cartao": aluno.cartao,
-                #     # "endereco": str(aluno.endereco)
-                # })
-            self.__tela_aluno.mostrar_aluno(dados_alunos)
-
-
+                self.__tela_aluno.mostrar_aluno({
+                    "nome": aluno.nome,
+                    # "email":    aluno.email,
+                    # "telefone": aluno.telefone,
+                    "cpf": aluno.cpf,
+                    # "cartao": aluno.cartao,
+                    # "endereco": str(aluno.endereco)
+                })
+            
+                
                 # print("------------------------------")
     
     def retornar(self):

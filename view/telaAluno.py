@@ -118,7 +118,7 @@ class TelaAluno:
         # print(">Cartão do Aluno: ", dados_aluno["cartao"])
         dado_apresentacao = dados_aluno["nome"] + '(' + dados_aluno['cpf'] + ')'
         layout = [
-            [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
+                [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
         ]
         
         # Usando sg.popup_scrolled para exibir os detalhes
