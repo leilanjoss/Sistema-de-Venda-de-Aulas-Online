@@ -136,7 +136,6 @@ class TelaCurso:
             link = values['link']
             descricao_aula = values['descricao_aula']
 
-         # Encontrar o objeto Professor correspondente ao CPF selecionado
             # professor_selecionado = None
             # for professor in self.professor_DAO.get_all():
             #     if professor.cpf == professor_cpf_selecionado:
@@ -144,7 +143,6 @@ class TelaCurso:
             #         break
 
             # if professor_selecionado is None:
-            #     # Tratar caso em que nenhum professor é selecionado corretamente
             #     sg.mostrar_mensagem('Selecione um professor válido.')
             #     self.__window.close()
             #     return None

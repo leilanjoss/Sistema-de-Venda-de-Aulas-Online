@@ -24,9 +24,9 @@ class ControladorCurso:
         # curso_ja_existe = self.pegar_curso_por_codigo(curso.codigo_curso)
         # if curso_ja_existe is None:
         #     self.__cursos.append(curso)
-        #     self.__tela_curso.mostrar_mensagem("--Curso inserido.")
+        #     self.__tela_curso.mostrar_mensagem("Curso inserido.")
         # else:
-        #     self.__tela_curso.mostrar_mensagem("--Curso já existente.")
+        #     self.__tela_curso.mostrar_mensagem("Curso já existente.")
         dados_curso = self.__tela_curso.pegar_dados_curso()
         curso = self.pegar_curso_por_codigo(dados_curso["codigo_curso"])
         if curso is None:
@@ -41,31 +41,31 @@ class ControladorCurso:
                                dados_curso["descricao_aula"],
                                )
             self.__cursos.append(novo_curso)
-            self.__tela_curso.mostrar_mensagem("--Curso inserido.")
+            self.__tela_curso.mostrar_mensagem("Curso inserido.")
         else:
-            self.__tela_curso.mostrar_mensagem("--Curso já existente.")
+            self.__tela_curso.mostrar_mensagem("Curso já existente.")
 
     def excluir_curso(self):
         # codigo_curso = self.__tela_curso.selecionar_curso()
         # curso = self.pegar_curso_por_codigo(codigo_curso)
         # if curso is not None:
         #     self.__cursos.remove(curso)
-        #     self.__tela_curso.mostrar_mensagem("--Curso excluído.")
+        #     self.__tela_curso.mostrar_mensagem("Curso excluído.")
         # else:
-        #     self.__tela_curso.mostrar_mensagem("--Curso não existente.")
+        #     self.__tela_curso.mostrar_mensagem("Curso não existente.")
         # self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
         if curso is not None:
             self.__cursos.remove(curso)
-            self.__tela_curso.mostrar_mensagem("--Curso excluído.")
+            self.__tela_curso.mostrar_mensagem("Curso excluído.")
         else:
-            self.__tela_curso.mostrar_mensagem("--Curso não existente.")
+            self.__tela_curso.mostrar_mensagem("Curso não existente.")
 
     
     def listar_cursos(self):
         if not self.__cursos:
-            self.__tela_curso.mostrar_mensagem("--Nenhum curso cadastrado.")
+            self.__tela_curso.mostrar_mensagem("Nenhum curso cadastrado.")
         else:
             for curso in self.__cursos:
                 self.__tela_curso.mostrar_curso({
@@ -100,9 +100,9 @@ class ControladorCurso:
                                           novos_dados_curso["link"],
                                           novos_dados_curso["descricao_aula"],)
 
-            self.__tela_curso.mostrar_mensagem('--Curso alterado.')
+            self.__tela_curso.mostrar_mensagem('Curso alterado.')
         else:
-            self.__tela_curso.mostrar_mensagem('--Não foi possível alterar o curso.')
+            self.__tela_curso.mostrar_mensagem('Não foi possível alterar o curso.')
 
     def atualizar_curso(self, codigo_curso, curso):
         # i = 0
