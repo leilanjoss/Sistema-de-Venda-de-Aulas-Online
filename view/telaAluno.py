@@ -144,7 +144,6 @@ class TelaAluno:
         self.__window.close()
         return cpf
 
-
     def mostrar_mensagem(self, msg: str):
         sg.popup("", msg)
     
