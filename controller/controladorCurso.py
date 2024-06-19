@@ -1,20 +1,22 @@
 from view.telaCurso import TelaCurso
 from model.curso import Curso
 from model.aula import Aula
+from DAOs.curso_dao import CursoDAO
 
 
 class ControladorCurso:
     def __init__(self, controlador_sistema):
-        self.__cursos = []
+        # self.__cursos = []
+        self.__curso_dao = CursoDAO()
         # self.__controlador_sistema = controlador_sistema
         self.__tela_curso = TelaCurso()
 
-    @property
-    def cursos(self):
-        return self.__cursos
+    # @property
+    # def cursos(self):
+    #     return self.__cursos
     
     def pegar_curso_por_codigo(self, codigo_curso):
-        for curso in self.__cursos:
+        for curso in self.__curso_dao.get_all():
             if curso.codigo_curso == codigo_curso:
                 return curso
         return None
@@ -40,7 +42,7 @@ class ControladorCurso:
                                dados_curso["link"],
                                dados_curso["descricao_aula"],
                                )
-            self.__cursos.append(novo_curso)
+            self.__curso_dao.add(novo_curso)
             self.__tela_curso.mostrar_mensagem("Curso inserido.")
         else:
             self.__tela_curso.mostrar_mensagem("Curso já existente.")
@@ -57,17 +59,17 @@ class ControladorCurso:
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
         if curso is not None:
-            self.__cursos.remove(curso)
+            self.__curso_dao.remove(curso)
             self.__tela_curso.mostrar_mensagem("Curso excluído.")
         else:
             self.__tela_curso.mostrar_mensagem("Curso não existente.")
 
     
     def listar_cursos(self):
-        if not self.__cursos:
+        if not self.__curso_dao:
             self.__tela_curso.mostrar_mensagem("Nenhum curso cadastrado.")
         else:
-            for curso in self.__cursos:
+            for curso in self.__curso_dao.get_all():
                 self.__tela_curso.mostrar_curso({
                     "nome": curso.nome, 
                     "preco_atual": curso.preco_atual, 
@@ -99,6 +101,7 @@ class ControladorCurso:
             curso.aula = Aula(novos_dados_curso["titulo"],
                                           novos_dados_curso["link"],
                                           novos_dados_curso["descricao_aula"],)
+            self.__professor_DAO.update(curso)
 
             self.__tela_curso.mostrar_mensagem('Curso alterado.')
         else:

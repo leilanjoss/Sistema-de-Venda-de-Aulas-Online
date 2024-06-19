@@ -7,11 +7,11 @@ class ProfessorDAO(DAO):
         super().__init__('professores.pkl')
 
     def add(self, professor: Professor):
-        if((professor is not None) and isinstance(professor, Professor) and isinstance(professor.cpf, int)):
+        if((professor is not None) and isinstance(professor, Professor) and isinstance(professor.cpf, str)):
             super().add(professor.cpf, professor)
 
     def update(self, professor: Professor):
-        if((professor is not None) and isinstance(professor, Professor) and isinstance(professor.cpf, int)):
+        if((professor is not None) and isinstance(professor, Professor) and isinstance(professor.cpf, str)):
             super().update(professor.cpf, professor)
 
     def get(self, key:int):
