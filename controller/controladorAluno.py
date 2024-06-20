@@ -10,6 +10,7 @@ class ControladorAluno:
         self.__tela_aluno = TelaAluno()
         self.__controlador_sistema = controlador_sistema
             
+
     def inserir_aluno(self):
         dados_aluno = self.__tela_aluno.pegar_dados_aluno()
         aluno = self.pegar_aluno_por_cpf(dados_aluno["cpf"])
