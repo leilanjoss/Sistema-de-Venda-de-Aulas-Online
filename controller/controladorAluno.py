@@ -1,7 +1,7 @@
 from model.aluno import Aluno
 from view.telaAluno import TelaAluno
 from model.endereco import Endereco
-from DAOs.amigo_dao import AlunoDAO
+from DAOs.aluno_dao import AlunoDAO
 
 class ControladorAluno:
     def __init__(self, controlador_sistema):
@@ -25,9 +25,9 @@ class ControladorAluno:
                                dados_aluno["cartao"]
                             )
             self.__aluno_DAO.add(novo_aluno)
-            self.__tela_aluno.mostrar_mensagem("--Aluno inserido.")
+            self.__tela_aluno.mostrar_mensagem("Aluno inserido.")
         else:
-            self.__tela_aluno.mostrar_mensagem("--Aluno já existente.")
+            self.__tela_aluno.mostrar_mensagem("Aluno já existente.")
 
     def pegar_aluno_por_cpf(self, cpf: str):
         # for aluno in self.__alunos:
@@ -63,28 +63,46 @@ class ControladorAluno:
                                       novos_dados_aluno["numero"]),
             self.__aluno_DAO.update(aluno)
 
-            self.__tela_aluno.mostrar_mensagem('--Aluno alterado.')
+            self.__tela_aluno.mostrar_mensagem('Aluno alterado.')
         else:
-            self.__tela_aluno.mostrar_mensagem('--Não foi possível alterar o aluno.')
+            self.__tela_aluno.mostrar_mensagem('Não foi possível alterar o aluno.')
 
-        
+
     def listar_alunos(self):
-        if not self.__aluno_DAO:
-            self.__tela_aluno.mostrar_mensagem("--Nenhum aluno cadastrado.")
-        else:
-            for aluno in self.__aluno_DAO.get_all():
-                self.__tela_aluno.mostrar_aluno({
-                    "nome": aluno.nome,
-                    # "email":    aluno.email,
-                    # "telefone": aluno.telefone,
-                    "cpf": aluno.cpf,
-                    # "cartao": aluno.cartao,
-                    # "endereco": str(aluno.endereco)
-                })
+        # if not self.__aluno_DAO.get_all():
+        #     self.__tela_aluno.mostrar_mensagem("Nenhum aluno cadastrado.")
+        #     print("passou aqui")
+        #     print(self.__aluno_DAO.get_all)
             
-                
+        # else:
+        #     dados_alunos = []
+        #     for aluno in self.__aluno_DAO.get_all():
+        #         dados_alunos.append({"nome": aluno.nome})
+        #         # self.__tela_aluno.mostrar_aluno({
+        #         #     "nome": aluno.nome,
+        #         #     # "email":    aluno.email,
+        #         #     # "telefone": aluno.telefone,
+        #         #     "cpf": aluno.cpf,
+        #         #     # "cartao": aluno.cartao,
+        #         #     # "endereco": str(aluno.endereco)
+        #         # })
+
+        #     self.__tela_aluno.mostrar_aluno(dados_alunos)
+        #     print(self.__aluno_DAO.get_all())
+        try:
+            alunos = self.__aluno_DAO.get_all()
+            print(f"Alunos no DAO: {alunos}")  # Para verificação de conteúdo
+            if not alunos:
+                self.__tela_aluno.mostrar_mensagem("Nenhum aluno cadastrado.")
+            else:
+                dados_alunos = [{"nome": aluno.nome} for aluno in alunos]
+                self.__tela_aluno.mostrar_aluno(dados_alunos)
+                print(dados_alunos)  # Para debug
+        except Exception as e:
+            print(f"Erro ao listar alunos: {e}")       
+        
                 # print("------------------------------")
-    
+
     def retornar(self):
         self.__controlador_sistema.abrir_tela()
         
