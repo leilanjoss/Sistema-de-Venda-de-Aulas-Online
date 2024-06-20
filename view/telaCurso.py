@@ -4,6 +4,8 @@ from model.professor import Professor
 from model.curso import Curso
 from controller.controladorProfessor import ControladorProfessor
 import PySimpleGUI as sg
+from DAOs.professor_dao import ProfessorDAO
+# from controller.controladorCurso import ControladorCurso
 
 
 class TelaCurso:
@@ -62,6 +64,7 @@ class TelaCurso:
     def __init__(self):
         self.__window = None
         self.init_opcoes()
+        self.__controlador_professor = ControladorProfessor()
 
     def tela_opcoes(self):
         self.init_opcoes()
@@ -95,7 +98,13 @@ class TelaCurso:
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
 
     def pegar_dados_curso(self):
+        from controller.controladorProfessor import ControladorProfessor
         sg.ChangeLookAndFeel('LightGreen2')
+
+        # lista_cpf_professores = [professor.cpf for professor in self.professor_DAO.get_all()]
+        cpf_professor = input("Digite o CPF do Professor desejado: ")
+        professor = ControladorProfessor.pegar_professor_por_cpf(cpf_professor)
+
         layout = [
             [sg.Text('-------- DADOS CURSO ----------', font=("Helvica", 25))],
             [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
@@ -103,37 +112,57 @@ class TelaCurso:
             [sg.Text('Descrição do curso:', size=(15, 1)), sg.InputText('', key='descricao')],
             [sg.Text('Tempo:', size=(15, 1)), sg.InputText('', key='tempo')],
             [sg.Text('Código:', size=(15, 1)), sg.InputText('', key='codigo_curso')],
-            [sg.Text('Professor:', size=(15, 1)), sg.InputText('', key='professor.cpf')],
+            # [sg.Text('Professor:', size=(15, 1)), sg.Combo(lista_cpf_professores, key='professor')],
+            [sg.Text('Professor:', size=(15, 1)), sg.InputText(professor)],
             [sg.Text('Título:', size=(15, 1)), sg.InputText('', key='titulo')],
             [sg.Text('Link:', size=(15, 1)), sg.InputText('', key='link')],
             [sg.Text('Descrição da Aula:', size=(15, 1)), sg.InputText('', key='descricao_aula')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
             ]
+        
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
 
         button, values = self.open()
-        nome = values['nome']
-        preco_atual = values['preco_atual'] 
-        tempo = values['tempo'] 
-        descricao = values['descricao']
-        codigo_curso = values['codigo_curso']
-        professor = values['professor']
-        titulo = values['titulo']
-        link = values['link']
-        descricao_aula = values['descricao_aula']
 
-        self.__window.close()
-        return {
-            "nome": nome, 
-            "preco_atual": preco_atual, 
-            "tempo": tempo, 
-            "codigo_curso": codigo_curso, 
-            "descricao": descricao, 
-            "professor": professor.cpf, 
-            "titulo": titulo, 
-            "link": link,
-            "descricao_aula": descricao_aula
-        }
+        if button == 'Confirmar':
+            nome = values['nome']
+            preco_atual = values['preco_atual']
+            tempo = values['tempo']
+            descricao = values['descricao']
+            codigo_curso = values['codigo_curso']
+            professor_cpf_selecionado = values['professor']  # CPF
+
+            titulo = values['titulo']
+            link = values['link']
+            descricao_aula = values['descricao_aula']
+
+            # professor_selecionado = None
+            # for professor in self.professor_DAO.get_all():
+            #     if professor.cpf == professor_cpf_selecionado:
+            #         professor_selecionado = professor
+            #         break
+
+            # if professor_selecionado is None:
+            #     sg.mostrar_mensagem('Selecione um professor válido.')
+            #     self.__window.close()
+            #     return None
+
+            self.__window.close()
+
+            return {
+                "nome": nome,
+                "preco_atual": preco_atual,
+                "tempo": tempo,
+                "codigo_curso": codigo_curso,
+                "descricao": descricao,
+                "professor": professor,  # CPF do professor selecionado
+                "titulo": titulo,
+                "link": link,
+                "descricao_aula": descricao_aula
+            }
+        else:
+            self.__window.close()
+            return None
     def mostrar_curso(self, dados_curso):
         dado_apresentacao = dados_curso["nome"] + '(' + dados_curso["codigo_curso"] + ')'
 

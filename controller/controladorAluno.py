@@ -42,9 +42,9 @@ class ControladorAluno:
         aluno = self.pegar_aluno_por_cpf(cpf)
         if aluno is not None:
             self.__aluno_DAO.remove(aluno) #Ou aluno.cpf
-            self.__tela_aluno.mostrar_mensagem("--Aluno excluído.")
+            self.__tela_aluno.mostrar_mensagem("Aluno excluído.")
         else:
-            self.__tela_aluno.mostrar_mensagem("--Aluno não existente.")
+            self.__tela_aluno.mostrar_mensagem("Aluno não existente.")
 
     def alterar_aluno(self):
         self.listar_alunos()
@@ -64,7 +64,9 @@ class ControladorAluno:
             self.__aluno_DAO.update(aluno)
 
             self.__tela_aluno.mostrar_mensagem('Aluno alterado.')
+            self.__tela_aluno.mostrar_mensagem('Aluno alterado.')
         else:
+            self.__tela_aluno.mostrar_mensagem('Não foi possível alterar o aluno.')
             self.__tela_aluno.mostrar_mensagem('Não foi possível alterar o aluno.')
 
 

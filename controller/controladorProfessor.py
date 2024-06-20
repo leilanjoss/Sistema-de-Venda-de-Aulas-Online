@@ -34,9 +34,9 @@ class ControladorProfessor:
                                   )
             # self.__professores.append(novo_professor)
             self.__professor_DAO.add(novo_professor)
-            self.__tela_professor.mostrar_mensagem("--Professor inserido.")
+            self.__tela_professor.mostrar_mensagem("Professor inserido.")
         else:
-            self.__tela_professor.mostrar_mensagem("--Professor já existente.")
+            self.__tela_professor.mostrar_mensagem("Professor já existente.")
 
     def pegar_professor_por_cpf(self, cpf: str):
         for professor in self.__professor_DAO.get_all():
@@ -50,9 +50,9 @@ class ControladorProfessor:
         professor = self.pegar_professor_por_cpf(cpf)
         if professor is not None:
             self.__professor_DAO.remove(professor) #ou professor.cpf
-            self.__tela_professor.mostrar_mensagem("--Professor excluído.")
+            self.__tela_professor.mostrar_mensagem("Professor excluído.")
         else:
-            self.__tela_professor.mostrar_mensagem("--Professor não existente.")
+            self.__tela_professor.mostrar_mensagem("Professor não existente.")
 
     def alterar_professor(self):
         # self.listar_professores()
@@ -70,13 +70,13 @@ class ControladorProfessor:
                                           novos_dados_professor["numero"]),
             self.__professor_DAO.update(professor)
 
-            self.__tela_professor.mostrar_mensagem('--Professor alterado.')
+            self.__tela_professor.mostrar_mensagem('Professor alterado.')
         else:
-            self.__tela_professor.mostrar_mensagem('--Não foi possível alterar o professor.')
+            self.__tela_professor.mostrar_mensagem('Não foi possível alterar o professor.')
 
     def listar_professores(self):
         if not self.__professor_DAO:
-            self.__tela_professor.mostrar_mensagem("--Nenhum professor cadastrado.")
+            self.__tela_professor.mostrar_mensagem("Nenhum professor cadastrado.")
         else:
             dados_professores = []
             for professor in self.__professor_DAO.get_all():
