@@ -72,15 +72,16 @@ class ControladorCurso:
             for curso in self.__curso_dao.get_all():
                 self.__tela_curso.mostrar_curso({
                     "nome": curso.nome, 
-                    "preco_atual": curso.preco_atual, 
+                    "preco_atual": curso.preco_atual,
                     "tempo": curso.tempo, 
                     "codigo_curso": curso.codigo_curso, 
-                    "descricao": curso.descricao, 
-                    "professor": curso.professor.cpf, 
-                    "titulo": curso.titulo, 
-                    "link": curso.link,
-                    "descricao_aula": curso.descricao_aula,
+                    # "descricao": curso.descricao, 
+                    # "professor": curso.professor.nome,
+                    # "titulo": curso.titulo, 
+                    # "link": curso.link,
+                    # "descricao_aula": curso.descricao_aula,
                 })
+                print('curso.professor.nome', curso.professor.nome)
 
     def alterar_curso(self):
     #    codigo = self.__tela_curso.selecionar_curso()              

@@ -65,6 +65,7 @@ class TelaCurso:
         self.__window = None
         self.init_opcoes()
         self.__controlador_professor = ControladorProfessor()
+        self.__professor_DAO = ProfessorDAO()
 
     def tela_opcoes(self):
         self.init_opcoes()
@@ -98,12 +99,10 @@ class TelaCurso:
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
 
     def pegar_dados_curso(self):
-        from controller.controladorProfessor import ControladorProfessor
+        # from controller.controladorProfessor import ControladorProfessor
         sg.ChangeLookAndFeel('LightGreen2')
 
-        # lista_cpf_professores = [professor.cpf for professor in self.professor_DAO.get_all()]
-        cpf_professor = input("Digite o CPF do Professor desejado: ")
-        professor = ControladorProfessor.pegar_professor_por_cpf(cpf_professor)
+        lista_professores = [professor.nome for professor in self.__professor_DAO.get_all()]
 
         layout = [
             [sg.Text('-------- DADOS CURSO ----------', font=("Helvica", 25))],
@@ -112,8 +111,7 @@ class TelaCurso:
             [sg.Text('Descrição do curso:', size=(15, 1)), sg.InputText('', key='descricao')],
             [sg.Text('Tempo:', size=(15, 1)), sg.InputText('', key='tempo')],
             [sg.Text('Código:', size=(15, 1)), sg.InputText('', key='codigo_curso')],
-            # [sg.Text('Professor:', size=(15, 1)), sg.Combo(lista_cpf_professores, key='professor')],
-            [sg.Text('Professor:', size=(15, 1)), sg.InputText(professor)],
+            [sg.Text('Professor:', size=(15, 1)), sg.Combo(lista_professores, key='professor')],
             [sg.Text('Título:', size=(15, 1)), sg.InputText('', key='titulo')],
             [sg.Text('Link:', size=(15, 1)), sg.InputText('', key='link')],
             [sg.Text('Descrição da Aula:', size=(15, 1)), sg.InputText('', key='descricao_aula')],
@@ -125,27 +123,29 @@ class TelaCurso:
         button, values = self.open()
 
         if button == 'Confirmar':
+            print( '22222')
             nome = values['nome']
             preco_atual = values['preco_atual']
             tempo = values['tempo']
             descricao = values['descricao']
             codigo_curso = values['codigo_curso']
-            professor_cpf_selecionado = values['professor']  # CPF
+            professor_selecionado = values['professor']
+            print('professor_selecionado', professor_selecionado)
 
             titulo = values['titulo']
             link = values['link']
             descricao_aula = values['descricao_aula']
 
-            # professor_selecionado = None
-            # for professor in self.professor_DAO.get_all():
-            #     if professor.cpf == professor_cpf_selecionado:
-            #         professor_selecionado = professor
-            #         break
+            for professor in self.__professor_DAO.get_all():
+                if professor.nome == professor_selecionado:
+                    professor_selecionado = professor
+                    break
 
-            # if professor_selecionado is None:
-            #     sg.mostrar_mensagem('Selecione um professor válido.')
-            #     self.__window.close()
-            #     return None
+            if professor_selecionado is None:
+                print( '44444')
+                sg.popup('Selecione um professor válido.')
+                self.__window.close()
+                return None
 
             self.__window.close()
 
@@ -155,14 +155,19 @@ class TelaCurso:
                 "tempo": tempo,
                 "codigo_curso": codigo_curso,
                 "descricao": descricao,
-                "professor": professor,  # CPF do professor selecionado
+                "professor": professor.nome,
                 "titulo": titulo,
                 "link": link,
                 "descricao_aula": descricao_aula
             }
+           
         else:
+            print( '111111')
             self.__window.close()
             return None
+    
+
+        
     def mostrar_curso(self, dados_curso):
         dado_apresentacao = dados_curso["nome"] + '(' + dados_curso["codigo_curso"] + ')'
 
