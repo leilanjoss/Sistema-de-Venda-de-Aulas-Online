@@ -179,10 +179,46 @@ class TelaCurso:
         # Usando sg.popup_scrolled para exibir os detalhes
         window = sg.Window('Detalhes do Curso', layout)
         event, values = window.read()
-        window.close()
+        # window.close()
 
         # Fechando a janela
         self.__window.close()
+
+    def listar_cursos(self, cursos):
+        array_cursos = [];
+        for curso in cursos:
+            row = [curso.codigo_curso, curso.nome, curso.preco_atual]
+            array_cursos.append(row)
+        #sg.set_options(font=("Helvetica", 14))
+        toprow = ['Codigo', 'Nome', 'Preço']
+        # rows = [[cursos["nome"]],
+        #         [2, 'Rajani', 21, 66],
+        #         [3, 'Rahul', 22, 60],
+        #         [4, 'Robin', 20, 75]]
+        tbl1 = sg.Table(values=array_cursos,
+                        headings=toprow,
+        auto_size_columns=True,
+        display_row_numbers=False,
+        justification='left', key='-TABLE-',
+        selected_row_colors='red on yellow',
+        enable_events=False,
+        expand_x=True,
+        expand_y=True,
+        enable_click_events=False)
+        layout = [[tbl1]]
+        print("LISTAR CURSOS LA LA LA LA LA LA")
+        self.__window = sg.Window("Cursos", layout, size=(715, 200), resizable=True)
+        button, values = self.open()
+        self.__window.close()
+
+        # while True:
+        #     event, values = window.read()
+        #     print("event:", event, "values:", values)
+        #     if event == sg.WIN_CLOSED:
+        #         break
+        #     if '+CLICKED+' in event:
+        #         sg.popup("You clicked row:{} Column: {}".format(event[2][0], event[2][1]))
+        #     window.close()
 
     def selecionar_curso(self):
         sg.ChangeLookAndFeel('LightGreen2')

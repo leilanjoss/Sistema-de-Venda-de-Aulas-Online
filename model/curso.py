@@ -88,6 +88,9 @@ class Curso:
     def aulas(self, aulas):
         self.__aulas = aulas
 
+    def nome_professor(self):
+        return self.__professor.nome
+
     # def __repr__(self):
     #     tostring =  f"""
     #     Código do Curso: {self.__codigo_curso} 
