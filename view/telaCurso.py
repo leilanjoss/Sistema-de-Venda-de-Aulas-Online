@@ -164,43 +164,45 @@ class TelaCurso:
     
 
         
-    def mostrar_curso(self, dados_curso):
-        dado_apresentacao = dados_curso["nome"] + '(' + dados_curso["codigo_curso"] + ')'
+    # def mostrar_curso(self, dados_curso):
+    #     dado_apresentacao = dados_curso["nome"] + '(' + dados_curso["codigo_curso"] + ')'
 
-        # Criando a layout para o popup
-        layout = [
-            [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
-        ]
+    #     # Criando a layout para o popup
+    #     layout = [
+    #         [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
+    #     ]
 
-        # Usando sg.popup_scrolled para exibir os detalhes
-        window = sg.Window('Detalhes do Curso', layout)
-        event, values = window.read()
-        # window.close()
+    #     # Usando sg.popup_scrolled para exibir os detalhes
+    #     window = sg.Window('Detalhes do Curso', layout)
+    #     event, values = window.read()
+    #     # window.close()
 
-        # Fechando a janela
-        self.__window.close()
+    #     # Fechando a janela
+    #     self.__window.close()
 
     def mostrar_cursos(self, cursos):
         array_cursos = [];
         for curso in cursos:
-            row = [curso.codigo_curso, curso.nome, curso.preco_atual]
+        
+            row = [curso.codigo_curso, curso.nome, curso.preco_atual, curso.tempo, curso.descricao] #Aulas #Professor
             array_cursos.append(row)
+
         #sg.set_options(font=("Helvetica", 14))
-        toprow = ['Codigo', 'Nome', 'Preço']
+        toprow = ['Codigo', 'Nome', 'Preço', 'Tempo', 'Descrição', 'Professor']
         # rows = [[cursos["nome"]],
         #         [2, 'Rajani', 21, 66],
         #         [3, 'Rahul', 22, 60],
         #         [4, 'Robin', 20, 75]]
         tbl1 = sg.Table(values=array_cursos,
                         headings=toprow,
-        auto_size_columns=True,
-        display_row_numbers=False,
-        justification='left', key='-TABLE-',
-        selected_row_colors='red on yellow',
-        enable_events=False,
-        expand_x=True,
-        expand_y=True,
-        enable_click_events=False)
+                        auto_size_columns=True,
+                        display_row_numbers=False,
+                        justification='left', key='-TABLE-',
+                        selected_row_colors='white on seagreen',
+                        enable_events=False,
+                        expand_x=True,
+                        expand_y=True,
+                        enable_click_events=False)
         layout = [[tbl1]]
         self.__window = sg.Window("Cursos", layout, size=(715, 200), resizable=True)
         button, values = self.open()

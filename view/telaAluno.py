@@ -131,19 +131,19 @@ class TelaAluno:
     def mostrar_aluno(self, alunos):
         array_alunos = []
         for aluno in alunos:
-            row = [aluno.nome, aluno.cpf]
+            row = [aluno.nome, aluno.cpf, aluno.email, aluno.telefone, aluno.cartao] #aluno.endereco
             array_alunos.append(row)
-        toprow = ['Nome', 'CPF']
+        toprow = ['Nome', 'CPF', 'E-mail', 'Telefone', 'Cartão'] #Endereço
         tbl1 = sg.Table(values=array_alunos,
                         headings=toprow,
-        auto_size_columns=True,
-        display_row_numbers=False,
-        justification='left', key='-TABLE-',
-        selected_row_colors='red on yellow',
-        enable_events=False,
-        expand_x=True,
-        expand_y=True,
-        enable_click_events=False)
+                        auto_size_columns=True,
+                        display_row_numbers=False,
+                        justification='left', key='-TABLE-',
+                        selected_row_colors='white on seagreen',
+                        enable_events=False,
+                        expand_x=True,
+                        expand_y=True,
+                        enable_click_events=False)
         layout = [[tbl1]]
         self.__window = sg.Window("Alunos", layout, size=(715, 200), resizable=True)
         button, values = self.open()

@@ -143,19 +143,19 @@ class TelaProfessor:
     def mostrar_professor(self, professores):
         array_professores = []
         for professor in professores:
-            row = [professor.nome, professor.cpf]
+            row = [professor.nome, professor.cpf, professor.email, professor.telefone] #professor.endereco
             array_professores.append(row)
-        toprow = ['Nome', 'CPF']
+        toprow = ['Nome', 'CPF', 'E-mail', 'Telefone'] #Endereço
         tbl1 = sg.Table(values=array_professores,
                         headings=toprow,
-        auto_size_columns=True,
-        display_row_numbers=False,
-        justification='left', key='-TABLE-',
-        selected_row_colors='red on yellow',
-        enable_events=False,
-        expand_x=True,
-        expand_y=True,
-        enable_click_events=False)
+                        auto_size_columns=True,
+                        display_row_numbers=False,
+                        justification='left', key='-TABLE-',
+                        selected_row_colors='white on seagreen',
+                        enable_events=False,
+                        expand_x=True,
+                        expand_y=True,
+                        enable_click_events=False)
         layout = [[tbl1]]
         self.__window = sg.Window("Professores", layout, size=(715, 200), resizable=True)
         button, values = self.open()
