@@ -3,8 +3,8 @@ from view.telaRelatorio import TelaRelatorio
 
 class ControladorRelatorio:
     def __init__(self):
-        self.__controlador_inscricao = ControladorInscricao(self)  # Inicialize o objeto ControladorInscricao
-        self.__tela_relatorio = TelaRelatorio()  # Inicialize o objeto TelaRelatorio
+        self.__controlador_inscricao = ControladorInscricao(self) 
+        self.__tela_relatorio = TelaRelatorio() 
 
     def gerar_relatorio_total_receitas(self, cpf_professor):
         receita = 0

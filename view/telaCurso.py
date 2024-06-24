@@ -161,9 +161,7 @@ class TelaCurso:
         else:
             self.__window.close()
             return None
-    
-
-        
+       
     # def mostrar_curso(self, dados_curso):
     #     dado_apresentacao = dados_curso["nome"] + '(' + dados_curso["codigo_curso"] + ')'
 
@@ -183,12 +181,19 @@ class TelaCurso:
     def mostrar_cursos(self, cursos):
         array_cursos = [];
         for curso in cursos:
+            # nome_professor = curso.professor.nome if curso.professor else "Não especificado"
         
-            row = [curso.codigo_curso, curso.nome, curso.preco_atual, curso.tempo, curso.descricao] #Aulas #Professor
+            row = [curso.codigo_curso, 
+                   curso.nome, 
+                   curso.preco_atual, 
+                   curso.tempo, 
+                   curso.descricao,
+                   ] #Aulas #Professor
+            
             array_cursos.append(row)
 
-        #sg.set_options(font=("Helvetica", 14))
-        toprow = ['Codigo', 'Nome', 'Preço', 'Tempo', 'Descrição', 'Professor']
+        #sg.set_options(font=("Helvica", 14))
+        toprow = ['Codigo', 'Nome', 'Preço', 'Tempo', 'Descrição'] #Professor
         # rows = [[cursos["nome"]],
         #         [2, 'Rajani', 21, 66],
         #         [3, 'Rahul', 22, 60],
