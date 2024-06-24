@@ -57,12 +57,13 @@ class ControladorCurso:
         #     self.__tela_curso.mostrar_mensagem("Curso excluído.")
         # else:
         #     self.__tela_curso.mostrar_mensagem("Curso não existente.")
-        # self.listar_cursos()
+        self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
         if curso is not None:
-            self.__curso_dao.remove(curso)
+            self.__curso_dao.remove(curso.codigo_curso)
             self.__tela_curso.mostrar_mensagem("Curso excluído.")
+            self.listar_cursos()
         else:
             self.__tela_curso.mostrar_mensagem("Curso não existente.")
 

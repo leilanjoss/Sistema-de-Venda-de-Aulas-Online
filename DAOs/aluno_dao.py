@@ -18,6 +18,12 @@ class AlunoDAO(DAO):
         if isinstance(key, int):
             return super().get(key)
 
-    def remove(selfself, key:int):
-        if(isinstance(key, int)):
-            return super().remove(key)
+    # def remove(self, key:int):
+    #     if(isinstance(key, int)):
+    #         return super().remove(key)
+
+    def remove(self, key: str):
+        print(f"Aluno: {key}")
+        if isinstance(key, str):
+            super().remove(key)
+            print(f"Aluno removed with key: {key}")

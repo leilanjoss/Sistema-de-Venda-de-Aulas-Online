@@ -42,13 +42,14 @@ class ControladorAluno:
         cpf = self.__tela_aluno.selecionar_aluno()
         aluno = self.pegar_aluno_por_cpf(cpf)
         if aluno is not None:
-            self.__aluno_DAO.remove(aluno) #Ou aluno.cpf
+            self.__aluno_DAO.remove(aluno.cpf)
             self.__tela_aluno.mostrar_mensagem("Aluno excluído.")
+            self.listar_alunos()
         else:
             self.__tela_aluno.mostrar_mensagem("Aluno não existente.")
-
+     
     def alterar_aluno(self):
-        self.listar_alunos()
+        # self.listar_alunos()
         cpf_aluno = self.__tela_aluno.selecionar_aluno()
         aluno = self.pegar_aluno_por_cpf(cpf_aluno)
         if aluno is not None:
@@ -65,11 +66,8 @@ class ControladorAluno:
             self.__aluno_DAO.update(aluno)
 
             self.__tela_aluno.mostrar_mensagem('Aluno alterado.')
-            self.__tela_aluno.mostrar_mensagem('Aluno alterado.')
         else:
             self.__tela_aluno.mostrar_mensagem('Não foi possível alterar o aluno.')
-            self.__tela_aluno.mostrar_mensagem('Não foi possível alterar o aluno.')
-
 
     # def listar_alunos(self):
     #     # if not self.__aluno_DAO.get_all():

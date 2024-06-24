@@ -45,12 +45,13 @@ class ControladorProfessor:
         return None
     
     def excluir_professor(self):
-        # self.listar_professores()
+        self.listar_professores()
         cpf = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf)
         if professor is not None:
-            self.__professor_DAO.remove(professor) #ou professor.cpf
+            self.__professor_DAO.remove(professor.cpf)
             self.__tela_professor.mostrar_mensagem("Professor excluído.")
+            self.listar_professores()
         else:
             self.__tela_professor.mostrar_mensagem("Professor não existente.")
 
