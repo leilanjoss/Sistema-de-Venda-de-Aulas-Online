@@ -184,7 +184,7 @@ class TelaCurso:
         # Fechando a janela
         self.__window.close()
 
-    def listar_cursos(self, cursos):
+    def mostrar_cursos(self, cursos):
         array_cursos = [];
         for curso in cursos:
             row = [curso.codigo_curso, curso.nome, curso.preco_atual]

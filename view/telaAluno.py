@@ -109,24 +109,46 @@ class TelaAluno:
                 "cartao": cartao
             }
 
-    def mostrar_aluno(self, dados_aluno):
-        # print(">Nome do Aluno: ", dados_aluno["nome"])
-        # print(">E-mail do Aluno: ", dados_aluno["email"])
-        # print(">Telefone do Aluno: ", dados_aluno["telefone"])
-        # print(">CPF do Aluno: ", dados_aluno["cpf"])
-        # print(">Endereço do Aluno: ", dados_aluno["endereco"])
-        # print(">Cartão do Aluno: ", dados_aluno["cartao"])
-        dado_apresentacao = dados_aluno["nome"] + '(' + dados_aluno['cpf'] + ')'
-        layout = [
-                [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
-        ]
+    # def mostrar_aluno(self, dados_aluno):
+    #     # print(">Nome do Aluno: ", dados_aluno["nome"])
+    #     # print(">E-mail do Aluno: ", dados_aluno["email"])
+    #     # print(">Telefone do Aluno: ", dados_aluno["telefone"])
+    #     # print(">CPF do Aluno: ", dados_aluno["cpf"])
+    #     # print(">Endereço do Aluno: ", dados_aluno["endereco"])
+    #     # print(">Cartão do Aluno: ", dados_aluno["cartao"])
+    #     dado_apresentacao = dados_aluno["nome"] + '(' + dados_aluno['cpf'] + ')'
+    #     layout = [
+    #             [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
+    #     ]
         
-        # Usando sg.popup_scrolled para exibir os detalhes
-        window = sg.Window('Detalhes do Aluno', layout)
-        event, values = window.read()
+    #     # Usando sg.popup_scrolled para exibir os detalhes
+    #     window = sg.Window('Detalhes do Aluno', layout)
+    #     event, values = window.read()
+    #     self.__window.close()
+
+    #     # Fechando a janela
+
+    def mostrar_aluno(self, alunos):
+        array_alunos = []
+        for aluno in alunos:
+            row = [aluno.nome, aluno.cpf]
+            array_alunos.append(row)
+        toprow = ['Nome', 'CPF']
+        tbl1 = sg.Table(values=array_alunos,
+                        headings=toprow,
+        auto_size_columns=True,
+        display_row_numbers=False,
+        justification='left', key='-TABLE-',
+        selected_row_colors='red on yellow',
+        enable_events=False,
+        expand_x=True,
+        expand_y=True,
+        enable_click_events=False)
+        layout = [[tbl1]]
+        self.__window = sg.Window("Alunos", layout, size=(715, 200), resizable=True)
+        button, values = self.open()
         self.__window.close()
 
-        # Fechando a janela
 
 
     def selecionar_aluno(self):

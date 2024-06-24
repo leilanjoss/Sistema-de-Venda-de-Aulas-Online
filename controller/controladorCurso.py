@@ -71,21 +71,7 @@ class ControladorCurso:
         if not self.__curso_dao:
             self.__tela_curso.mostrar_mensagem("Nenhum curso cadastrado.")
         else:
-            # for curso in self.__curso_dao.get_all():
-                # print('ENTROU')
-                # self.__tela_curso.mostrar_curso({
-                #     "nome": curso.nome, 
-                #     # "preco_atual": curso.preco_atual,
-                #     # "tempo": curso.tempo, 
-                #     "codigo_curso": curso.codigo_curso, 
-                #     # "descricao": curso.descricao, 
-                #     # "professor": curso.professor.nome,
-                #     # "titulo": curso.titulo, 
-                #     # "link": curso.link,
-                #     # "descricao_aula": curso.descricao_aula,
-                # })
-                # print('curso.professor.nome', curso.professor_nome)
-            self.__tela_curso.listar_cursos(self.__curso_dao.get_all())
+            self.__tela_curso.mostrar_cursos(self.__curso_dao.get_all())
 
     def alterar_curso(self):
     #    codigo = self.__tela_curso.selecionar_curso()              

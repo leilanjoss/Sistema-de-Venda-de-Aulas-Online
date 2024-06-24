@@ -121,24 +121,45 @@ class TelaProfessor:
             "numero": numero
         }
 
-    def mostrar_professor(self, dados_professor):
-        if dados_professor:
-            dado_apresentacao = dados_professor[0]
+    # def mostrar_professor(self, dados_professor):
+    #     if dados_professor:
+    #         dado_apresentacao = dados_professor[0]
 
-            # Criando a layout para o popup
-            layout = [
-                [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
-            ]
+    #         # Criando a layout para o popup
+    #         layout = [
+    #             [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
+    #         ]
 
-            # Usando sg.popup_scrolled para exibir os detalhes
-            window = sg.Window('Detalhes do Professor', layout)
-            event, values = window.read()
-            window.close()
+    #         # Usando sg.popup_scrolled para exibir os detalhes
+    #         window = sg.Window('Detalhes do Professor', layout)
+    #         event, values = window.read()
+    #         window.close()
 
-            # Fechando a janela
-            self.__window.close()
-        else: 
-            self.mostrar_mensagem('Nenhum professor encontrado')
+    #         # Fechando a janela
+    #         self.__window.close()
+    #     else: 
+    #         self.mostrar_mensagem('Nenhum professor encontrado')
+
+    def mostrar_professor(self, professores):
+        array_professores = []
+        for professor in professores:
+            row = [professor.nome, professor.cpf]
+            array_professores.append(row)
+        toprow = ['Nome', 'CPF']
+        tbl1 = sg.Table(values=array_professores,
+                        headings=toprow,
+        auto_size_columns=True,
+        display_row_numbers=False,
+        justification='left', key='-TABLE-',
+        selected_row_colors='red on yellow',
+        enable_events=False,
+        expand_x=True,
+        expand_y=True,
+        enable_click_events=False)
+        layout = [[tbl1]]
+        self.__window = sg.Window("Professores", layout, size=(715, 200), resizable=True)
+        button, values = self.open()
+        self.__window.close()
 
 
     def selecionar_professor(self):

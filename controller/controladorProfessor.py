@@ -78,16 +78,17 @@ class ControladorProfessor:
         if not self.__professor_DAO:
             self.__tela_professor.mostrar_mensagem("Nenhum professor cadastrado.")
         else:
-            dados_professores = []
-            for professor in self.__professor_DAO.get_all():
-                dados_professores.append({
-                    "nome": professor.nome,
-                    # "email": professor.email,
-                    # "telefone": professor.telefone,
-                    "cpf": professor.cpf,
-                    # "endereco": str(professor.endereco)
-                })
-            self.__tela_professor.mostrar_professor(dados_professores)
+            # dados_professores = []
+            # for professor in self.__professor_DAO.get_all():
+            #     dados_professores.append({
+            #         "nome": professor.nome,
+            #         # "email": professor.email,
+            #         # "telefone": professor.telefone,
+            #         "cpf": professor.cpf,
+            #         # "endereco": str(professor.endereco)
+            #     })
+            self.__tela_professor.mostrar_professor(self.__professor_DAO.get_all())
+    
 
     def retornar(self):
         from controller.controladorSistema import ControladorSistema
