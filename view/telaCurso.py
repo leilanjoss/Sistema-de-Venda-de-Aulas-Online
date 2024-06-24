@@ -206,7 +206,6 @@ class TelaCurso:
         expand_y=True,
         enable_click_events=False)
         layout = [[tbl1]]
-        print("LISTAR CURSOS LA LA LA LA LA LA")
         self.__window = sg.Window("Cursos", layout, size=(715, 200), resizable=True)
         button, values = self.open()
         self.__window.close()

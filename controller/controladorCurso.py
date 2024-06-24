@@ -94,32 +94,32 @@ class ControladorCurso:
     
     # self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
-        curso = self.pegar_curso_por_cpf(codigo_curso)
+        curso = self.pegar_curso_por_codigo(codigo_curso)
         if curso is not None:
             novos_dados_curso = self.__tela_curso.pegar_dados_curso()
             curso.nome = novos_dados_curso["nome"]
             curso.tempo = novos_dados_curso["tempo"]
             curso.descricao = novos_dados_curso["descricao"]
-            curso.professor = novos_dados_curso["professor.cpf"]
+            curso.professor = novos_dados_curso["professor"]
             curso.preco_atual = novos_dados_curso["preco_atual"]
             curso.codigo_curso = novos_dados_curso["codigo_curso"]
             curso.aula = Aula(novos_dados_curso["titulo"],
                                           novos_dados_curso["link"],
                                           novos_dados_curso["descricao_aula"],)
-            self.__professor_DAO.update(curso)
+            self.__curso_dao.update(curso)
 
             self.__tela_curso.mostrar_mensagem('Curso alterado.')
         else:
             self.__tela_curso.mostrar_mensagem('Não foi possível alterar o curso.')
 
-    def atualizar_curso(self, codigo_curso, curso):
-        # i = 0
-        # for c in self.__cursos:
-        #     if c.codigo_curso == codigo_curso:                
-        #         self.__cursos[i] = curso                
-        #         return
-        #     i += 1    
-        pass
+    # def atualizar_curso(self, codigo_curso, curso):
+    #     # i = 0
+    #     # for c in self.__cursos:
+    #     #     if c.codigo_curso == codigo_curso:                
+    #     #         self.__cursos[i] = curso                
+    #     #         return
+    #     #     i += 1    
+    #     pass
     
     def retornar(self):
         from controller.controladorSistema import ControladorSistema
