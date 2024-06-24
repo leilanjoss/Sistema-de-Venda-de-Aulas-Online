@@ -2,6 +2,7 @@ from model.professor import Professor
 from view.telaProfessor import TelaProfessor
 from model.endereco import Endereco
 from DAOs.professor_dao import ProfessorDAO
+from exceptions.professor_repetido_exception import ProfessorRepetidoException
 
 
 class ControladorProfessor:
@@ -22,21 +23,24 @@ class ControladorProfessor:
     def inserir_professor(self):
         dados_professor = self.__tela_professor.pegar_dados_professor()
         professor = self.pegar_professor_por_cpf(dados_professor["cpf"])
-        if professor is None:
-            novo_professor = Professor(dados_professor["nome"], 
-                                  dados_professor["email"], 
-                                  dados_professor["telefone"], 
-                                  dados_professor["cpf"], 
-                                  dados_professor["cidade"],
-                                  dados_professor["sigla_estado"],
-                                  dados_professor["rua"],
-                                  dados_professor["numero"],
-                                  )
-            # self.__professores.append(novo_professor)
-            self.__professor_DAO.add(novo_professor)
-            self.__tela_professor.mostrar_mensagem("Professor inserido.")
-        else:
-            self.__tela_professor.mostrar_mensagem("Professor já existente.")
+        try:
+            if professor is None:
+                novo_professor = Professor(dados_professor["nome"], 
+                                    dados_professor["email"], 
+                                    dados_professor["telefone"], 
+                                    dados_professor["cpf"], 
+                                    dados_professor["cidade"],
+                                    dados_professor["sigla_estado"],
+                                    dados_professor["rua"],
+                                    dados_professor["numero"],
+                                    )
+                self.__professor_DAO.add(novo_professor)
+                self.__tela_professor.mostrar_mensagem("Professor inserido.")
+            else:
+                raise ProfessorRepetidoException(professor)
+                # self.__tela_professor.mostrar_mensagem("Professor já existente.")
+        except ProfessorRepetidoException as e:
+            self.__tela_professor.mostrar_mensagem(e)
 
     def pegar_professor_por_cpf(self, cpf: str):
         for professor in self.__professor_DAO.get_all():

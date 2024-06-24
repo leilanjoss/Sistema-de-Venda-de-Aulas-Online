@@ -2,6 +2,7 @@ from view.telaCurso import TelaCurso
 from model.curso import Curso
 from model.aula import Aula
 from DAOs.curso_dao import CursoDAO
+from exceptions.curso_repetido_exception import CursoRepetidoException
 
 
 class ControladorCurso:
@@ -31,23 +32,24 @@ class ControladorCurso:
         #     self.__tela_curso.mostrar_mensagem("Curso já existente.")
         dados_curso = self.__tela_curso.pegar_dados_curso()
         curso = self.pegar_curso_por_codigo(dados_curso["codigo_curso"])
-        if curso is None:
-            novo_curso = Curso(dados_curso["nome"], 
-                               dados_curso["preco_atual"], 
-                               dados_curso["descricao"], 
-                               dados_curso["tempo"], 
-                               dados_curso["codigo_curso"],
-                               dados_curso["professor"],
-                               dados_curso["titulo"],
-                               dados_curso["link"],
-                               dados_curso["descricao_aula"],
-                               )
-            self.__curso_dao.add(novo_curso)
-            self.__tela_curso.mostrar_mensagem("Curso inserido.")
-
-            print("INSERIDO")
-        else:
-            self.__tela_curso.mostrar_mensagem("Curso já existente.")
+        try:
+            if curso is None:
+                novo_curso = Curso(dados_curso["nome"], 
+                                dados_curso["preco_atual"], 
+                                dados_curso["descricao"], 
+                                dados_curso["tempo"], 
+                                dados_curso["codigo_curso"],
+                                dados_curso["professor"],
+                                dados_curso["titulo"],
+                                dados_curso["link"],
+                                dados_curso["descricao_aula"],
+                                )
+                self.__curso_dao.add(novo_curso)
+                self.__tela_curso.mostrar_mensagem("Curso inserido.")
+            else:
+                raise CursoRepetidoException(curso)
+        except CursoRepetidoException as e:
+            self.__tela_curso.mostrar_mensagem(e)
 
     def excluir_curso(self):
         # codigo_curso = self.__tela_curso.selecionar_curso()

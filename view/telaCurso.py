@@ -123,14 +123,12 @@ class TelaCurso:
         button, values = self.open()
 
         if button == 'Confirmar':
-            print( '22222')
             nome = values['nome']
             preco_atual = values['preco_atual']
             tempo = values['tempo']
             descricao = values['descricao']
             codigo_curso = values['codigo_curso']
             professor_selecionado = values['professor']
-            print('professor_selecionado', professor_selecionado)
 
             titulo = values['titulo']
             link = values['link']
@@ -142,7 +140,6 @@ class TelaCurso:
                     break
 
             if professor_selecionado is None:
-                print( '44444')
                 sg.popup('Selecione um professor válido.')
                 self.__window.close()
                 return None
@@ -162,7 +159,6 @@ class TelaCurso:
             }
            
         else:
-            print( '111111')
             self.__window.close()
             return None
     
