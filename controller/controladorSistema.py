@@ -9,9 +9,9 @@ class ControladorSistema:
 
     def __init__(self):
         self.__tela_sistema = TelaSistema()
-        self.__controlador_cursos = ControladorCurso(self)
+        self.__controlador_cursos = ControladorCurso()
         self.__controlador_professores = ControladorProfessor()
-        self.__controlador_alunos = ControladorAluno(self)
+        self.__controlador_alunos = ControladorAluno()
         self.__controlador_relatorios = ControladorRelatorio()
         self.__controlador_inscricao = ControladorInscricao(self)
 

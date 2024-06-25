@@ -62,6 +62,8 @@ class TelaInscricao():
 
         self.__window = sg.Window('Sistema de aulas').Layout(layout)
 
+
+        
     def mostra_mensagem(self, msg):
         sg.popup("", msg)
 
@@ -79,3 +81,33 @@ class TelaInscricao():
     def open(self):
         button, values = self.__window.Read()
         return button, values
+
+    def pegar_dados_inscricao(self, lista_cursos, lista_alunos):
+        sg.ChangeLookAndFeel('LightGreen2')
+
+        layout = [
+            [sg.Text('-------- DADOS INSCRIÇÃO ----------', font=("Helvica", 25))],
+            [sg.Text('Aluno:', size=(15, 1)), sg.combo('', key='aluno')],
+            [sg.Text('Curso:', size=(15, 1)), sg.InputText('', key='curso')],
+            [sg.Text('Data/hora:', size=(15, 1)), sg.InputText('', key='data_hora')],
+            [sg.Text('ID de inscrição:', size=(15, 1)), sg.InputText('', key='id')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+
+        self.__window = sg.Window('Sistema de aulas').Layout(layout)
+
+        button, values = self.open()
+        aluno = values['aluno']
+        curso = values['curso']
+        data_hora = values['data_hora']
+        id_inscricao = values['id']
+
+        self.__window.close()
+        return {
+            "aluno": aluno,
+            "curso": curso,
+            "data_hora": data_hora,
+            "id_inscricao": id_inscricao,
+        }
+
+        

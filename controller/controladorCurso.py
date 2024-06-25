@@ -6,7 +6,7 @@ from exceptions.curso_repetido_exception import CursoRepetidoException
 
 
 class ControladorCurso:
-    def __init__(self, controlador_sistema):
+    def __init__(self):
         # self.__cursos = []
         self.__curso_dao = CursoDAO()
         # self.__controlador_sistema = controlador_sistema

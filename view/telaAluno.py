@@ -69,45 +69,45 @@ class TelaAluno:
         #         "rua": rua, 
         #         "numero": numero,
         #         "cartao": cartao}
-            sg.ChangeLookAndFeel('LightGreen2')
-            layout = [
-                [sg.Text('-------- DADOS ALUNO ----------', font=("Helvica", 25))],
-                [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
-                [sg.Text('E-mail:', size=(15, 1)), sg.InputText('', key='email')],
-                [sg.Text('Telefone:', size=(15, 1)), sg.InputText('', key='telefone')],
-                [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
-                [sg.Text('Cidade:', size=(15, 1)), sg.InputText('', key='cidade')],
-                [sg.Text('Sigla do Estado:', size=(15, 1)), sg.InputText('', key='sigla_estado')],
-                [sg.Text('Rua:', size=(15, 1)), sg.InputText('', key='rua')],
-                [sg.Text('Número:', size=(15, 1)), sg.InputText('', key='numero')],
-                [sg.Text('Cartão:', size=(15, 1)), sg.InputText('', key='cartao')],
-                [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-            ]
-            self.__window = sg.Window('Sistema de livros').Layout(layout)
+        sg.ChangeLookAndFeel('LightGreen2')
+        layout = [
+            [sg.Text('-------- DADOS ALUNO ----------', font=("Helvica", 25))],
+            [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
+            [sg.Text('E-mail:', size=(15, 1)), sg.InputText('', key='email')],
+            [sg.Text('Telefone:', size=(15, 1)), sg.InputText('', key='telefone')],
+            [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
+            [sg.Text('Cidade:', size=(15, 1)), sg.InputText('', key='cidade')],
+            [sg.Text('Sigla do Estado:', size=(15, 1)), sg.InputText('', key='sigla_estado')],
+            [sg.Text('Rua:', size=(15, 1)), sg.InputText('', key='rua')],
+            [sg.Text('Número:', size=(15, 1)), sg.InputText('', key='numero')],
+            [sg.Text('Cartão:', size=(15, 1)), sg.InputText('', key='cartao')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Sistema de aulas').Layout(layout)
 
-            button, values = self.open()
-            nome = values['nome']
-            email = values['email']
-            telefone = values['telefone']
-            cpf = values['cpf']
-            cidade = values['cidade']
-            sigla_estado = values['sigla_estado']
-            rua = values['rua']
-            numero = values['numero']
-            cartao = values['cartao']
+        button, values = self.open()
+        nome = values['nome']
+        email = values['email']
+        telefone = values['telefone']
+        cpf = values['cpf']
+        cidade = values['cidade']
+        sigla_estado = values['sigla_estado']
+        rua = values['rua']
+        numero = values['numero']
+        cartao = values['cartao']
 
-            self.__window.close()
-            return {
-                "nome": nome, 
-                "email": email, 
-                "telefone": telefone, 
-                "cpf": cpf, 
-                "cidade": cidade, 
-                "sigla_estado": sigla_estado, 
-                "rua": rua, 
-                "numero": numero,
-                "cartao": cartao
-            }
+        self.__window.close()
+        return {
+            "nome": nome, 
+            "email": email, 
+            "telefone": telefone, 
+            "cpf": cpf, 
+            "cidade": cidade, 
+            "sigla_estado": sigla_estado, 
+            "rua": rua, 
+            "numero": numero,
+            "cartao": cartao
+        }
 
     # def mostrar_aluno(self, dados_aluno):
     #     # print(">Nome do Aluno: ", dados_aluno["nome"])

@@ -2,11 +2,11 @@ from model.curso import Curso
 from model.aluno import Aluno
 
 class Inscricao:
-    def __init__(self, curso: Curso, aluno: Aluno, preco_pago: float, data_hora: int):
+    def __init__(self, curso: Curso, aluno: Aluno, data_hora: int, id: int):
         self.__curso = curso
         self.__aluno = aluno
-        self.__preco_pago = preco_pago
         self.__data_hora = data_hora
+        self.__id = id
 
     @property
     def curso(self):
@@ -23,6 +23,10 @@ class Inscricao:
     @property
     def data_hora(self):
         return self.__data_hora
+
+    @property
+    def id(self):
+        return self.__id
 
     @curso.setter
     def curso(self, curso):

@@ -5,11 +5,10 @@ from DAOs.aluno_dao import AlunoDAO
 from exceptions.aluno_repetido_exception import AlunoRepetidoException
 
 class ControladorAluno:
-    def __init__(self, controlador_sistema):
+    def __init__(self):
         # self.__alunos = []
         self.__aluno_DAO = AlunoDAO()
         self.__tela_aluno = TelaAluno()
-        self.__controlador_sistema = controlador_sistema
 
     def inserir_aluno(self):
         dados_aluno = self.__tela_aluno.pegar_dados_aluno()
@@ -125,7 +124,8 @@ class ControladorAluno:
     
 
     def retornar(self):
-        self.__controlador_sistema.abrir_tela()
+        from controller.controladorSistema import ControladorSistema
+        ControladorSistema().abrir_tela()
         
     def abrir_tela(self):
         lista_opcoes = {

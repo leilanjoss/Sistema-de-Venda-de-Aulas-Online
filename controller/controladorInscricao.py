@@ -1,31 +1,37 @@
 from model.inscricao import Inscricao
 from controller.controladorCurso import ControladorCurso
 from view.telaInscricao import TelaInscricao
+from controller.controladorAluno import ControladorAluno
 
 class ControladorInscricao:
     def __init__(self, controlador_sistema):
-        self.__inscricoes = []
+        # self.__inscricoes = [] # Substituido por DAO
         self.__controlador_sistema = controlador_sistema
-        self.__controlador_curso = ControladorCurso(self)
+        self.__controlador_curso = ControladorCurso()
         self.__tela_inscricao = TelaInscricao()
+        self.__controlador_aluno = ControladorAluno()
 
     @property
     def inscricoes(self):
         return self.__inscricoes
 
     def inserir_inscricao(self):
-        cpf_aluno = input("Digite o CPF do aluno: ")
-        codigo_curso = input("Digite o código do curso: ")
+        dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
         
-        curso = self.__controlador_curso.pegar_curso_por_codigo(codigo_curso)
-        if curso:
-            preco_pago = float(input("Digite o preço pago: "))
-            data_hora = input("Digite a data e hora: ")
-            inscricao = Inscricao(curso, cpf_aluno, preco_pago, data_hora)
-            self.__inscricoes.append(inscricao)
-            self.__tela_inscricao.mostra_mensagem("Inscrição realizada com sucesso!")
-        else:
-            self.__tela_inscricao.mostra_mensagem("Curso não encontrado!")
+
+
+        # cpf_aluno = input("Digite o CPF do aluno: ")
+        # codigo_curso = input("Digite o código do curso: ")
+        
+        # curso = self.__controlador_curso.pegar_curso_por_codigo(codigo_curso)
+        # if curso:
+        #     preco_pago = float(input("Digite o preço pago: "))
+        #     data_hora = input("Digite a data e hora: ")
+        #     inscricao = Inscricao(curso, cpf_aluno, preco_pago, data_hora)
+        #     self.__inscricoes.append(inscricao)
+        #     self.__tela_inscricao.mostra_mensagem("Inscrição realizada com sucesso!")
+        # else:
+        #     self.__tela_inscricao.mostra_mensagem("Curso não encontrado!")
 
     def excluir_inscricao(self):
         codigo_curso = input("Digite o código do curso: ")
