@@ -109,7 +109,13 @@ class TelaProfessor:
         rua = values['rua']
         numero = values['numero']
 
+        try:
+            cpf = int(''.join(filter(str.isdigit, cpf)))
+        except ValueError:
+            cpf = None
+
         self.__window.close()
+
         return {
             "nome": nome, 
             "email": email, 
@@ -120,25 +126,6 @@ class TelaProfessor:
             "rua": rua, 
             "numero": numero
         }
-
-    # def mostrar_professor(self, dados_professor):
-    #     if dados_professor:
-    #         dado_apresentacao = dados_professor[0]
-
-    #         # Criando a layout para o popup
-    #         layout = [
-    #             [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
-    #         ]
-
-    #         # Usando sg.popup_scrolled para exibir os detalhes
-    #         window = sg.Window('Detalhes do Professor', layout)
-    #         event, values = window.read()
-    #         window.close()
-
-    #         # Fechando a janela
-    #         self.__window.close()
-    #     else: 
-    #         self.mostrar_mensagem('Nenhum professor encontrado')
 
     def mostrar_professor(self, professores):
         array_professores = []
@@ -174,6 +161,12 @@ class TelaProfessor:
 
         button, values = self.open()
         cpf = values['cpf']
+
+        try:
+            cpf = int(''.join(filter(str.isdigit, cpf)))
+        except ValueError:
+            cpf = None
+
         self.__window.close()
         return cpf
 

@@ -33,7 +33,7 @@ class ControladorAluno:
         except AlunoRepetidoException as e:
             self.__tela_aluno.mostrar_mensagem(e)
 
-    def pegar_aluno_por_cpf(self, cpf: str):
+    def pegar_aluno_por_cpf(self, cpf: int):
         # for aluno in self.__alunos:
         for aluno in self.__aluno_DAO.get_all():
             if aluno.cpf == cpf:
@@ -111,15 +111,6 @@ class ControladorAluno:
         if not self.__aluno_DAO:
             self.__tela_aluno.mostrar_mensagem("Nenhum aluno cadastrado.")
         else:
-            # dados_alunos = []
-            # for aluno in self.__aluno_DAO.get_all():
-            #     dados_alunos.append({
-            #         "nome": aluno.nome,
-            #         # "email": aluno.email,
-            #         # "telefone": aluno.telefone,
-            #         "cpf": aluno.cpf,
-            #         # "endereco": str(aluno.endereco)
-            #     })
             self.__tela_aluno.mostrar_aluno(self.__aluno_DAO.get_all())
     
 

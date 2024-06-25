@@ -49,26 +49,6 @@ class TelaAluno:
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
     
     def pegar_dados_aluno(self):
-        # print("-------- DADOS ALUNO ----------")
-        # nome = input("Nome: ")
-        # email = input("E-mail: ")
-        # telefone = input("Telefone: ")
-        # cpf = input("CPF: ")
-        # cidade = input("Cidade: ")
-        # sigla_estado = input("Sigla do Estado: ")
-        # rua = input("Rua: ")
-        # numero = input("Número: ")
-        # cartao = input('Cartão: ')
-
-        # return {"nome": nome, 
-        #         "email": email, 
-        #         "telefone": telefone, 
-        #         "cpf": cpf, 
-        #         "cidade": cidade, 
-        #         "sigla_estado": sigla_estado, 
-        #         "rua": rua, 
-        #         "numero": numero,
-        #         "cartao": cartao}
         sg.ChangeLookAndFeel('LightGreen2')
         layout = [
             [sg.Text('-------- DADOS ALUNO ----------', font=("Helvica", 25))],
@@ -95,6 +75,11 @@ class TelaAluno:
         rua = values['rua']
         numero = values['numero']
         cartao = values['cartao']
+
+        try:
+            cpf = int(''.join(filter(str.isdigit, cpf)))
+        except ValueError:
+            cpf = None
 
         self.__window.close()
         return {
@@ -160,9 +145,15 @@ class TelaAluno:
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Seleciona aluno').Layout(layout)
-
+        
         button, values = self.open()
         cpf = values['cpf']
+
+        try:
+            cpf = int(''.join(filter(str.isdigit, cpf)))
+        except ValueError:
+            cpf = None
+
         self.__window.close()
         return cpf
 

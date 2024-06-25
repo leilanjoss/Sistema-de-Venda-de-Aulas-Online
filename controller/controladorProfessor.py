@@ -16,9 +16,9 @@ class ControladorProfessor:
     # def professores(self):
     #     return self.__professores
     
-    @property
-    def tela_professor(self):
-        return self.__tela_professor
+    # @property
+    # def tela_professor(self):
+    #     return self.__tela_professor
 
     def inserir_professor(self):
         dados_professor = self.__tela_professor.pegar_dados_professor()
@@ -42,7 +42,7 @@ class ControladorProfessor:
         except ProfessorRepetidoException as e:
             self.__tela_professor.mostrar_mensagem(e)
 
-    def pegar_professor_por_cpf(self, cpf: str):
+    def pegar_professor_por_cpf(self, cpf: int):
         for professor in self.__professor_DAO.get_all():
             if professor.cpf == cpf:
                 return professor
@@ -60,7 +60,7 @@ class ControladorProfessor:
             self.__tela_professor.mostrar_mensagem("Professor não existente.")
 
     def alterar_professor(self):
-        # self.listar_professores()
+        self.listar_professores()
         cpf_professor = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf_professor)
         if professor is not None:
@@ -83,15 +83,6 @@ class ControladorProfessor:
         if not self.__professor_DAO:
             self.__tela_professor.mostrar_mensagem("Nenhum professor cadastrado.")
         else:
-            # dados_professores = []
-            # for professor in self.__professor_DAO.get_all():
-            #     dados_professores.append({
-            #         "nome": professor.nome,
-            #         # "email": professor.email,
-            #         # "telefone": professor.telefone,
-            #         "cpf": professor.cpf,
-            #         # "endereco": str(professor.endereco)
-            #     })
             self.__tela_professor.mostrar_professor(self.__professor_DAO.get_all())
     
 
