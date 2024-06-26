@@ -7,14 +7,16 @@ class InscricaoDAO(DAO):
         super().__init__('inscricao.pkl')
 
     def add(self, inscricao: Inscricao):
-        self.__inscricoes.append(inscricao)
+        if((inscricao is not None) and isinstance(inscricao, Inscricao) and isinstance(inscricao.id, int)):
+            super().add(inscricao.id, inscricao)
+            print(f"Inscrição added: {inscricao}")
 
-    def remove(self, inscricao: Inscricao):
-        self.__inscricoes.remove(inscricao)
+    def remove(self, key: int):
+        print(f"Inscrição: {key}")
+        if isinstance(key, int):
+            super().remove(key)
+            print(f"Aluno removed with key: {key}")
 
     def update(self, inscricao: Inscricao):
-        index = self.__inscricoes.index(inscricao)
-        self.__inscricoes[index] = inscricao
-
-    def get_all(self):
-        return self.__inscricoes
+        if((inscricao is not None) and isinstance(inscricao, Inscricao) and isinstance(inscricao.id, int)):
+            super().update(inscricao.id, inscricao)

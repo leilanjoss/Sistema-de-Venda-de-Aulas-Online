@@ -2,6 +2,9 @@ from model.inscricao import Inscricao
 from controller.controladorCurso import ControladorCurso
 from view.telaInscricao import TelaInscricao
 from controller.controladorAluno import ControladorAluno
+from model.aluno import Aluno
+from model.curso import Curso
+from DAOs.inscricao_dao import InscricaoDAO
 
 class ControladorInscricao:
     def __init__(self, controlador_sistema):
@@ -10,28 +13,32 @@ class ControladorInscricao:
         self.__controlador_curso = ControladorCurso()
         self.__tela_inscricao = TelaInscricao()
         self.__controlador_aluno = ControladorAluno()
+        self.__inscricao_DAO = InscricaoDAO()
 
     @property
     def inscricoes(self):
         return self.__inscricoes
 
     def inserir_inscricao(self):
+        self.__controlador_aluno.listar_alunos()
+        self.__controlador_curso.listar_cursos()
         dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
         
-
-
-        # cpf_aluno = input("Digite o CPF do aluno: ")
-        # codigo_curso = input("Digite o código do curso: ")
+        print(dados_inscricao)
+        print(dados_inscricao['cpf_aluno']) # Ambos deram certo
         
-        # curso = self.__controlador_curso.pegar_curso_por_codigo(codigo_curso)
-        # if curso:
-        #     preco_pago = float(input("Digite o preço pago: "))
-        #     data_hora = input("Digite a data e hora: ")
-        #     inscricao = Inscricao(curso, cpf_aluno, preco_pago, data_hora)
-        #     self.__inscricoes.append(inscricao)
-        #     self.__tela_inscricao.mostra_mensagem("Inscrição realizada com sucesso!")
-        # else:
-        #     self.__tela_inscricao.mostra_mensagem("Curso não encontrado!")
+        aluno = self.__controlador_aluno.pegar_aluno_por_cpf(dados_inscricao['cpf_aluno'])
+        curso = self.__controlador_curso.pegar_curso_por_codigo(dados_inscricao['cod_curso'])
+        
+        if isinstance(aluno, Aluno) and isinstance(curso, Curso):
+            nova_inscricao = Inscricao(curso, aluno, dados_inscricao['data_hora'], dados_inscricao['id_inscricao'])
+            self.__inscricao_DAO.add(nova_inscricao)
+            self.__tela_inscricao.mostra_mensagem("Aluno inserido")
+        else:
+            self.__tela_inscricao.mostra_mensagem("Aluno ou curso não encontrado")
+
+
+
 
     def excluir_inscricao(self):
         codigo_curso = input("Digite o código do curso: ")
