@@ -3,7 +3,6 @@ from DAOs.dao import DAO
 
 class InscricaoDAO(DAO):
     def __init__(self):
-        # self.__inscricoes = []
         super().__init__('inscricao.pkl')
 
     def add(self, inscricao: Inscricao):

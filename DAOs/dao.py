@@ -1,9 +1,5 @@
 import pickle
 from abc import ABC, abstractmethod
-from exceptions.exceptions_dao.DAOException import DAOException
-from exceptions.exceptions_dao.FileNotFoundError import FileNotFoundError
-from exceptions.exceptions_dao.KeyNotFoundException import KeyNotFoundException
-from exceptions.exceptions_dao.SerializationError import SerializationError
 
 class DAO(ABC):
     @abstractmethod
@@ -26,34 +22,28 @@ class DAO(ABC):
         self.__cache[key] = obj
         self.__dump()  #atualiza o arquivo depois de add novo amigo
 
+    #cuidado: esse update só funciona se o objeto com essa chave já existe
     def update(self, key, obj):
         try:
-            if key in self.__cache:
-                self.__cache[key] = obj
-                self.__dump()  # Atualiza o arquivo após atualizar um objeto existente
-            else:
-                raise KeyNotFoundException(key)
-        except Exception as e:
-            raise DAOException(f"Erro ao atualizar objeto: {e}")
+            if(self.__cache[key] != None):
+                self.__cache[key] = obj #atualiza a entrada
+                self.__dump()  #atualiza o arquivo
+        except KeyError:
+            pass  # implementar aqui o tratamento da exceção
 
     def get(self, key):
         try:
             return self.__cache[key]
         except KeyError:
-            raise KeyNotFoundException(key)
-        except Exception as e:
-            raise DAOException(f"Erro ao obter objeto: {e}")
+            pass #implementar aqui o tratamento da exceção
 
     # esse método precisa chamar o self.__dump()
     def remove(self, key):
         try:
-            if key in self.__cache:
-                self.__cache.pop(key)
-                self.__dump()
-            else:
-                raise KeyNotFoundException(key)
-        except Exception as e:
-            raise DAOException(f"Erro ao remover objeto: {e}")
+            self.__cache.pop(key)
+            self.__dump() #atualiza o arquivo depois de remover um objeto
+        except KeyError:
+            pass #implementar aqui o tratamento da exceção
 
     def get_all(self):
         return self.__cache.values()

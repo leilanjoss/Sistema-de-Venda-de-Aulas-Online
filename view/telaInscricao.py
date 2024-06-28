@@ -1,25 +1,3 @@
-# class TelaInscricao():
-#     def tela_opcoes(self):
-#         print("--------TELA DE INSCRIÇÃO--------")
-#         print("Escolha sua opção")
-#         print("1 - Inserir inscrição")
-#         print("2 - Excluir inscrição")
-#         print("3 - Atualizar inscrição")
-#         print("4 - Retornar")
-#         print("0 - Finalizar sistema")
-
-#         opcao = int(input("Escolha uma opção: "))
-#         return opcao
-
-#     def mostrar_inscricao(self, dados_inscricao):
-#         print("CURSO: ", dados_inscricao["curso"])
-#         print("ALUNO: ", dados_inscricao["aluno"])
-#         print("PREÇO PAGO: ", dados_inscricao["preco_pago"])
-#         print("DATA E HORA: ", dados_inscricao["data_hora"])
-#         print("\n")
-
-#     def mostra_mensagem(self, msg: str):
-#         print(msg)
 import PySimpleGUI as sg
 
 
@@ -45,7 +23,7 @@ class TelaInscricao():
             opcao = 0
         self.__window.close()
         return opcao
-    
+
     def init_opcoes(self):
         #sg.theme_previewer()
         sg.ChangeLookAndFeel('LightGreen2')
@@ -53,29 +31,49 @@ class TelaInscricao():
         [sg.Text('--------TELA DE INSCRIÇÃO--------', font=("Helvica", 25))],
         [sg.Text('Escolha sua opção', font=("Helvica", 15))],
         [sg.Radio('1 - Inserir inscrição', "RD1", key='1')],
-        [sg.Radio('2 - Excluir inscrição', "RD1", key='2')],
-        [sg.Radio('3 - Atualizar inscrição', "RD1", key='3')],
-        [sg.Radio('4 - Retornar', "RD1", key='4')],
-        [sg.Radio('0 - Finalizar sistema', "RD1", key='0')],
+        [sg.Radio('2 - Atualizar inscrição', "RD1", key='2')],
+        [sg.Radio('3 - Listar inscrições', "RD1", key='3')],
+        [sg.Radio('4 - Excluir inscrições', "RD1", key='4')],
+        [sg.Radio('0 - Retornar', "RD1", key='0')],
         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
 
         self.__window = sg.Window('Sistema de aulas').Layout(layout)
 
-    def mostra_mensagem(self, msg):
+    def mostrar_mensagem(self, msg):
         sg.popup("", msg)
 
     def close(self):
         self.__window.close()
 
-    def mostrar_inscricao(self, dados_inscricao):
-        string_inscricoes = ""
-        string_inscricoes += "NOME DO CURSO" + dados_inscricao['nome_curso'] + '\n'
-        string_inscricoes += "NOME DO ALUNO" + dados_inscricao['nome_aluno'] + '\n'
-        string_inscricoes += "PREÇO PAGO" + dados_inscricao['preco_pago'] + '\n'
+    def mostrar_inscricao(self, inscricoes):
+        # string_inscricoes = ""
+        # string_inscricoes += "NOME DO CURSO" + dados_inscricao['nome_curso'] + '\n'
+        # string_inscricoes += "NOME DO ALUNO" + dados_inscricao['nome_aluno'] + '\n'
+        # string_inscricoes += "PREÇO PAGO" + dados_inscricao['preco_pago'] + '\n'
 
-        sg.Popup('------LISTA DE INSCRIÇÕES------', )
+        # sg.Popup('------LISTA DE INSCRIÇÕES------', )
         
+        array_inscricoes = []
+        for inscricao in inscricoes:
+            row = [inscricao.cpf_aluno, inscricao.cod_curso, inscricao.data_hora, inscricao.id_inscricao] #aluno.endereco
+            array_inscricoes.append(row)
+        toprow = ['Curso', 'Aluno', 'Data e Hora', 'ID'] #Endereço
+        tbl1 = sg.Table(values=array_inscricoes,
+                        headings=toprow,
+                        auto_size_columns=True,
+                        display_row_numbers=False,
+                        justification='left', key='-TABLE-',
+                        selected_row_colors='white on seagreen',
+                        enable_events=False,
+                        expand_x=True,
+                        expand_y=True,
+                        enable_click_events=False)
+        layout = [[tbl1]]
+        self.__window = sg.Window("Inscrições", layout, size=(715, 200), resizable=True)
+        button, values = self.open()
+        self.__window.close()
+
     def open(self):
         button, values = self.__window.Read()
         return button, values
