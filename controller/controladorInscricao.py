@@ -26,7 +26,7 @@ class ControladorInscricao:
         curso = self.__controlador_curso.pegar_curso_por_codigo(dados_inscricao['cod_curso'])
         
         if isinstance(aluno, Aluno) and isinstance(curso, Curso):
-            nova_inscricao = Inscricao(curso, aluno, dados_inscricao['data_hora'], dados_inscricao['id_inscricao'])
+            nova_inscricao = Inscricao(curso, aluno, int(dados_inscricao['data_hora']), int(dados_inscricao['id_inscricao']))
             print(nova_inscricao)
             self.__inscricao_DAO.add(nova_inscricao)
             self.__tela_inscricao.mostrar_mensagem("Aluno inserido")

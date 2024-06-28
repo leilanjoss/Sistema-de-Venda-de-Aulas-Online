@@ -14,7 +14,7 @@ class InscricaoDAO(DAO):
         print(f"Inscrição: {key}")
         if isinstance(key, int):
             super().remove(key)
-            print(f"Aluno removed with key: {key}")
+            print(f"Inscrição removed with key: {key}")
 
     def update(self, inscricao: Inscricao):
         if((inscricao is not None) and isinstance(inscricao, Inscricao) and isinstance(inscricao.id, int)):
