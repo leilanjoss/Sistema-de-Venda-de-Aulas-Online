@@ -50,7 +50,15 @@ class ControladorInscricao:
         #     self.__tela_inscricao.mostrar_mensagem("Inscrição excluída com sucesso!")
         # else:
         #     self.__tela_inscricao.mostrar_mensagem("Inscrição não encontrada!")
-        pass
+        self.listar_inscricoes()
+        cpf = self.__tela_aluno.selecionar_aluno()
+        aluno = self.pegar_aluno_por_cpf(cpf)
+        if aluno is not None:
+            self.__aluno_DAO.remove(aluno.cpf)
+            self.__tela_aluno.mostrar_mensagem("Aluno excluído.")
+            self.listar_alunos()
+        else:
+            self.__tela_aluno.mostrar_mensagem("Aluno não existente.")
     
     def atualizar_inscricao(self):
         codigo_curso = input("Digite o código do curso: ")

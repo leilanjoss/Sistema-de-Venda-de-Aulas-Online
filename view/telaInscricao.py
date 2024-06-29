@@ -56,7 +56,7 @@ class TelaInscricao():
         
         array_inscricoes = []
         for inscricao in inscricoes:
-            row = [inscricao.cpf_aluno, inscricao.cod_curso, inscricao.data_hora, inscricao.id_inscricao] #aluno.endereco
+            row = [inscricao.aluno.cpf, inscricao.curso.codigo_curso, inscricao.data_hora, inscricao.id] #aluno.endereco
             array_inscricoes.append(row)
         toprow = ['Curso', 'Aluno', 'Data e Hora', 'ID'] #Endereço
         tbl1 = sg.Table(values=array_inscricoes,
