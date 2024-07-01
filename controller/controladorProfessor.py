@@ -11,11 +11,7 @@ class ControladorProfessor:
         # self.__professores = []
         self.__professor_DAO = ProfessorDAO()
         self.__tela_professor = TelaProfessor()
-       
-    # @property
-    # def professores(self):
-    #     return self.__professores
-    
+
     @property
     def tela_professor(self):
         return self.__tela_professor
@@ -38,7 +34,6 @@ class ControladorProfessor:
                 self.__tela_professor.mostrar_mensagem("Professor inserido.")
             else:
                 raise ProfessorRepetidoException(professor)
-                # self.__tela_professor.mostrar_mensagem("Professor já existente.")
         except ProfessorRepetidoException as e:
             self.__tela_professor.mostrar_mensagem(e)
 

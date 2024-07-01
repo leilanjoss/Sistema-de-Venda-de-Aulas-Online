@@ -15,19 +15,10 @@ class ControladorInscricao:
         self.__inscricao_DAO = InscricaoDAO()
 
     def inserir_inscricao(self):
-        self.__controlador_aluno.listar_alunos()
-        self.__controlador_curso.listar_cursos()
         dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
         
         aluno = self.__controlador_aluno.pegar_aluno_por_cpf(int(dados_inscricao['cpf_aluno']))
         curso = self.__controlador_curso.pegar_curso_por_codigo(dados_inscricao['cod_curso'])
-        
-        print(dados_inscricao)
-        print('esse é o aluno:')
-        print(aluno)
-        
-        print('esse é o curso:')
-        print(curso)
         
         
         if isinstance(aluno, Aluno) and isinstance(curso, Curso):

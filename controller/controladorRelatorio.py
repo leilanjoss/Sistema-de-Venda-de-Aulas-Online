@@ -10,7 +10,6 @@ class ControladorRelatorio:
 
     def gerar_relatorio_inscricoes_por_curso(self):
         codigo_curso = self.__tela_inscricao.pegar_codigo_curso()
-        self.__controlador_inscricao.listar_inscricoes()
 
         if codigo_curso is None:
             return
