@@ -20,7 +20,14 @@ class ControladorInscricao:
         dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
         
         aluno = self.__controlador_aluno.pegar_aluno_por_cpf(int(dados_inscricao['cpf_aluno']))
-        curso = self.__controlador_curso.pegar_curso_por_codigo(dados_inscricao['cod_curso'])
+        curso = self.__controlador_curso.pegar_curso_por_codigo(int(dados_inscricao['cod_curso']))
+        
+        print('esse é o aluno:')
+        print(aluno)
+        
+        print('esse é o curso:')
+        print(curso)
+        
         
         if isinstance(aluno, Aluno) and isinstance(curso, Curso):
             nova_inscricao = Inscricao(curso, aluno, int(dados_inscricao['data_hora']), int(dados_inscricao['id_inscricao']))
@@ -45,7 +52,7 @@ class ControladorInscricao:
         #     self.__tela_inscricao.mostrar_mensagem("Inscrição não encontrada!")
         self.listar_inscricoes()
         id = self.__tela_inscricao.selecionar_inscricao()
-        inscricao = self.pegar_inscricao_por_id(id)
+        inscricao = self.pegar_inscricao_por_id(int(id))
         if inscricao is not None:
             self.__inscricao_DAO.remove(inscricao.id)
             self.__tela_inscricao.mostrar_mensagem("Inscrição excluída.")
@@ -58,12 +65,11 @@ class ControladorInscricao:
         id = self.__tela_inscricao.selecionar_inscricao()
         inscricao = self.pegar_inscricao_por_id(id)
         print('pegar inscricao por id:')
-        
         print(inscricao)
         for inscricao in self.__inscricao_DAO.get_all():
             if inscricao.id == id:
                 novos_dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
-                curso_alterado = self.__controlador_curso.pegar_curso_por_codigo(novos_dados_inscricao['cod_curso'])
+                curso_alterado = self.__controlador_curso.pegar_curso_por_codigo(int(novos_dados_inscricao['cod_curso']))
                 aluno_alterado = self.__controlador_aluno.pegar_aluno_por_cpf(int(novos_dados_inscricao['cpf_aluno']))
                 
         print('Esse é o curso:')
