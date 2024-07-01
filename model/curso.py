@@ -1,5 +1,6 @@
 from model.aula import Aula
 from model.professor import Professor
+from typing import List
 
 
 class Curso:
@@ -12,20 +13,19 @@ class Curso:
                  tempo: str,
                  codigo_curso: str,
                  professor: Professor,
-                 titulo: str,
-                 descricao_aula: str,
-                #  descricao_material: str,
-                #  anexo: str
+                #  titulo: str,
+                #  descricao_aula: str,
+                aulas: List[Aula],
                  ):
         self.__nome = nome
         self.__preco_atual = preco_atual
         self.__descricao = descricao
         self.__tempo = tempo
         self.__codigo_curso = codigo_curso
-        # if isinstance(professor, Professor):
         self.__professor = professor
-        self.__aulas = Aula(titulo, descricao_aula)
+        # self.__aulas = Aula(titulo, descricao_aula)
         # self.__aulas = []
+        self.__aulas = aulas
 
     # def adicionar_aula(self, aula: Aula):
     #     if isinstance(aula, Aula):

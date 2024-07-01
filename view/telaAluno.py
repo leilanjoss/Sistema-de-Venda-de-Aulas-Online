@@ -86,9 +86,17 @@ class TelaAluno:
     def mostrar_aluno(self, alunos):
         array_alunos = []
         for aluno in alunos:
-            row = [aluno.nome, aluno.cpf, aluno.email, aluno.telefone, aluno.cartao] #aluno.endereco
+            row = [aluno.nome, 
+                   aluno.cpf, 
+                   aluno.email, 
+                   aluno.telefone, 
+                   aluno.cartao,
+                   aluno.endereco.cidade, 
+                   aluno.endereco.sigla_estado, 
+                   aluno.endereco.rua, 
+                   aluno.endereco.numero ]
             array_alunos.append(row)
-        toprow = ['Nome', 'CPF', 'E-mail', 'Telefone', 'Cartão'] #Endereço
+        toprow = ['Nome', 'CPF', 'E-mail', 'Telefone', 'Cartão', 'Cidade', 'Estado', 'Rua', 'Número']
         tbl1 = sg.Table(values=array_alunos,
                         headings=toprow,
                         auto_size_columns=True,

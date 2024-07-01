@@ -44,10 +44,10 @@ class ControladorCurso:
                                 dados_curso["tempo"], 
                                 dados_curso["codigo_curso"],
                                 dados_curso["professor"],
-                                dados_curso["titulo"],
-                                # dados_curso["link"],
-                                dados_curso["descricao_aula"],
+                                dados_curso["aulas"]
                                 )
+                
+                print('novo_curso', novo_curso)
                 self.__curso_dao.add(novo_curso)
                 self.__tela_curso.mostrar_mensagem("Curso inserido.")
             else:
@@ -96,11 +96,12 @@ class ControladorCurso:
             curso.professor = novos_dados_curso["professor"]
             curso.preco_atual = novos_dados_curso["preco_atual"]
             curso.codigo_curso = novos_dados_curso["codigo_curso"]
-            curso.aula = Aula(novos_dados_curso["titulo"],
-                                        #   novos_dados_curso["link"],
-                                          novos_dados_curso["descricao_aula"],)
+            curso.aulas = novos_dados_curso["aulas"]
+            # curso.aula = Aula(novos_dados_curso["titulo"],
+            #                             #   novos_dados_curso["link"],
+            #                               novos_dados_curso["descricao_aula"],)
             self.__curso_dao.update(curso)
-
+            print('novos_dados_curso', novos_dados_curso)
             self.__tela_curso.mostrar_mensagem('Curso alterado.')
         else:
             self.__tela_curso.mostrar_mensagem('Não foi possível alterar o curso.')
