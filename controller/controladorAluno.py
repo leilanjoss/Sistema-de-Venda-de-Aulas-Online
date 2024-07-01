@@ -55,7 +55,7 @@ class ControladorAluno:
             self.__tela_aluno.mostrar_mensagem(e)
      
     def alterar_aluno(self):
-        # self.listar_alunos()
+        self.listar_alunos()
         cpf_aluno = self.__tela_aluno.selecionar_aluno()
         aluno = self.pegar_aluno_por_cpf(cpf_aluno)
         if aluno is not None:
@@ -65,10 +65,12 @@ class ControladorAluno:
             aluno.telefone = novos_dados_aluno["telefone"]
             aluno.cpf = novos_dados_aluno["cpf"]
             aluno.cartao = novos_dados_aluno["cartao"]
-            aluno.endereco = Endereco(novos_dados_aluno["cidade"],
-                                      novos_dados_aluno["sigla_estado"],
-                                      novos_dados_aluno["rua"],
-                                      novos_dados_aluno["numero"]),
+            aluno.endereco = Endereco(
+                            novos_dados_aluno["cidade"],
+                            novos_dados_aluno["sigla_estado"],
+                            novos_dados_aluno["rua"],
+                            novos_dados_aluno["numero"]
+                        )
             self.__aluno_DAO.update(aluno)
 
             self.__tela_aluno.mostrar_mensagem('Aluno alterado.')

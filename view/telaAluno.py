@@ -94,7 +94,9 @@ class TelaAluno:
                    aluno.endereco.cidade, 
                    aluno.endereco.sigla_estado, 
                    aluno.endereco.rua, 
-                   aluno.endereco.numero ]
+                   aluno.endereco.numero
+                   ]
+            
             array_alunos.append(row)
         toprow = ['Nome', 'CPF', 'E-mail', 'Telefone', 'Cartão', 'Cidade', 'Estado', 'Rua', 'Número']
         tbl1 = sg.Table(values=array_alunos,

@@ -167,6 +167,10 @@ class TelaCurso:
                 if not aulas:
                     sg.popup('Adicione pelo menos uma aula.')
                     continue
+                try:
+                    preco_atual = int(''.join(filter(str.isdigit, preco_atual)))
+                except ValueError:
+                    preco_atual = None
 
                 self.__window.close()
                 return {

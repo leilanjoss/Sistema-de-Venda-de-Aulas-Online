@@ -72,10 +72,12 @@ class ControladorProfessor:
             professor.email = novos_dados_professor["email"]
             professor.telefone = novos_dados_professor["telefone"]
             professor.cpf = novos_dados_professor["cpf"]
-            professor.endereco = Endereco(novos_dados_professor["cidade"],
-                                          novos_dados_professor["sigla_estado"],
-                                          novos_dados_professor["rua"],
-                                          novos_dados_professor["numero"]),
+            professor.endereco = Endereco(
+                                novos_dados_professor["cidade"],
+                                novos_dados_professor["sigla_estado"],
+                                novos_dados_professor["rua"],
+                                novos_dados_professor["numero"]
+                                )
             self.__professor_DAO.update(professor)
 
             self.__tela_professor.mostrar_mensagem('Professor alterado.')
