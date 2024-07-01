@@ -2,7 +2,8 @@ from model.professor import Professor
 from view.telaProfessor import TelaProfessor
 from model.endereco import Endereco
 from DAOs.professor_dao import ProfessorDAO
-from exceptions.professor_repetido_exception import ProfessorRepetidoException
+from exceptions.professor_exceptions import ProfessorRepetidoException
+from exceptions.professor_exceptions import ProfessorNExisteException
 
 
 class ControladorProfessor:
@@ -51,13 +52,15 @@ class ControladorProfessor:
         self.listar_professores()
         cpf = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf)
-        print('PROF exc', professor)
-        if professor is not None:
-            self.__professor_DAO.remove(professor.cpf)
-            self.__tela_professor.mostrar_mensagem("Professor excluído.")
-            self.listar_professores()
-        else:
-            self.__tela_professor.mostrar_mensagem("Professor não existente.")
+        try:
+            if professor is not None:
+                self.__professor_DAO.remove(professor.cpf)
+                self.__tela_professor.mostrar_mensagem("Professor excluído.")
+                self.listar_professores()
+            else:
+               raise ProfessorNExisteException()
+        except ProfessorNExisteException as e:
+            self.__tela_professor.mostrar_mensagem(e)
 
     def alterar_professor(self):
         self.listar_professores()

@@ -2,8 +2,9 @@ from view.telaCurso import TelaCurso
 from model.curso import Curso
 from model.aula import Aula
 from DAOs.curso_dao import CursoDAO
-from exceptions.curso_repetido_exception import CursoRepetidoException
+from exceptions.curso_exceptions import CursoRepetidoException
 from controller.controladorProfessor import ControladorProfessor
+from exceptions.curso_exceptions import CursoNExisteException
 
 
 class ControladorCurso:
@@ -66,14 +67,16 @@ class ControladorCurso:
         self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
-        if curso is not None:
-            self.__curso_dao.remove(curso.codigo_curso)
-            self.__tela_curso.mostrar_mensagem("Curso excluído.")
-            self.listar_cursos()
-        else:
-            self.__tela_curso.mostrar_mensagem("Curso não existente.")
+        try:
+            if curso is not None:
+                self.__curso_dao.remove(curso.codigo_curso)
+                self.__tela_curso.mostrar_mensagem("Curso excluído.")
+                self.listar_cursos()
+            else:
+                raise CursoNExisteException()
+        except CursoNExisteException as e:
+            self.__tela_curso.mostrar_mensagem(e)
 
-    
     def listar_cursos(self):
         if not self.__curso_dao:
             self.__tela_curso.mostrar_mensagem("Nenhum curso cadastrado.")
