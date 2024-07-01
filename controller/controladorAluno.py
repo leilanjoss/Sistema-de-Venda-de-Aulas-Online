@@ -2,7 +2,8 @@ from model.aluno import Aluno
 from view.telaAluno import TelaAluno
 from model.endereco import Endereco
 from DAOs.aluno_dao import AlunoDAO
-from exceptions.aluno_repetido_exception import AlunoRepetidoException
+from exceptions.aluno_exceptions import AlunoRepetidoException
+from exceptions.aluno_exceptions import AlunoNExisteException
 
 class ControladorAluno:
     def __init__(self):
@@ -34,7 +35,6 @@ class ControladorAluno:
             self.__tela_aluno.mostrar_mensagem(e)
 
     def pegar_aluno_por_cpf(self, cpf: int):
-        # for aluno in self.__alunos:
         for aluno in self.__aluno_DAO.get_all():
             if aluno.cpf == cpf:
                 return aluno
@@ -44,15 +44,18 @@ class ControladorAluno:
         self.listar_alunos()
         cpf = self.__tela_aluno.selecionar_aluno()
         aluno = self.pegar_aluno_por_cpf(cpf)
-        if aluno is not None:
-            self.__aluno_DAO.remove(aluno.cpf)
-            self.__tela_aluno.mostrar_mensagem("Aluno excluído.")
-            self.listar_alunos()
-        else:
-            self.__tela_aluno.mostrar_mensagem("Aluno não existente.")
+        try:
+            if aluno is not None:
+                self.__aluno_DAO.remove(aluno.cpf)
+                self.__tela_aluno.mostrar_mensagem("Aluno excluído.")
+                self.listar_alunos()
+            else:
+                raise AlunoNExisteException()
+        except AlunoNExisteException as e:
+            self.__tela_aluno.mostrar_mensagem(e)
      
     def alterar_aluno(self):
-        # self.listar_alunos()
+        self.listar_alunos()
         cpf_aluno = self.__tela_aluno.selecionar_aluno()
         aluno = self.pegar_aluno_por_cpf(cpf_aluno)
         if aluno is not None:
@@ -62,10 +65,12 @@ class ControladorAluno:
             aluno.telefone = novos_dados_aluno["telefone"]
             aluno.cpf = novos_dados_aluno["cpf"]
             aluno.cartao = novos_dados_aluno["cartao"]
-            aluno.endereco = Endereco(novos_dados_aluno["cidade"],
-                                      novos_dados_aluno["sigla_estado"],
-                                      novos_dados_aluno["rua"],
-                                      novos_dados_aluno["numero"]),
+            aluno.endereco = Endereco(
+                            novos_dados_aluno["cidade"],
+                            novos_dados_aluno["sigla_estado"],
+                            novos_dados_aluno["rua"],
+                            novos_dados_aluno["numero"]
+                        )
             self.__aluno_DAO.update(aluno)
 
             self.__tela_aluno.mostrar_mensagem('Aluno alterado.')

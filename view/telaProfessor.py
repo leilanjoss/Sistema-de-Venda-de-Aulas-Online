@@ -130,9 +130,18 @@ class TelaProfessor:
     def mostrar_professor(self, professores):
         array_professores = []
         for professor in professores:
-            row = [professor.nome, professor.cpf, professor.email, professor.telefone] #professor.endereco
+            row = [professor.nome, 
+                professor.cpf, 
+                professor.email, 
+                professor.telefone, 
+                professor.endereco.cidade,
+                professor.endereco.sigla_estado, 
+                professor.endereco.rua, 
+                professor.endereco.numero 
+                ]
             array_professores.append(row)
-        toprow = ['Nome', 'CPF', 'E-mail', 'Telefone'] #Endereço
+
+        toprow = ['Nome', 'CPF', 'E-mail', 'Telefone', 'Cidade', 'Estado', 'Rua', 'Número']
         tbl1 = sg.Table(values=array_professores,
                         headings=toprow,
                         auto_size_columns=True,

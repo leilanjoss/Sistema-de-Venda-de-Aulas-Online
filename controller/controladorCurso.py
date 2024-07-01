@@ -2,8 +2,9 @@ from view.telaCurso import TelaCurso
 from model.curso import Curso
 from model.aula import Aula
 from DAOs.curso_dao import CursoDAO
-from exceptions.curso_repetido_exception import CursoRepetidoException
+from exceptions.curso_exceptions import CursoRepetidoException
 from controller.controladorProfessor import ControladorProfessor
+from exceptions.curso_exceptions import CursoNExisteException
 
 
 class ControladorCurso:
@@ -44,10 +45,10 @@ class ControladorCurso:
                                 dados_curso["tempo"], 
                                 dados_curso["codigo_curso"],
                                 dados_curso["professor"],
-                                dados_curso["titulo"],
-                                # dados_curso["link"],
-                                dados_curso["descricao_aula"],
+                                dados_curso["aulas"]
                                 )
+                
+                print('novo_curso', novo_curso)
                 self.__curso_dao.add(novo_curso)
                 self.__tela_curso.mostrar_mensagem("Curso inserido.")
             else:
@@ -66,14 +67,16 @@ class ControladorCurso:
         self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
-        if curso is not None:
-            self.__curso_dao.remove(curso.codigo_curso)
-            self.__tela_curso.mostrar_mensagem("Curso excluído.")
-            self.listar_cursos()
-        else:
-            self.__tela_curso.mostrar_mensagem("Curso não existente.")
+        try:
+            if curso is not None:
+                self.__curso_dao.remove(curso.codigo_curso)
+                self.__tela_curso.mostrar_mensagem("Curso excluído.")
+                self.listar_cursos()
+            else:
+                raise CursoNExisteException()
+        except CursoNExisteException as e:
+            self.__tela_curso.mostrar_mensagem(e)
 
-    
     def listar_cursos(self):
         if not self.__curso_dao:
             self.__tela_curso.mostrar_mensagem("Nenhum curso cadastrado.")
@@ -96,11 +99,12 @@ class ControladorCurso:
             curso.professor = novos_dados_curso["professor"]
             curso.preco_atual = novos_dados_curso["preco_atual"]
             curso.codigo_curso = novos_dados_curso["codigo_curso"]
-            curso.aula = Aula(novos_dados_curso["titulo"],
-                                        #   novos_dados_curso["link"],
-                                          novos_dados_curso["descricao_aula"],)
+            curso.aulas = novos_dados_curso["aulas"]
+            # curso.aula = Aula(novos_dados_curso["titulo"],
+            #                             #   novos_dados_curso["link"],
+            #                               novos_dados_curso["descricao_aula"],)
             self.__curso_dao.update(curso)
-
+            print('novos_dados_curso', novos_dados_curso)
             self.__tela_curso.mostrar_mensagem('Curso alterado.')
         else:
             self.__tela_curso.mostrar_mensagem('Não foi possível alterar o curso.')
