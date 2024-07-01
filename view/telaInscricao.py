@@ -17,19 +17,12 @@ class TelaInscricao():
             opcao = 3
         if values['4']:
             opcao = 4
-        # elif values['5']:
-        #     opcao = 5
-        # elif values['6']:
-        #     opcao = 6
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
         self.__window.close()
         return opcao
 
     def init_opcoes(self):
-        #sg.theme_previewer()
         sg.ChangeLookAndFeel('LightGreen2')
         layout = [
         [sg.Text('--------TELA DE INSCRIÇÃO--------', font=("Helvica", 25))],
@@ -38,8 +31,6 @@ class TelaInscricao():
         [sg.Radio('2 - Atualizar inscrição', "RD1", key='2')],
         [sg.Radio('3 - Listar inscrições', "RD1", key='3')],
         [sg.Radio('4 - Excluir inscrições', "RD1", key='4')],
-        # [sg.Radio('5 - Relatório Total de Receitas', "RD1", key='5')],
-        # [sg.Radio('6 - Relatório De Inscrições por Curso', "RD1", key='6')],
         [sg.Radio('0 - Retornar', "RD1", key='0')],
         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
@@ -53,12 +44,6 @@ class TelaInscricao():
         self.__window.close()
 
     def mostrar_inscricao(self, inscricoes):
-        # string_inscricoes = ""
-        # string_inscricoes += "NOME DO CURSO" + dados_inscricao['nome_curso'] + '\n'
-        # string_inscricoes += "NOME DO ALUNO" + dados_inscricao['nome_aluno'] + '\n'
-        # string_inscricoes += "PREÇO PAGO" + dados_inscricao['preco_pago'] + '\n'
-
-        # sg.Popup('------LISTA DE INSCRIÇÕES------', )
         
         array_inscricoes = []
         for inscricao in inscricoes:

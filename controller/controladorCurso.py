@@ -3,21 +3,14 @@ from model.curso import Curso
 from model.aula import Aula
 from DAOs.curso_dao import CursoDAO
 from exceptions.curso_exceptions import CursoRepetidoException
-from controller.controladorProfessor import ControladorProfessor
 from exceptions.curso_exceptions import CursoNExisteException
 
 
 class ControladorCurso:
     def __init__(self):
-        # self.__cursos = []
         self.__curso_dao = CursoDAO()
-        # self.__controlador_sistema = controlador_sistema
         self.__tela_curso = TelaCurso()
-        self.__controlador_professor = ControladorProfessor()
 
-    # @property
-    # def cursos(self):
-    #     return self.__cursos
     
     def pegar_curso_por_codigo(self, codigo_curso):
         for curso in self.__curso_dao.get_all():
@@ -26,14 +19,6 @@ class ControladorCurso:
         return None
     
     def inserir_curso(self):
-        # curso = self.__tela_curso.pegar_dados_curso()
-        # curso_ja_existe = self.pegar_curso_por_codigo(curso.codigo_curso)
-        # if curso_ja_existe is None:
-        #     self.__cursos.append(curso)
-        #     self.__tela_curso.mostrar_mensagem("Curso inserido.")
-        # else:
-        #     self.__tela_curso.mostrar_mensagem("Curso já existente.")
-
         self.listar_cursos()
         dados_curso = self.__tela_curso.pegar_dados_curso()
         curso = self.pegar_curso_por_codigo(dados_curso["codigo_curso"])
@@ -57,13 +42,6 @@ class ControladorCurso:
             self.__tela_curso.mostrar_mensagem(e)
 
     def excluir_curso(self):
-        # codigo_curso = self.__tela_curso.selecionar_curso()
-        # curso = self.pegar_curso_por_codigo(codigo_curso)
-        # if curso is not None:
-        #     self.__cursos.remove(curso)
-        #     self.__tela_curso.mostrar_mensagem("Curso excluído.")
-        # else:
-        #     self.__tela_curso.mostrar_mensagem("Curso não existente.")
         self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
@@ -84,11 +62,6 @@ class ControladorCurso:
             self.__tela_curso.mostrar_cursos(self.__curso_dao.get_all())
 
     def alterar_curso(self):
-    #    codigo = self.__tela_curso.selecionar_curso()              
-    #    curso_alterado = self.__tela_curso.pegar_dados_curso()
-    #    self.atualizar_curso(codigo, curso_alterado)
-    
-    # self.listar_cursos()
         codigo_curso = self.__tela_curso.selecionar_curso()
         curso = self.pegar_curso_por_codigo(codigo_curso)
         if curso is not None:
@@ -100,9 +73,6 @@ class ControladorCurso:
             curso.preco_atual = novos_dados_curso["preco_atual"]
             curso.codigo_curso = novos_dados_curso["codigo_curso"]
             curso.aulas = novos_dados_curso["aulas"]
-            # curso.aula = Aula(novos_dados_curso["titulo"],
-            #                             #   novos_dados_curso["link"],
-            #                               novos_dados_curso["descricao_aula"],)
             self.__curso_dao.update(curso)
             print('novos_dados_curso', novos_dados_curso)
             self.__tela_curso.mostrar_mensagem('Curso alterado.')

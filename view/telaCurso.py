@@ -1,11 +1,9 @@
 from model.aula import Aula
-# from model.material import Material
 from model.professor import Professor
 from model.curso import Curso
 from controller.controladorProfessor import ControladorProfessor
 import PySimpleGUI as sg
 from DAOs.professor_dao import ProfessorDAO
-# from controller.controladorCurso import ControladorCurso
 
 
 class TelaCurso:
@@ -13,7 +11,6 @@ class TelaCurso:
     def __init__(self):
         self.__window = None
         self.init_opcoes()
-        self.__controlador_professor = ControladorProfessor()
         self.__professor_DAO = ProfessorDAO()
 
     def tela_opcoes(self):
@@ -46,68 +43,6 @@ class TelaCurso:
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
-
-    # def pegar_dados_curso(self):
-    #     # NEW
-    #     sg.ChangeLookAndFeel('LightGreen2')
-
-    #     lista_professores = [professor.cpf for professor in self.__professor_DAO.get_all()]
-
-    #     layout = [
-    #         [sg.Text('-------- DADOS CURSO ----------', font=("Helvica", 25))],
-    #         [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
-    #         [sg.Text('Preço atual:', size=(15, 1)), sg.InputText('', key='preco_atual')],
-    #         [sg.Text('Descrição do curso:', size=(15, 1)), sg.InputText('', key='descricao')],
-    #         [sg.Text('Tempo:', size=(15, 1)), sg.InputText('', key='tempo')],
-    #         [sg.Text('Código:', size=(15, 1)), sg.InputText('', key='codigo_curso')],
-    #         [sg.Text('Professor:', size=(15, 1)), sg.Combo(lista_professores, key='professor')],
-    #         [sg.Text('Título:', size=(15, 1)), sg.InputText('', key='titulo')],
-    #         [sg.Text('Descrição da Aula:', size=(15, 1)), sg.InputText('', key='descricao_aula')],
-    #         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-    #         ]
-        
-    #     self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
-
-    #     button, values = self.open()
-
-    #     if button == 'Confirmar':
-    #         nome = values['nome']
-    #         preco_atual = values['preco_atual']
-    #         tempo = values['tempo']
-    #         descricao = values['descricao']
-    #         codigo_curso = values['codigo_curso']
-    #         professor_selecionado = values['professor']
-
-    #         titulo = values['titulo']
-    #         descricao_aula = values['descricao_aula']
-
-    #         for professor in self.__professor_DAO.get_all():
-    #             if professor.cpf == professor_selecionado:
-    #                 professor_selecionado = professor
-    #                 break
-
-    #         if professor_selecionado is None:
-    #             sg.popup('Selecione um professor válido.')
-    #             self.__window.close()
-    #             return None
-
-    #         self.__window.close()
-    #         # print('prof', professor_selecionado)
-    #         # print('prof1', professor_selecionado.cpf)
-    #         return {
-    #             "nome": nome,
-    #             "preco_atual": preco_atual,
-    #             "tempo": tempo,
-    #             "codigo_curso": codigo_curso,
-    #             "descricao": descricao,
-    #             "professor": professor,
-    #             "titulo": titulo,
-    #             "descricao_aula": descricao_aula
-    #         }
-           
-    #     else:
-    #         self.__window.close()
-    #         return None
 
     def pegar_dados_curso(self):
         sg.ChangeLookAndFeel('LightGreen2')
@@ -171,13 +106,6 @@ class TelaCurso:
                     preco_atual = int(''.join(filter(str.isdigit, preco_atual)))
                 except ValueError:
                     preco_atual = None
-                
-                # try:
-                #     codigo_curso = int(''.join(filter(str.isdigit, codigo_curso)))
-                #     print('COD', codigo_curso )
-                # except ValueError:
-                #     codigo_curso = None
-                #     print('NONE')
 
                 self.__window.close()
                 return {
