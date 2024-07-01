@@ -4,8 +4,6 @@ from typing import List
 
 
 class Curso:
-    # def __init__(self):
-    #      self.__aulas = []
     def __init__(self,
                  nome: str,
                  preco_atual: float,
@@ -13,8 +11,6 @@ class Curso:
                  tempo: str,
                  codigo_curso: str,
                  professor: Professor,
-                #  titulo: str,
-                #  descricao_aula: str,
                 aulas: List[Aula],
                  ):
         self.__nome = nome
@@ -23,13 +19,7 @@ class Curso:
         self.__tempo = tempo
         self.__codigo_curso = codigo_curso
         self.__professor = professor
-        # self.__aulas = Aula(titulo, descricao_aula)
-        # self.__aulas = []
         self.__aulas = aulas
-
-    # def adicionar_aula(self, aula: Aula):
-    #     if isinstance(aula, Aula):
-    #         self.__aulas.append(aula)
 
     @property
     def nome(self):
