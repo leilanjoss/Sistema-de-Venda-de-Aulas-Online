@@ -7,17 +7,6 @@ class TelaAluno:
         self.init_opcoes()
 
     def tela_opcoes(self):
-        # print("-------- ALUNOS ----------")
-        # print("Escolha a opcao")
-        # print("1 - Incluir Aluno")
-        # print("2 - Alterar Aluno")
-        # print("3 - Listar Alunos")
-        # print("4 - Excluir Aluno")
-        # print("0 - Retornar")
-
-        # opcao = int(input("Escolha a opção: "))
-        # return opcao
-
         self.init_opcoes()
         button, values = self.open()
         if values['1']:
@@ -93,25 +82,6 @@ class TelaAluno:
             "numero": numero,
             "cartao": cartao
         }
-
-    # def mostrar_aluno(self, dados_aluno):
-    #     # print(">Nome do Aluno: ", dados_aluno["nome"])
-    #     # print(">E-mail do Aluno: ", dados_aluno["email"])
-    #     # print(">Telefone do Aluno: ", dados_aluno["telefone"])
-    #     # print(">CPF do Aluno: ", dados_aluno["cpf"])
-    #     # print(">Endereço do Aluno: ", dados_aluno["endereco"])
-    #     # print(">Cartão do Aluno: ", dados_aluno["cartao"])
-    #     dado_apresentacao = dados_aluno["nome"] + '(' + dados_aluno['cpf'] + ')'
-    #     layout = [
-    #             [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
-    #     ]
-        
-    #     # Usando sg.popup_scrolled para exibir os detalhes
-    #     window = sg.Window('Detalhes do Aluno', layout)
-    #     event, values = window.read()
-    #     self.__window.close()
-
-    #     # Fechando a janela
 
     def mostrar_aluno(self, alunos):
         array_alunos = []

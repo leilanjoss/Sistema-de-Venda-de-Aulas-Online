@@ -110,9 +110,9 @@ class TelaCurso:
             return None
 
     def mostrar_cursos(self, cursos):
-        array_cursos = [];
+        array_cursos = []
         for curso in cursos:
-            print('curso.aulas.titulo', curso.aulas.titulo)
+            # print('curso.aulas.titulo', curso.aulas.titulo)
             
             row = [curso.codigo_curso, 
                 curso.nome, 

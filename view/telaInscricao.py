@@ -132,3 +132,24 @@ class TelaInscricao():
         event, values = window.read()
         window.close()
         return values['codigo_curso']
+    
+    def selecionar_inscricao(self):
+        sg.ChangeLookAndFeel('LightGreen2')
+        layout = [
+            [sg.Text('-------- SELECIONAR INSCRIÇÃO ----------', font=("Helvica", 25))],
+            [sg.Text('Digite o ID da inscrição:', font=("Helvica", 15))],
+            [sg.Text('ID:', size=(15, 1)), sg.InputText('', key='id')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Seleciona inscrição').Layout(layout)
+        
+        button, values = self.open()
+        id = values['id']
+
+        try:
+            id = int(''.join(filter(str.isdigit, id)))
+        except ValueError:
+            id = None
+
+        self.__window.close()
+        return id

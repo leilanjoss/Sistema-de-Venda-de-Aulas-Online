@@ -19,22 +19,17 @@ class ControladorInscricao:
         self.__controlador_curso.listar_cursos()
         dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
         
-        print(dados_inscricao)
-        print(dados_inscricao['cpf_aluno']) # Ambos deram certo
-        
-        aluno = self.__controlador_aluno.pegar_aluno_por_cpf(dados_inscricao['cpf_aluno'])
+        aluno = self.__controlador_aluno.pegar_aluno_por_cpf(int(dados_inscricao['cpf_aluno']))
         curso = self.__controlador_curso.pegar_curso_por_codigo(dados_inscricao['cod_curso'])
         
         if isinstance(aluno, Aluno) and isinstance(curso, Curso):
             nova_inscricao = Inscricao(curso, aluno, int(dados_inscricao['data_hora']), int(dados_inscricao['id_inscricao']))
-            print(nova_inscricao)
             self.__inscricao_DAO.add(nova_inscricao)
-            self.__tela_inscricao.mostrar_mensagem("Aluno inserido")
+            self.__tela_inscricao.mostrar_mensagem("Inscrição inserida")
         else:
             self.__tela_inscricao.mostrar_mensagem("Aluno ou curso não encontrado")
             
-        print(self.__inscricao_DAO.get_all())
-
+    
 
     def excluir_inscricao(self):
         # codigo_curso = input("Digite o código do curso: ")
@@ -49,14 +44,14 @@ class ControladorInscricao:
         # else:
         #     self.__tela_inscricao.mostrar_mensagem("Inscrição não encontrada!")
         self.listar_inscricoes()
-        cpf = self.__tela_aluno.selecionar_aluno()
-        aluno = self.pegar_aluno_por_cpf(cpf)
-        if aluno is not None:
-            self.__aluno_DAO.remove(aluno.cpf)
-            self.__tela_aluno.mostrar_mensagem("Aluno excluído.")
-            self.listar_alunos()
+        id = self.__tela_inscricao.selecionar_inscricao()
+        inscricao = self.pegar_inscricao_por_id(id)
+        if inscricao is not None:
+            self.__inscricao_DAO.remove(inscricao.id)
+            self.__tela_inscricao.mostrar_mensagem("Inscrição excluída.")
+            self.listar_inscricoes()
         else:
-            self.__tela_aluno.mostrar_mensagem("Aluno não existente.")
+            self.__tela_inscricao.mostrar_mensagem("Inscrição não existente.")
     
     def atualizar_inscricao(self):
         codigo_curso = input("Digite o código do curso: ")
@@ -116,7 +111,12 @@ class ControladorInscricao:
     def listar_inscricoes(self):
         print(self.__inscricao_DAO.get_all())
         if not self.__inscricao_DAO:
-            self.__tela_inscricao.mostrar_mensagem("Nenhum aluno cadastrado.")
+            self.__tela_inscricao.mostrar_mensagem("Nenhuma inscrição cadastrada.")
         else:
             self.__tela_inscricao.mostrar_inscricao(self.__inscricao_DAO.get_all())
             
+    def pegar_inscricao_por_id(self, id: str):
+        for inscricao in self.__inscricao_DAO.get_all():
+            if inscricao.id == id:
+                return inscricao
+        return None

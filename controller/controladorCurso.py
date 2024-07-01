@@ -75,7 +75,6 @@ class ControladorCurso:
 
     
     def listar_cursos(self):
-        print(self.__curso_dao.get_all())
         if not self.__curso_dao:
             self.__tela_curso.mostrar_mensagem("Nenhum curso cadastrado.")
         else:
