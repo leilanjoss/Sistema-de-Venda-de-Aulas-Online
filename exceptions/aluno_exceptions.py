@@ -1,3 +1,4 @@
+# ALUNO
 class AlunoNExisteException(Exception):
     def __init__(self):
         self.mensagem = "Esse aluno não existe"

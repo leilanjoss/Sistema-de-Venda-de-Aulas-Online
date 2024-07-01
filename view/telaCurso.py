@@ -171,6 +171,13 @@ class TelaCurso:
                     preco_atual = int(''.join(filter(str.isdigit, preco_atual)))
                 except ValueError:
                     preco_atual = None
+                
+                # try:
+                #     codigo_curso = int(''.join(filter(str.isdigit, codigo_curso)))
+                #     print('COD', codigo_curso )
+                # except ValueError:
+                #     codigo_curso = None
+                #     print('NONE')
 
                 self.__window.close()
                 return {
@@ -183,46 +190,9 @@ class TelaCurso:
                     "aulas": aulas
                 }
             
-            # elif button in (None, 'Cancelar'):
             else:
                 self.__window.close()
                 return None
-
-
-    # def mostrar_cursos(self, cursos):
-    #     array_cursos = []
-    #     for curso in cursos:
-    #         # print('curso.aulas.titulo', curso.aulas.titulo)
-            
-    #         row = [curso.codigo_curso, 
-    #             curso.nome, 
-    #             curso.preco_atual, 
-    #             curso.tempo, 
-    #             curso.descricao,
-    #             curso.professor.nome,
-    #             # curso.aulas.titulo,
-    #             # curso.aulas.descricao_aula
-    #             curso.aulas
-    #             ]
-            
-    #         array_cursos.append(row)
-
-    #     #sg.set_options(font=("Helvica", 14))
-    #     toprow = ['Codigo', 'Nome', 'Preço', 'Tempo', 'Descrição', 'Professor', 'Título'] 
-    #     tbl1 = sg.Table(values=array_cursos,
-    #                     headings=toprow,
-    #                     auto_size_columns=True,
-    #                     display_row_numbers=False,
-    #                     justification='left', key='-TABLE-',
-    #                     selected_row_colors='white on seagreen',
-    #                     enable_events=False,
-    #                     expand_x=True,
-    #                     expand_y=True,
-    #                     enable_click_events=False)
-    #     layout = [[tbl1]]
-    #     self.__window = sg.Window("Cursos", layout, size=(715, 200), resizable=True)
-    #     button, values = self.open()
-    #     self.__window.close()
 
     def mostrar_cursos(self, cursos):
         array_cursos = []

@@ -49,15 +49,12 @@ class ControladorRelatorio:
         cpf_professor = self.__tela_inscricao.pegar_cpf_professor()
         receita_total = 0
 
-        # Verifica se o CPF foi fornecido
         if not cpf_professor:
             self.__tela_inscricao.mostrar_mensagem("CPF do professor não fornecido.")
             return
-
-        # Obtém todas as inscrições
+        
         inscricoes = self.__inscricao_DAO.get_all()
 
-        # Verifica se há inscrições
         if not inscricoes:
             self.__tela_inscricao.mostrar_mensagem("Nenhuma inscrição encontrada.")
             return
@@ -68,18 +65,40 @@ class ControladorRelatorio:
                 preco_atual = curso.preco_atual
                 if preco_atual is not None:
                     receita_total += preco_atual
-                    # Debug: imprime o preço atual e o CPF do professor
                     print(f"Professor CPF: {curso.professor.cpf} - Preço Atual: {preco_atual}")
 
-        # Exibe a mensagem com o total de receitas
         self.__tela_inscricao.mostrar_mensagem(f"Total de receitas do professor {cpf_professor}: R${receita_total:.2f}")
+
+    # def gerar_relatorio_inscricoes_por_curso(self):
+    #     curso_codigo = self.__tela_inscricao.pegar_codigo_curso()
+    #     inscricoes_por_curso = [inscricao for inscricao in self.__inscricao_DAO.get_all() if inscricao.curso.codigo_curso == curso_codigo]
+    #     total_inscricoes = len(inscricoes_por_curso)
+    #     self.__tela_inscricao.mostrar_mensagem(f"Total de inscrições para o curso {curso_codigo}: {total_inscricoes}")
 
     def gerar_relatorio_inscricoes_por_curso(self):
         curso_codigo = self.__tela_inscricao.pegar_codigo_curso()
-        inscricoes_por_curso = [inscricao for inscricao in self.__inscricao_DAO.get_all() if inscricao.curso.codigo_curso == curso_codigo]
+        
+        if not curso_codigo:
+            self.__tela_inscricao.mostrar_mensagem("Código do curso não informado.")
+            return
+        
+        try:
+            curso_codigo = int(curso_codigo)  
+        except ValueError:
+            self.__tela_inscricao.mostrar_mensagem("Código do curso inválido.")
+            return
+        
+        inscricoes = self.__inscricao_DAO.get_all()
+        print(f"Inscrições retornadas do DAO: {[f'Curso: {inscricao.curso.codigo_curso}' for inscricao in inscricoes]}")  # Debug
+        
+        for inscricao in inscricoes:
+            print(f"Inscrição: Curso: {inscricao.curso.codigo_curso}, Tipo de curso_codigo: {type(inscricao.curso.codigo_curso)}, Tipo de curso_codigo informado: {type(curso_codigo)}")
+
+        inscricoes_por_curso = [inscricao for inscricao in inscricoes if int(inscricao.curso.codigo_curso) == curso_codigo]
+        print(f"Inscrições para o curso {curso_codigo}: {[f'Curso: {inscricao.curso.codigo_curso}' for inscricao in inscricoes_por_curso]}")  # Debug
+        
         total_inscricoes = len(inscricoes_por_curso)
         self.__tela_inscricao.mostrar_mensagem(f"Total de inscrições para o curso {curso_codigo}: {total_inscricoes}")
-
 
     def retornar(self):
         from controller.controladorSistema import ControladorSistema

@@ -111,27 +111,39 @@ class TelaInscricao():
         }
     
     # RELATORIO
-    # def pegar_cpf_professor(self):
-    #     layout = [
-    #         [sg.Text('CPF do Professor:'), sg.InputText(key='cpf_professor')],
-    #         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-    #     ]
-    #     window = sg.Window('CPF do Professor', layout)
-
-    #     event, values = window.read()
-    #     window.close()
-    #     return values['cpf_professor']
-
-    # def pegar_codigo_curso(self):
-    #     layout = [
-    #         [sg.Text('Código do Curso:'), sg.InputText(key='codigo_curso')],
-    #         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-    #     ]
-    #     window = sg.Window('Código do Curso', layout)
+    def pegar_cpf_professor(self):
+        layout = [
+            [sg.Text('CPF do Professor:'), sg.InputText(key='cpf_professor')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        window = sg.Window('CPF do Professor', layout)
 
         event, values = window.read()
         window.close()
-        return values['codigo_curso']
+        cpf_professor_str = values['cpf_professor']
+        try:
+            cpf_professor = int(''.join(filter(str.isdigit, cpf_professor_str)))
+        except ValueError:
+            cpf_professor = None 
+        return cpf_professor
+
+    def pegar_codigo_curso(self):
+        layout = [
+            [sg.Text('Código do Curso:'), sg.InputText(key='codigo_curso')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        window = sg.Window('Código do Curso', layout)
+
+        event, values = window.read()
+        window.close()
+        codigo_curso_str = values['codigo_curso']
+    
+        try:
+            codigo_curso = int(codigo_curso_str)
+        except ValueError:
+            codigo_curso = None
+
+        return codigo_curso
     
     def selecionar_inscricao(self):
         sg.ChangeLookAndFeel('LightGreen2')

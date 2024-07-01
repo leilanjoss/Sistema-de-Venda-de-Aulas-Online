@@ -108,15 +108,6 @@ class ControladorCurso:
             self.__tela_curso.mostrar_mensagem('Curso alterado.')
         else:
             self.__tela_curso.mostrar_mensagem('Não foi possível alterar o curso.')
-
-    # def atualizar_curso(self, codigo_curso, curso):
-    #     # i = 0
-    #     # for c in self.__cursos:
-    #     #     if c.codigo_curso == codigo_curso:                
-    #     #         self.__cursos[i] = curso                
-    #     #         return
-    #     #     i += 1    
-    #     pass
     
     def retornar(self):
         from controller.controladorSistema import ControladorSistema

@@ -1,6 +1,7 @@
 import pickle
 from abc import ABC, abstractmethod
 
+
 class DAO(ABC):
     @abstractmethod
     def __init__(self, datasource=''):
