@@ -3,6 +3,7 @@ from model.curso import Curso
 from model.aula import Aula
 from DAOs.curso_dao import CursoDAO
 from exceptions.curso_repetido_exception import CursoRepetidoException
+from controller.controladorProfessor import ControladorProfessor
 
 
 class ControladorCurso:
@@ -11,6 +12,7 @@ class ControladorCurso:
         self.__curso_dao = CursoDAO()
         # self.__controlador_sistema = controlador_sistema
         self.__tela_curso = TelaCurso()
+        self.__controlador_professor = ControladorProfessor()
 
     # @property
     # def cursos(self):
@@ -30,6 +32,8 @@ class ControladorCurso:
         #     self.__tela_curso.mostrar_mensagem("Curso inserido.")
         # else:
         #     self.__tela_curso.mostrar_mensagem("Curso já existente.")
+
+        self.listar_cursos()
         dados_curso = self.__tela_curso.pegar_dados_curso()
         curso = self.pegar_curso_por_codigo(dados_curso["codigo_curso"])
         try:
@@ -41,7 +45,7 @@ class ControladorCurso:
                                 dados_curso["codigo_curso"],
                                 dados_curso["professor"],
                                 dados_curso["titulo"],
-                                dados_curso["link"],
+                                # dados_curso["link"],
                                 dados_curso["descricao_aula"],
                                 )
                 self.__curso_dao.add(novo_curso)
@@ -71,6 +75,7 @@ class ControladorCurso:
 
     
     def listar_cursos(self):
+        print(self.__curso_dao.get_all())
         if not self.__curso_dao:
             self.__tela_curso.mostrar_mensagem("Nenhum curso cadastrado.")
         else:
@@ -93,7 +98,7 @@ class ControladorCurso:
             curso.preco_atual = novos_dados_curso["preco_atual"]
             curso.codigo_curso = novos_dados_curso["codigo_curso"]
             curso.aula = Aula(novos_dados_curso["titulo"],
-                                          novos_dados_curso["link"],
+                                        #   novos_dados_curso["link"],
                                           novos_dados_curso["descricao_aula"],)
             self.__curso_dao.update(curso)
 

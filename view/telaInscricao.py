@@ -17,6 +17,10 @@ class TelaInscricao():
             opcao = 3
         if values['4']:
             opcao = 4
+        # elif values['5']:
+        #     opcao = 5
+        # elif values['6']:
+        #     opcao = 6
         # cobre os casos de Retornar, fechar janela, ou clicar cancelar
         #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['0'] or button in (None, 'Cancelar'):
@@ -34,6 +38,8 @@ class TelaInscricao():
         [sg.Radio('2 - Atualizar inscrição', "RD1", key='2')],
         [sg.Radio('3 - Listar inscrições', "RD1", key='3')],
         [sg.Radio('4 - Excluir inscrições', "RD1", key='4')],
+        # [sg.Radio('5 - Relatório Total de Receitas', "RD1", key='5')],
+        # [sg.Radio('6 - Relatório De Inscrições por Curso', "RD1", key='6')],
         [sg.Radio('0 - Retornar', "RD1", key='0')],
         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
@@ -56,9 +62,9 @@ class TelaInscricao():
         
         array_inscricoes = []
         for inscricao in inscricoes:
-            row = [inscricao.aluno.cpf, inscricao.curso.codigo_curso, inscricao.data_hora, inscricao.id] #aluno.endereco
+            row = [inscricao.aluno.cpf, inscricao.curso.codigo_curso, inscricao.data_hora, inscricao.id] 
             array_inscricoes.append(row)
-        toprow = ['Curso', 'Aluno', 'Data e Hora', 'ID'] #Endereço
+        toprow = ['Curso', 'Aluno', 'Data e Hora', 'ID']
         tbl1 = sg.Table(values=array_inscricoes,
                         headings=toprow,
                         auto_size_columns=True,
@@ -103,3 +109,26 @@ class TelaInscricao():
             "data_hora": data_hora,
             "id_inscricao": id_inscricao,
         }
+    
+    # RELATORIO
+    # def pegar_cpf_professor(self):
+    #     layout = [
+    #         [sg.Text('CPF do Professor:'), sg.InputText(key='cpf_professor')],
+    #         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    #     ]
+    #     window = sg.Window('CPF do Professor', layout)
+
+    #     event, values = window.read()
+    #     window.close()
+    #     return values['cpf_professor']
+
+    # def pegar_codigo_curso(self):
+    #     layout = [
+    #         [sg.Text('Código do Curso:'), sg.InputText(key='codigo_curso')],
+    #         [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    #     ]
+    #     window = sg.Window('Código do Curso', layout)
+
+        event, values = window.read()
+        window.close()
+        return values['codigo_curso']

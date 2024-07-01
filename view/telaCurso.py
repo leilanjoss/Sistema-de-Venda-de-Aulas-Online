@@ -9,57 +9,6 @@ from DAOs.professor_dao import ProfessorDAO
 
 
 class TelaCurso:
-    # def __init__(self):
-    #     self.__controlador_professor = ControladorProfessor()
-        
-    # def tela_opcoes(self):
-    #     print("-------- CURSO ----------")
-    #     print("Escolha a opção")
-    #     print("1 - Inserir Curso")
-    #     print("2 - Alterar Curso")
-    #     print("3 - Listar Cursos")
-    #     print("4 - Excluir Curso")
-    #     print("0 - Retornar")
-
-    #     opcao = int(input("Escolha a opção: "))
-    #     return opcao
-
-    # def pegar_dados_curso(self):
-    #     print("-------- DADOS DO CURSO ----------")
-    #     curso = Curso()
-    #     curso.nome = input("Nome do Curso: ")
-    #     curso.preco_atual = float(input("Preço atual do Curso: "))
-    #     curso.descricao = input("Descrição do Curso: ")
-    #     curso.tempo = (input("Tempo do Curso em semanas: "))
-    #     curso.codigo_curso = (input("Código do Curso: "))
-    #     self.__controlador_professor.listar_professores()
-    #     curso.professor = self.__controlador_professor.pegar_professor_por_cpf(input("Digite o cpf do Professor desejado: "))
-    #     numero_de_aulas = int(input("Digite o número de aulas: "))
-    #     for i in range(numero_de_aulas):
-    #         print("Aula " + str((i+1)))
-    #         aula = Aula()
-    #         aula.titulo = input("Título da Aula: ")
-    #         aula.descricao_aula = input("Descrição da Aula: " )
-    #         aula.link = input("Link da Aula: ")
-    #         material = Material()
-    #         material.anexo = input("Link do Anexo do Material: ")
-    #         material.descricao_material = input("Descrição do Material: ")
-    #         aula.adicionar_material(material)
-    #         curso.adicionar_aula(aula)
-            
-    #     return curso
-
-    # def mostrar_cursos(self, cursos):
-    #     for curso in cursos:
-    #         print(curso)
-    #         print("------------------------------")
-
-    # def selecionar_curso(self):
-    #     codigo_curso = input('Código do curso que você deseja selecionar: ')
-    #     return codigo_curso
-
-    # def mostrar_mensagem(self, msg):
-    #     print(msg)
         
     def __init__(self):
         self.__window = None
@@ -99,10 +48,10 @@ class TelaCurso:
         self.__window = sg.Window('Sistema de venda de aulas online').Layout(layout)
 
     def pegar_dados_curso(self):
-        # from controller.controladorProfessor import ControladorProfessor
+        # NEW
         sg.ChangeLookAndFeel('LightGreen2')
 
-        lista_professores = [professor.nome for professor in self.__professor_DAO.get_all()]
+        lista_professores = [professor.cpf for professor in self.__professor_DAO.get_all()]
 
         layout = [
             [sg.Text('-------- DADOS CURSO ----------', font=("Helvica", 25))],
@@ -113,7 +62,6 @@ class TelaCurso:
             [sg.Text('Código:', size=(15, 1)), sg.InputText('', key='codigo_curso')],
             [sg.Text('Professor:', size=(15, 1)), sg.Combo(lista_professores, key='professor')],
             [sg.Text('Título:', size=(15, 1)), sg.InputText('', key='titulo')],
-            [sg.Text('Link:', size=(15, 1)), sg.InputText('', key='link')],
             [sg.Text('Descrição da Aula:', size=(15, 1)), sg.InputText('', key='descricao_aula')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
             ]
@@ -131,11 +79,10 @@ class TelaCurso:
             professor_selecionado = values['professor']
 
             titulo = values['titulo']
-            link = values['link']
             descricao_aula = values['descricao_aula']
 
             for professor in self.__professor_DAO.get_all():
-                if professor.nome == professor_selecionado:
+                if professor.cpf == professor_selecionado:
                     professor_selecionado = professor
                     break
 
@@ -145,59 +92,42 @@ class TelaCurso:
                 return None
 
             self.__window.close()
-
+            # print('prof', professor_selecionado)
+            # print('prof1', professor_selecionado.cpf)
             return {
                 "nome": nome,
                 "preco_atual": preco_atual,
                 "tempo": tempo,
                 "codigo_curso": codigo_curso,
                 "descricao": descricao,
-                "professor": professor.nome,
+                "professor": professor,
                 "titulo": titulo,
-                "link": link,
                 "descricao_aula": descricao_aula
             }
            
         else:
             self.__window.close()
             return None
-       
-    # def mostrar_curso(self, dados_curso):
-    #     dado_apresentacao = dados_curso["nome"] + '(' + dados_curso["codigo_curso"] + ')'
-
-    #     # Criando a layout para o popup
-    #     layout = [
-    #         [sg.Text('Nome:'), sg.Text(str(dado_apresentacao), size=(40, 1))]
-    #     ]
-
-    #     # Usando sg.popup_scrolled para exibir os detalhes
-    #     window = sg.Window('Detalhes do Curso', layout)
-    #     event, values = window.read()
-    #     # window.close()
-
-    #     # Fechando a janela
-    #     self.__window.close()
 
     def mostrar_cursos(self, cursos):
         array_cursos = [];
         for curso in cursos:
-            # nome_professor = curso.professor.nome if curso.professor else "Não especificado"
-        
+            print('curso.aulas.titulo', curso.aulas.titulo)
+            
             row = [curso.codigo_curso, 
-                   curso.nome, 
-                   curso.preco_atual, 
-                   curso.tempo, 
-                   curso.descricao,
-                   ] #Aulas #Professor
+                curso.nome, 
+                curso.preco_atual, 
+                curso.tempo, 
+                curso.descricao,
+                curso.professor.nome,
+                curso.aulas.titulo,
+                curso.aulas.descricao_aula
+                ]
             
             array_cursos.append(row)
 
         #sg.set_options(font=("Helvica", 14))
-        toprow = ['Codigo', 'Nome', 'Preço', 'Tempo', 'Descrição'] #Professor
-        # rows = [[cursos["nome"]],
-        #         [2, 'Rajani', 21, 66],
-        #         [3, 'Rahul', 22, 60],
-        #         [4, 'Robin', 20, 75]]
+        toprow = ['Codigo', 'Nome', 'Preço', 'Tempo', 'Descrição', 'Professor', 'Título', 'Descrição'] 
         tbl1 = sg.Table(values=array_cursos,
                         headings=toprow,
                         auto_size_columns=True,
@@ -212,15 +142,6 @@ class TelaCurso:
         self.__window = sg.Window("Cursos", layout, size=(715, 200), resizable=True)
         button, values = self.open()
         self.__window.close()
-
-        # while True:
-        #     event, values = window.read()
-        #     print("event:", event, "values:", values)
-        #     if event == sg.WIN_CLOSED:
-        #         break
-        #     if '+CLICKED+' in event:
-        #         sg.popup("You clicked row:{} Column: {}".format(event[2][0], event[2][1]))
-        #     window.close()
 
     def selecionar_curso(self):
         sg.ChangeLookAndFeel('LightGreen2')

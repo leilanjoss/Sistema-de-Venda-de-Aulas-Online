@@ -18,10 +18,6 @@ class CursoDAO(DAO):
         if isinstance(key, int):
             return super().get(key)
 
-    # def remove(self, key:int):
-    #     if(isinstance(key, int)):
-    #         return super().remove(key)
-
     def remove(self, key: str):
         if isinstance(key, str):
             super().remove(key)

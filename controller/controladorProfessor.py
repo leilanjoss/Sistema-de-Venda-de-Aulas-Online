@@ -9,16 +9,15 @@ class ControladorProfessor:
     def __init__(self):
         # self.__professores = []
         self.__professor_DAO = ProfessorDAO()
-        self.__professor_DAO.add(Professor("João Silva","joaosilva@gmail.com", "111111", "1", "Florianopolis", "SC", "Rua das Laranjeiras", "10"))
         self.__tela_professor = TelaProfessor()
        
     # @property
     # def professores(self):
     #     return self.__professores
     
-    # @property
-    # def tela_professor(self):
-    #     return self.__tela_professor
+    @property
+    def tela_professor(self):
+        return self.__tela_professor
 
     def inserir_professor(self):
         dados_professor = self.__tela_professor.pegar_dados_professor()
@@ -52,6 +51,7 @@ class ControladorProfessor:
         self.listar_professores()
         cpf = self.__tela_professor.selecionar_professor()
         professor = self.pegar_professor_por_cpf(cpf)
+        print('PROF exc', professor)
         if professor is not None:
             self.__professor_DAO.remove(professor.cpf)
             self.__tela_professor.mostrar_mensagem("Professor excluído.")
