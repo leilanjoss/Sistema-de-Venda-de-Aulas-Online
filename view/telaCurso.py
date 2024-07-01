@@ -187,23 +187,6 @@ class TelaCurso:
             else:
                 self.__window.close()
                 return None
-                return None
-
-            self.__window.close()
-            return {
-                "nome": nome,
-                "preco_atual": preco_atual,
-                "tempo": tempo,
-                "codigo_curso": codigo_curso,
-                "descricao": descricao,
-                "professor": professor,
-                "titulo": titulo,
-                "descricao_aula": descricao_aula
-            }
-           
-        else:
-            self.__window.close()
-            return None
 
 
     # def mostrar_cursos(self, cursos):
