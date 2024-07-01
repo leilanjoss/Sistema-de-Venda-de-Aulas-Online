@@ -20,8 +20,9 @@ class ControladorInscricao:
         dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
         
         aluno = self.__controlador_aluno.pegar_aluno_por_cpf(int(dados_inscricao['cpf_aluno']))
-        curso = self.__controlador_curso.pegar_curso_por_codigo(int(dados_inscricao['cod_curso']))
+        curso = self.__controlador_curso.pegar_curso_por_codigo(dados_inscricao['cod_curso'])
         
+        print(dados_inscricao)
         print('esse é o aluno:')
         print(aluno)
         
