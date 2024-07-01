@@ -35,3 +35,11 @@ class Inscricao:
     @aluno.setter
     def aluno(self, aluno):
         self.__aluno = aluno
+
+    @data_hora.setter
+    def data_hora(self, data_hora):
+        self.__data_hora = data_hora
+    
+    @id.setter
+    def id(self, id):
+        self.__id = id

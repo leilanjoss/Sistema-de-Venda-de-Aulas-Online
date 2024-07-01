@@ -92,8 +92,6 @@ class TelaCurso:
                 return None
 
             self.__window.close()
-            # print('prof', professor_selecionado)
-            # print('prof1', professor_selecionado.cpf)
             return {
                 "nome": nome,
                 "preco_atual": preco_atual,

@@ -54,18 +54,34 @@ class ControladorInscricao:
             self.__tela_inscricao.mostrar_mensagem("Inscrição não existente.")
     
     def atualizar_inscricao(self):
-        codigo_curso = input("Digite o código do curso: ")
-        for inscricao in self.__inscricoes:
-            if inscricao.curso.codigo_curso == codigo_curso:
-                cpf_aluno = input("Digite o novo CPF do aluno: ")
-                preco_pago = float(input("Digite o novo preço pago: "))
-                data_hora = input("Digite a nova data e hora: ")
-                inscricao.aluno = cpf_aluno
-                inscricao.preco_pago = preco_pago
-                inscricao.data_hora = data_hora
-                self.__tela_inscricao.mostrar_mensagem("Inscrição atualizada com sucesso!")
-                return
-        self.__tela_inscricao.mostrar_mensagem("Inscrição não encontrada!")
+        self.listar_inscricoes()
+        id = self.__tela_inscricao.selecionar_inscricao()
+        inscricao = self.pegar_inscricao_por_id(id)
+        print('pegar inscricao por id:')
+        
+        print(inscricao)
+        for inscricao in self.__inscricao_DAO.get_all():
+            if inscricao.id == id:
+                novos_dados_inscricao = self.__tela_inscricao.pegar_dados_inscricao()
+                curso_alterado = self.__controlador_curso.pegar_curso_por_codigo(novos_dados_inscricao['cod_curso'])
+                aluno_alterado = self.__controlador_aluno.pegar_aluno_por_cpf(int(novos_dados_inscricao['cpf_aluno']))
+                
+        print('Esse é o curso:')
+        print(curso_alterado)
+        
+        print('Esse é aluno:')
+        print(aluno_alterado)
+        
+        if curso_alterado is not None and aluno_alterado is not None:
+            inscricao.curso = curso_alterado
+            inscricao.aluno = aluno_alterado
+            inscricao.data_hora = novos_dados_inscricao['data_hora']
+            inscricao.id = novos_dados_inscricao['id_inscricao']
+
+            self.__tela_inscricao.mostrar_mensagem("Inscrição atualizada com sucesso!")
+        else:
+            self.__tela_inscricao.mostrar_mensagem("Curso ou aluno não encontrado")
+
     
     # RELATORIO
     # def gerar_relatorio_total_receitas(self):

@@ -62,7 +62,7 @@ class TelaInscricao():
         
         array_inscricoes = []
         for inscricao in inscricoes:
-            row = [inscricao.aluno.cpf, inscricao.curso.codigo_curso, inscricao.data_hora, inscricao.id] 
+            row = [inscricao.curso.codigo_curso, inscricao.aluno.cpf, inscricao.data_hora, inscricao.id] 
             array_inscricoes.append(row)
         toprow = ['Curso', 'Aluno', 'Data e Hora', 'ID']
         tbl1 = sg.Table(values=array_inscricoes,
@@ -144,12 +144,7 @@ class TelaInscricao():
         self.__window = sg.Window('Seleciona inscrição').Layout(layout)
         
         button, values = self.open()
-        id = values['id']
-
-        try:
-            id = int(''.join(filter(str.isdigit, id)))
-        except ValueError:
-            id = None
+        id = int(values['id'])
 
         self.__window.close()
         return id
